@@ -16,17 +16,27 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.0.1",
+    "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "autoprefixer": "^10.4.20",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "gatsby": "^5.14.0",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-postcss": "^6.14.0",
     "gatsby-plugin-sharp": "^5.14.0",
     "gatsby-source-contentful": "^8.15.0",
     "gatsby-transformer-sharp": "^5.14.0",
+    "heroicons": "^2.2.0",
+    "lucide-react": "^0.469.0",
     "postcss": "^8.4.49",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.17"
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
