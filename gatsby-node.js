@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require("path");
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -8,18 +8,17 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         "@/lib/utils": path.resolve(__dirname, "src/lib/utils"),
       },
     },
-  })
-}
+  });
+};
 
-// Define the template for blog post
-const blogPost = path.resolve(`./src/templates/blog-post-contentful.js`)
+const blogPost = path.resolve("./src/templates/blog-post-contentful.js");
+const blogIndex = path.resolve("./src/templates/blog-page.js");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  // Get all markdown blog posts sorted by date
   const result = await graphql(`
-    {
+    query {
       allContentfulPost {
         totalCount
         edges {
@@ -37,69 +36,46 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors
-    )
-    return
+    reporter.panicOnBuild("There was an error loading your blog posts", result.errors);
+    return;
   }
 
-  const posts = result.data.allContentfulPost.edges
+  const posts = result.data.allContentfulPost.edges;
+  const postsPerPage = 6;
+  const totalPosts = result.data.allContentfulPost.totalCount;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
-  // Create blog posts pages
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previous = index === 0 ? null : posts[index - 1].node
-      const next = index === posts.length - 1 ? null : posts[index + 1].node
+      const previous = index === 0 ? null : posts[index - 1].node;
+      const next = index === posts.length - 1 ? null : posts[index + 1].node;
 
       createPage({
-        path: post.node.slug,
+        path: `/blog/${post.node.slug}`,
         component: blogPost,
         context: {
           slug: post.node.slug,
           previous,
           next,
         },
-      })
-    })
+      });
+    });
   }
-}
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-
-  createTypes(`
-    type SiteSiteMetadata {
-      author: Author
-      siteUrl: String
-      social: Social
-    }
-
-    type Author {
-      name: String
-      summary: String
-    }
-
-    type Social {
-      twitter: String
-    }
-
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
-    }
-
-    type Frontmatter {
-      title: String
-      description: String
-      date: Date @dateformat
-    }
-
-    type Fields {
-      slug: String
-    }
-  `)
-}
+  Array.from({ length: totalPages }).forEach((_, i) => {
+    const pagePath = i === 0 ? `/blog/1` : `/blog/${i + 1}`; 
+    createPage({
+      path: pagePath,
+      component: blogIndex,
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        totalPages,
+        currentPage: i + 1,
+      },
+    });
+  });
+};

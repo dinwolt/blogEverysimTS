@@ -1,6 +1,7 @@
 import * as React from "react"
-
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import { cn } from "@/lib/utils"
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -31,14 +32,14 @@ CardHeader.displayName = "CardHeader"
 
 const CardImage = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { img: string }
+  React.HTMLAttributes<HTMLDivElement> & { img: IGatsbyImageData }
 >(({ className, img, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("relative h-64 w-full", className)}
     {...props}
   >
-    <img src={img} alt="Card" className="object-cover w-full h-full scale-110"/>
+    <GatsbyImage image={img} alt="Card" className="object-cover w-full h-full scale-110"/>
   </div>
 ));
 

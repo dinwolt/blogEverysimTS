@@ -7,7 +7,9 @@ import {
     XMarkIcon,
     Bars3Icon,
 } from "@heroicons/react/24/solid";
-
+interface NavbarProps {
+    className: string; 
+  }
 
 const NAV_MENU = [
     {
@@ -42,7 +44,7 @@ function NavItem({ children, href }: NavItemProps) {
         </li>
     );
 }
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => setOpen((cur) => !cur);
@@ -54,10 +56,25 @@ const Navbar = () => {
         );
     }, []);
     return (
-        <nav className="border-0 sticky top-2 z-50">
-    <div className="container mx-auto flex items-center justify-between w-full">
-      
-        <Link to="/" className="flex-1 text-lg font-bold text-gray-900">Everysim</Link>
+        <nav className={className}>
+    <div className="container mx-auto flex items-center justify-between w-auto">
+      <div className='flex flex-1  items-center space-x-8'>
+        
+      <div className="lg:hidden flex items-center">
+        <button
+            onClick={handleOpen}
+            className="inline-block p-2"
+        >
+            {open ? (
+                <XMarkIcon strokeWidth={2} className="h-6 w-6 text-gray-900" />
+            ) : (
+                <Bars3Icon strokeWidth={2} className="h-6 w-6 text-gray-900" />
+            )}
+        </button>
+    </div>
+    <Link to="/" className=" text-lg font-bold text-gray-900">Everysim</Link>
+      </div>
+        
 
        
         <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
@@ -72,7 +89,7 @@ const Navbar = () => {
         </div>
 
         
-        <div className="hidden lg:flex flex-1 items-center justify-end gap-4">
+        <div className="hidden lg:flex flex-1 items-center justify-end gap-4 mx-auto">
             <Link to="/signin" className="font-medium text-gray-900 hover:text-blue-500">
                 Sign In
             </Link>
@@ -87,18 +104,7 @@ const Navbar = () => {
     </div>
 
    
-    <div className="lg:hidden flex items-center">
-        <button
-            onClick={handleOpen}
-            className="inline-block p-2"
-        >
-            {open ? (
-                <XMarkIcon strokeWidth={2} className="h-6 w-6 text-gray-900" />
-            ) : (
-                <Bars3Icon strokeWidth={2} className="h-6 w-6 text-gray-900" />
-            )}
-        </button>
-    </div>
+    
 
     {open && (
         <div className="container mx-auto mt-3 px-4 pt-4 border-t border-gray-200">

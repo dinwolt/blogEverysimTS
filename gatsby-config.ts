@@ -15,30 +15,41 @@ if (process.env.NODEENV !== 'production'){
 module.exports = {
   
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
-    },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    title: `Everysim Blog`,
+    description: 'A blog sharing insights and stories about EverySim, tech, development, and more.',
+    author: 'Everysim',
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
+    lang: 'en', 
+    copyright: '© 2025 EverySim Blog. All rights reserved.',
   },
   plugins: [
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-contentful`,
       options:{
         spaceId:`jo6yvbbl7m0n`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        host: `cdn.contentful.com`,
       }
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Your Blog App',
+        short_name: 'Blog',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#000',
+        display: 'minimal-ui',
+        icon: 'src/images/icon.png',
+      },
     },
     
     
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
   
   ],
 }
