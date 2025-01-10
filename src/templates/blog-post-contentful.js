@@ -76,7 +76,7 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
           <h1 className="font-anton text-2xl mt-5">{post.postAuthor.name}</h1>
           <h1 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h1>
           <h1 className="m-10 text-center">{post.postAuthor.description}</h1>
-          <Link to="../authors">Learn more about our authors</Link>
+          <Link to="../../authors" className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">Learn more about our authors</Link>
         </div>
         <div className="flex flex-col gap-4 mt-5">
           <h1 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}'s other articles</h1>
