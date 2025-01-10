@@ -14,14 +14,22 @@ const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, onTabChange }) => {
           {tabs.map((tab) => (
             <button
               key={tab}
-              className={`px-4 py-2 flex-1 text-sm font-medium text-center transition-colors overflow-hidden text-ellipsis whitespace-nowrap ${
+              className={`relative px-4 py-2 flex-1 text-sm font-medium text-center transition-colors overflow-hidden text-ellipsis whitespace-nowrap ${
                 activeTab === tab
                   ? "bg-white text-black border border-gray-300"
                   : "bg-gray-200 text-gray-600 hover:bg-gray-300"
               }`}
               onClick={() => onTabChange(tab)}
             >
-              {tab}
+              {/* Tooltip wrapper */}
+              <div className="relative group">
+                <span>{tab}</span>
+
+                {/* Tooltip that appears on hover */}
+                <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black text-white text-xs rounded px-2 py-1">
+                  {tab}
+                </span>
+              </div>
             </button>
           ))}
         </div>

@@ -10,7 +10,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const BlogPostContentfulTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const post = data.contentfulPost;
-
+  console.log(post)
   return (
     <Layout title={siteTitle}>
       <article className="flex flex-col min-h-screen place-items-center p-20 space-y-8" itemScope itemType="http://schema.org/Article">
@@ -27,17 +27,17 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
             </h3>
             <div className="mt-5 flex justify-center space-x-3 text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-3">
-                {post.author && (
+                {post.postAuthor.name && (
                   <div className="relative h-10 w-10 flex-shrink-0">
                     <GatsbyImage
-                      image = {getImage(post.image)}
-                      alt={post.author}
+                      image = {getImage(post.postAuthor.image)}
+                      alt={post.postAuthor.name}
                       className="rounded-full object-cover"
                     />
                   </div>
                 )}
                 <div>
-                  <p className="text-gray-800 dark:text-gray-400">{post.author}</p>
+                  <p className="text-gray-800 dark:text-gray-400">{post.postAuthor.name}</p>
                   <div className="flex items-center space-x-2 text-sm">
                     <time className="text-gray-500 dark:text-gray-400" dateTime={post?.publishedAt || post._createdAt}>
                       {new Date(post?.publishedAt || post._createdAt).toLocaleDateString()}
@@ -81,7 +81,7 @@ export const Head = ({ data }) => {
       description={data.contentfulPost.content.raw || ""}
       image={data.contentfulPost.image?.file?.url}
       url="https://google.com"
-      author={data.contentfulPost.author}
+      author={data.contentfulPost.postAuthor.name}
       keywords={["blog", "gatsby", "contentful"]} 
     />
   );
@@ -91,31 +91,45 @@ export default BlogPostContentfulTemplate;
 
 export const pageQuery = graphql`
   query ContentfulBlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
+  site {
+    siteMetadata {
+      title
       description
       author
       siteUrl
       lang
       copyright
-      }
-    }
-    contentfulPost(slug: { eq: $slug }) {
-      title
-      author
-      tag
-      content {
-        raw
-      }
-      image {
-          gatsbyImageData(
-            layout: CONSTRAINED
-            width: 800
-            placeholder: BLURRED
-            quality:90
-          )
-        }
     }
   }
+  contentfulPost(slug: { eq: $slug }) {
+    content {
+      raw
+    }
+    title
+    subtitle
+    slug
+    image {
+      gatsbyImageData(
+        layout: CONSTRAINED
+        width: 800
+        placeholder: BLURRED
+        quality: 90
+      )
+    }
+    tag
+    postAuthor {
+      name
+      image {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          width: 150
+          placeholder: BLURRED
+          quality: 90
+        )
+      }
+      description
+      role
+    }
+  }
+}
 `;

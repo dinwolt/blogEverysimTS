@@ -17,6 +17,9 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.1",
+    "@fontsource/anton": "^5.1.1",
+    "@fontsource/roboto": "^5.1.1",
+    "@fontsource/roboto-condensed": "^5.1.1",
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-slot": "^1.1.1",
     "autoprefixer": "^10.4.20",

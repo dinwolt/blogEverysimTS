@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import {  getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-
+import { useState } from 'react';
 import {
     Card,
     CardContent,
@@ -16,11 +16,16 @@ import Tabs from "@/components/Tabs";
 
 type PostData = {
     title?: string;
-    subtitle?: string;
-    author?: string;
-    slug: string;
-    image: IGatsbyImageData;
-    tag: string;
+        subtitle?: string;
+        slug: string;
+        image: IGatsbyImageData; 
+        tag: string;
+        postAuthor?: {
+          name: string;
+          image?: IGatsbyImageData;
+          description?: string;
+          role?: string;
+        };
 };
 
 interface BlogGridProps {
@@ -50,17 +55,17 @@ const BlogGrid: React.FC<BlogGridProps> = ({
     console.log(visiblePosts);
 
     return (
-        <div>
-            <div>
+        <div className='p-8'>
+            <div className='p-8'>
                 <Tabs
                     tabs={uniqueTags}
                     activeTab={activeTab}
                     onTabChange={(tab) => setActiveTab(tab === activeTab ? "" : tab)}
                 />
             </div>
-
+        
             <div className="flex justify-center items-center my-8">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl w-full px-4">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl  px-4">
                     {visiblePosts.map((post, index) => {
                         const image = getImage(post.image); 
                         return (

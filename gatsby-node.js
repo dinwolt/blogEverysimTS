@@ -23,15 +23,34 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         totalCount
         edges {
           node {
-            title
-            slug
-            author
             content {
-              raw
-            }
-            image {
-              url
-            }
+      raw
+    }
+    title
+    subtitle
+    slug
+    image {
+      gatsbyImageData(
+        layout: CONSTRAINED
+        width: 800
+        placeholder: BLURRED
+        quality: 90
+      )
+    }
+    tag
+    postAuthor {
+      name
+      image {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          width: 150
+          placeholder: BLURRED
+          quality: 90
+        )
+      }
+      description
+      role
+    }
           }
         }
       }

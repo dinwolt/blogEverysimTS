@@ -38,7 +38,7 @@ const Seo: React.FC<SEOProps> = ({
             url: string;
           };
         };
-        author: string;
+        postAuthor: {name:string;}
       }>;
     };
   }>(
@@ -63,7 +63,7 @@ const Seo: React.FC<SEOProps> = ({
                 url
               }
             }
-            author
+            postAuthor{name}
           }
         }
       }
