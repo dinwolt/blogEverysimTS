@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import Tabs from "@/components/Tabs";
 
+
 type PostData = {
     title?: string;
         subtitle?: string;
@@ -55,8 +56,8 @@ const BlogGrid: React.FC<BlogGridProps> = ({
     console.log(visiblePosts);
 
     return (
-        <div className='p-8'>
-            <div className='p-8'>
+        <div className='p-3'>
+            <div className=''>
                 <Tabs
                     tabs={uniqueTags}
                     activeTab={activeTab}
@@ -65,7 +66,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({
             </div>
         
             <div className="flex justify-center items-center my-8">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl  px-4">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl px-4">
                     {visiblePosts.map((post, index) => {
                         const image = getImage(post.image); 
                         return (

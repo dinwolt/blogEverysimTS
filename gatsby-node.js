@@ -77,6 +77,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         component: blogPost,
         context: {
           slug: post.node.slug,
+          authorName:post.node.postAuthor.name,
           previous,
           next,
         },

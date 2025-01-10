@@ -17,7 +17,7 @@ const BlogIndex = ({ data, pageContext }) => {
   return (
     <Layout title={siteTitle}>
       <div className="container mx-auto p-6 min-h-screen flex flex-col">
-        <div className="bg-banner-image-lg bg-cover bg-no-repeat"><h1 className="text-anton text-white text-center text-4xl p-8">Blog</h1></div>
+        <div className="bg-banner-image-lg bg-cover bg-no-repeat w-full"><h1 className="text-anton text-white text-center text-4xl p-8">Blog</h1></div>
         
 
         <BlogGrid

@@ -40,7 +40,7 @@ export const BlogBody = ({ content }: BlogBodyProps) => {
   };
 
   return (
-    <article className="px-6 mx-auto max-w-screen-lg">
+    <article className="py-6 mx-auto max-w-screen-lg">
       {renderRichText(content, options)}
     </article>
   );

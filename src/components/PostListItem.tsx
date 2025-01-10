@@ -30,9 +30,9 @@ const PostListItem: React.FC<Props> = ({ posts }) => {
         return (
             <div
               key={index}
-              className="flex flex-col my-6 r" // Added shadow and increased vertical margin
+              className="flex flex-col my-6 r" 
             >
-              <div className="p-6"> {/* Added padding */}
+              <div className=""> 
                 <h2 className="font-anton text-2xl text-brandPrimary mb-2">{post.title}</h2>
                 <h3 className="font-robotoCondensed text-lg text-brandHighlight mb-3">{post.tag}</h3>
                 
