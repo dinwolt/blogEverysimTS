@@ -24,7 +24,7 @@ interface CardProps {
 const Carousel: React.FC<CardProps> = ({posts}) => {
 
     return (
-        <div className="overflow-hidden py-8">
+        <div className="overflow-hidden my-3">
             <div className="flex animate-scroll">
 
                 {posts.concat(posts).map((post, index) =>{

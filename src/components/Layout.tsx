@@ -48,9 +48,9 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <Navbar
-        className={`  border-0 sticky  transition-all duration-300 z-50 ${showNavbar ? 'top-10' : 'hidden'}`}
+        className={` sticky bg-brandPrimary transition-all duration-300 z-50 `}
       />
-      <main className="mt-20">{children}</main>
+      <main className="">{children}</main>
       <Footer/>
     </div>
   );

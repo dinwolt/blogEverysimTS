@@ -22,24 +22,26 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
   return (
 <Layout title={siteTitle}>
   <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
-    <div className="grid gap-8 lg:grid-cols-2 md:grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
+    <div className="container">
+
+      <div className="grid gap-8 lg:grid-cols-2 sm:grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
       <article
         className="flex flex-col min-h-screen place-items-center p-20 space-y-8"
         itemScope
         itemType="http://schema.org/Article"
       >
         <div className="flex flex-col items-left">
-          <h3 className="font-semibold text-left text-blue-500 mb-3">{post.tag}</h3>
+          <h3 className="font-semibold text-left sm:text-base text-xs text-blue-500 mb-3">{post.tag}</h3>
           <header className="text-left mb-8">
             <h1
               itemProp="headline"
-              className="lg:text-5xl text-3xl font-semibold text-gray-900 dark:text-white"
+              className="lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
             >
               {post.title}
             </h1>
             <h3
               itemProp="headline"
-              className="font-semibold text-gray-500 dark:text-white mt-3"
+              className="font-semibold text-gray-500 sm:text-base text-xs dark:text-white mt-3"
             >
               {post.subtitle}
             </h3>
@@ -69,7 +71,7 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
           </div>
         </div>
       </article>
-      <div className="flex flex-col items-center p-6  mx-auto">
+      <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
         <div className="flex flex-col mt-5 items-center mx-auto p-10 lg:w-[50rem]">
           <h1 className="font-semibold">Written by</h1>
           <GatsbyImage image={getImage(post.postAuthor.image)} className="rounded-full" />
@@ -84,6 +86,8 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
         </div>
       </div>
     </div>
+    </div>
+    
     <div className="flex flex-col w-auto">
       <h1 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">You might also like</h1>
       <Carousel posts={randomPosts} />

@@ -17,10 +17,13 @@ export const BlogBody = ({ content }: BlogBodyProps) => {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => <Heading1>{children}</Heading1>,
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="text-4xl font-semibold text-gray-800 mt-6 mb-5">{children}</h2>
+        <h2 className="sm:text-4xl text-2xl font-semibold text-gray-800 mt-6 mb-5">{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className="text-3xl font-medium text-gray-700 mt-5 mb-4">{children}</h3>
+        <h3 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h4>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
       [BLOCKS.UL_LIST]: (node, children) => (

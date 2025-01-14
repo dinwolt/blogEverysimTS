@@ -64,6 +64,19 @@
   body {
     @apply bg-background text-foreground;
   }
+  .section-title{
+    @apply font-anton text-white sm:text-4xl text-2xl; 
+  } 
+  .section-subtitle{
+    @apply font-roboto  sm:text-2xl text-white; 
+  } 
+  .section-post-title{
+    @apply font-robotoCondensed  sm:text-2xl text-xl;
+  }
+  .section-post-subtitle{
+    @apply font-roboto text-gray-600 text-base;
+  }
+  
 }
 
 @keyframes scroll {
@@ -80,6 +93,8 @@
   display: flex;
   width: max-content; 
 }
+
+
 
 @media (max-width: 768px) {
   .animate-scroll {
