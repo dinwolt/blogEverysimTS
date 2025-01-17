@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+//import { Link } from 'gatsby';
 import {  getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { useState } from 'react';
@@ -13,6 +13,7 @@ import {
     CardTag
 } from "@/components/ui/card";
 import Tabs from "@/components/Tabs";
+import { Link } from 'gatsby-plugin-intl';
 
 
 type PostData = {

@@ -10,6 +10,8 @@ import Slider from "@/components/Slider";
 import PostListItem from "@/components/PostListItem";
 import Carousel from "@/components/Carousel";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import {injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps} from "gatsby-plugin-intl"
+
 interface BlogIndexQueryData {
   site: {
     siteMetadata?: {
@@ -48,8 +50,9 @@ interface BlogIndexQueryData {
     }[]
   }
 }
+type BlogIndexProps = PageProps<BlogIndexQueryData> & WrappedComponentProps;
 
-const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
+const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
 
   const siteTitle = data.site.siteMetadata?.title || 'Title';
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
@@ -58,8 +61,8 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
   const [visibleCount, setVisibleCount] = useState<number>(6);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const postChoice = getImage(posts[0].image)
-  console.log("INDEX PAGE")
-  console.log(posts)
+  const locale = intl.locale
+
 
   const filteredPosts = activeTab
     ? posts.filter(post =>
@@ -85,10 +88,10 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
             <Slider posts={posts} />
             <div className="px-8 pb-10">
               <h1 className="section-title text-center mt-5">
-                Don't miss our latest innovations
+                <FormattedMessage id="index_banner_title"/>
               </h1>
               <p className="section-subtitle text-center mt-2">
-                Check out the latest innovations in the simulation field to learn about new wondrous ways how technologies change our everyday life.
+                <FormattedMessage id="index_banner_subtitle"/>
               </p>
 
             </div>
@@ -101,9 +104,11 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
 
           {/*Grid Header*/}
           <div>
-            <h1 className="section-title text-black text-center mt-5">Trend Posts</h1>
+            <h1 className="section-title text-black text-center mt-5">
+              <FormattedMessage id="index_trends_title"/>
+            </h1>
             <p className="section-subtitle mt-2 text-center text-gray-400">
-              Check out what's new in simulation engineering and tech worlds! Don't forget to subscribe to our blog for the latest news.
+              <FormattedMessage id="index_trends_subtitle"/>
             </p>
           </div>
 
@@ -120,24 +125,28 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
           {/*Go to Blog*/}
           <div className="text-center w-full  items-center flex mt-6 mb-6">
             <hr className="flex-1 border-t border-brandHighlight w-auto my-10" />
-            <Link to="/blog/1" className="flex-1 section-subtitle text-brandHighlight font-bold text-3xl hover:text-brandPrimary">
-              Go to Blog
-            </Link>
+            <ILink to={`/blog/1`} className="flex-1 section-subtitle text-brandHighlight font-bold text-3xl hover:text-brandPrimary">
+              <FormattedMessage id="index_gotoblog"/>
+            </ILink>
             <hr className="flex-1 border-t border-brandHighlight w-auto my-10" />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-8">
             {/*Latest posts*/}
             <div className="flex flex-col gap-4">
-              <h1 className="section-title  text-black sm:text-left text-center">Latest Posts</h1>
+              <h1 className="section-title  text-black sm:text-left text-center">
+                <FormattedMessage id="index_latest_title"/>
+              </h1>
               <PostListItem posts={posts} />
             </div>
 
             {/*Authors + Choice*/}
             <div className="flex flex-col gap-8 sm:p-5">
               {/*Authors*/}
-              <Link to="/authors" className="hover:scale-105 transition duration-150 ease-in-out" >
-                <h1 className="section-title text-black text-center">Meet our Authors</h1>
+              <ILink to="/authors" className="hover:scale-105 transition duration-150 ease-in-out" >
+                <h1 className="section-title text-black text-center">
+                  <FormattedMessage id="index_authors"/>
+                </h1>
                 <div className="grid grid-cols-2 m-5" >
                   {
                     authors.map((author, index) => {
@@ -152,29 +161,35 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
                     })
                   }
                 </div>
-              </Link>
+              </ILink>
               {/*Author's choice */}
               <div className="flex flex-col gap-4">
-                <h1 className="section-post-subtitle font-bold text-center">Check our our author's </h1>
+                <h1 className="section-post-subtitle font-bold text-center">
+                  <FormattedMessage id="index_check_author"/>
+                   </h1>
                 <div className="flex flex-col gap-4 p-5 border shadow-md rounded-lg hover:scale-105 transition-transform duration-300">
-                  <h1 className="section-title text-black text-center mt-5">Weekly Choice</h1>
+                  <h1 className="section-title text-black text-center mt-5">
+                    <FormattedMessage id="index_weekly"/>
+                  </h1>
                   {postChoice && <GatsbyImage image={postChoice} alt={posts[0].title} className="object-cover rounded-md mx-auto" />}
                   <div>
                     <h1 className="section-post-subtitle font-semibold text-sm sm:text-base text-brandHighlight">{posts[0].tag}</h1>
                     <h1 className="section-title text-black sm:text-2xl text-xl">{posts[0].title}</h1>
                     <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600" >{posts[0].subtitle}</h2>
                     <div className="flex justify-between gap-8 items-center mt-4">
-                      <p className="hidden sm:block">In aerospace engineering, simulation is a vital tool for testing the complex dynamics of aircraft systems. Engineers use virtual prototypes to simulate the performance of various systems under different flight conditions. This allows them to make necessary adjustments before physical testing, ensuring safety, efficiency, and reliability in air travel.</p>
-                      <Link
+                      
+                      <ILink
                         to={`/blog/${posts[0].slug}`}
                         className="flex items-center text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out"
                       >
-                        <span className="mr-2">Read More</span>
+                        <span className="mr-2">
+                          <FormattedMessage id="index_readmore"/>
+                        </span>
                         <ArrowRightIcon
                           className="h-5 w-5 text-brandHighlight"
                           aria-hidden="true"
                         />
-                      </Link>
+                      </ILink>
                     </div>
 
                   </div>
@@ -185,9 +200,11 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
 
           {/*Other articles*/}
           <div className="my-8">
-          <h1 className="section-title text-black mt-5">Other articles</h1>
+          <h1 className="section-title text-black mt-5">
+            <FormattedMessage id="index_other_title"/>
+          </h1>
           <p className="section-subtitle text-gray-500 sm:mt-2">
-            There are still many interesting topics we would like to dive in. Learn more from our brand new posts
+            <FormattedMessage id="index_other_subtitle"/>
           </p>
           <Carousel posts={posts} />
           
@@ -200,7 +217,7 @@ const BlogIndex: React.FC<PageProps<BlogIndexQueryData>> = ({ data }) => {
   );
 };
 
-export default BlogIndex;
+export default injectIntl(BlogIndex);
 
 export const Head: React.FC = () => <Seo
   title={"Home Page"}
@@ -210,7 +227,7 @@ export const Head: React.FC = () => <Seo
 />;
 
 export const pageQuery = graphql`
-  {
+  query ContentfulPosts($locale:String){
     site {
       siteMetadata {
         title
@@ -221,7 +238,7 @@ export const pageQuery = graphql`
         copyright
       }
     }
-    allContentfulPost(sort: {createdAt: DESC}, limit: 6) {
+    allContentfulPost(sort: {createdAt: DESC}, limit: 6, filter:{node_locale:{eq:$locale}}) {
       edges {
         node {
           title
@@ -252,7 +269,7 @@ export const pageQuery = graphql`
         }
       }
     }
-        allContentfulAuthor {
+        allContentfulAuthor( filter:{node_locale:{eq:$locale}}) {
      edges {
       node {
         name

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
+import { Link } from "gatsby-plugin-intl";
 import BlogGrid from "../components/BlogGrid";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { FormattedMessage } from "gatsby-plugin-intl";
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || 'Title';
   const posts = data.allContentfulPost.edges.map(edge => edge.node)
@@ -28,8 +30,12 @@ const BlogIndex = ({ data, pageContext }) => {
             <div className="flex  gap-8 p-8">
               <div className="flex-1 flex flex-col sm:p-8  justify-center">
                 <div className="mb-5">
-                  <h1 className="section-title mb-3">Blog</h1>
-                  <h2 className="section-subtitle">In short, a blog is a type of website that focuses mainly on written content, also known as blog posts. In popular culture we most often hear about news blogs ...</h2>
+                  <h1 className="section-title mb-3">
+                    <FormattedMessage id="blog_banner_title"/>
+                  </h1>
+                  <h2 className="section-subtitle">
+                    <FormattedMessage id="blog_banner_subtitle"/>
+                  </h2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   
@@ -42,7 +48,9 @@ const BlogIndex = ({ data, pageContext }) => {
                     <div>
                       <p className="section-post-title text-white font-semibold">{randomAuthor.name}</p>
                       <p className="section-post-subtitle text-white ">{randomAuthor.role}</p>
-                      <Link to="../../authors" className="section-post-subtitle text-white hover:underline transition-transform duration-200">Learn more about our authors</Link>
+                      <Link to="../../authors" className="section-post-subtitle text-white hover:underline transition-transform duration-200">
+                      <FormattedMessage id="blog_banner_authorslink"/>
+                      </Link>
                     </div>
 
                   </div>
@@ -51,7 +59,9 @@ const BlogIndex = ({ data, pageContext }) => {
               <div className="flex-1 mt-10 hidden sm:block p-8"><Link to={`/blog/${randomPost.slug}`}
                 className="rounded-lg shadow-lg sm:p-8 hover:scale-105 transition-transform duration-3000"
               >
-                <p className="section-title text-right mb-5 text-center">You might like this</p>
+                <p className="section-title text-right mb-5 text-center">
+                  <FormattedMessage id="blog_banner_recommendation"/>
+                </p>
                 <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10" />
                 <p className="section-post-subtitle text-white font-semibold">{randomPost.tag}</p>
                 <p className="section-title">{randomPost.title}</p>
@@ -66,8 +76,12 @@ const BlogIndex = ({ data, pageContext }) => {
 
         <div className="container mx-auto p-6 min-h-screen flex flex-col">
 
-        <h1 className="section-title text-center text-black mb-2">Blog posts</h1>
-        <h3 className="section-subtitle text-center text-black mb-5">Check out all posts written by our authors</h3>
+        <h1 className="section-title text-center text-black mb-2">
+          <FormattedMessage id="blog_section_title"/>
+        </h1>
+        <h3 className="section-subtitle text-center text-black mb-5">
+          <FormattedMessage id="blog_section_subtitle"/>
+        </h3>
 
           <BlogGrid
             posts={posts}
@@ -103,7 +117,7 @@ const BlogIndex = ({ data, pageContext }) => {
 };
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query($skip: Int!, $limit: Int!, $locale:String!) {
   
     site {
       siteMetadata {
@@ -115,7 +129,7 @@ export const query = graphql`
       copyright
       }
     }
-    allContentfulPost(skip: $skip, limit: $limit) {
+    allContentfulPost(skip: $skip, limit: $limit, filter:{node_locale:{eq:$locale}}) {
       edges {
         node {
           title

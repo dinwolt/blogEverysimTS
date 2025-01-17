@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import { FormattedMessage, injectIntl, WrappedComponentProps } from "gatsby-plugin-intl"; // Import injectIntl
 
 interface AuthorsIndexQueryData {
     site: {
@@ -24,11 +25,13 @@ interface AuthorsIndexQueryData {
                 role: string;
                 description: string;
             };
-        }[];
+        }[]; 
     };
 }
 
-const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData>> = ({ data }) => {
+const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponentProps> = ({ data, intl }) => {
+    const { locale } = intl;  // Get the current locale from the injected intl object
+
     const authors = data.allContentfulAuthor.edges.map((edge) => edge.node);
 
     return (
@@ -36,10 +39,13 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData>> = ({ data }) => {
             <Seo title="Authors" url="https://google.com" description="Meet the talented authors of our platform." />
 
             <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight text-white py-16 text-center">
-                <h1 className="text-4xl font-bold">Meet Our Authors</h1>
-                <p className="mt-4 text-lg">Discover the brilliant minds behind our content.</p>
+                <h1 className="text-4xl font-bold">
+                    <FormattedMessage id="about_authors_title"/>
+                </h1>
+                <p className="mt-4 text-lg">
+                    <FormattedMessage id="about_authors_subtitle"/>
+                </p>
             </section>
-
 
             <section className="py-12 px-4 md:px-16 lg:px-24">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -68,27 +74,29 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData>> = ({ data }) => {
                 </div>
             </section>
 
-
             <section className="bg-gray-100 py-16 text-center">
-                <h2 className="text-3xl  font-anton text-gray-800">Want to Collaborate with Us?</h2>
+                <h2 className="text-3xl  font-anton text-gray-800">
+                    <FormattedMessage id="about_collab_title"/>
+                </h2>
                 <p className="mt-4 text-gray-600">
-                    Join our team of creative minds and make an impact with your work.
+                    <FormattedMessage id="about_collab_subtitle"/>
                 </p>
                 <a
                     href="#"
                     className="mt-6 inline-block bg-brandHighlight text-white px-6 py-3 rounded-lg shadow hover:bg-brandSecondary transition-colors duration-300"
                 >
-                    Contact Us
+                    <FormattedMessage id="about_contactus"/>
                 </a>
             </section>
         </Layout>
     );
 };
 
-export default AuthorsIndex;
+// Wrap the component with injectIntl to inject the intl prop
+export default injectIntl(AuthorsIndex);
 
 export const pageQuery = graphql`
-    {
+    query($locale: String!) {
         site {
             siteMetadata {
                 title
@@ -99,7 +107,7 @@ export const pageQuery = graphql`
                 copyright
             }
         }
-        allContentfulAuthor {
+        allContentfulAuthor(filter: { node_locale: { eq: $locale } }) {
             edges {
                 node {
                     name

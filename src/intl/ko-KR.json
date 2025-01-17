@@ -1,0 +1,47 @@
+{
+    "index_banner_title": "최신 혁신을 놓치지 마세요",
+    "index_banner_subtitle": "시뮬레이션 분야의 최신 혁신을 확인하고, 기술이 우리의 일상을 변화시키는 놀라운 방법을 알아보세요.",
+    "index_trends_title": "트렌드 포스트",
+    "index_trends_subtitle": "시뮬레이션 공학 및 기술 세계의 새로운 소식을 확인하세요! 최신 뉴스를 위해 블로그를 구독하는 것도 잊지 마세요.",
+    "index_gotoblog": "블로그로 이동",
+    "index_latest_title": "최신 포스트",
+    "index_authors": "저자 소개",
+    "index_check_author": "저자 확인하기",
+    "index_weekly": "주간 추천",
+    "index_readmore": "더 읽기",
+    "index_other_title": "다른 기사",
+    "index_other_subtitle": "아직 다루고 싶은 흥미로운 주제가 많이 있습니다. 새로 나온 포스트에서 더 알아보세요.",
+    
+    "blog_banner_title": "블로그",
+    "blog_banner_subtitle": "간단히 말해, 블로그는 주로 글로 된 콘텐츠(블로그 포스트라고도 함)에 초점을 맞춘 웹사이트의 한 종류입니다. 대중문화에서 우리는 주로 뉴스 블로그에 대해 듣곤 합니다...",
+    "blog_banner_authorslink": "저자들에 대해 더 알아보기",
+    "blog_banner_recommendation": "이것도 좋아하실 겁니다",
+    "blog_section_title": "블로그 포스트",
+    "blog_section_subtitle": "우리 저자들이 작성한 모든 포스트를 확인하세요",
+
+    "about_authors_title": "우리의 저자들을 만나보세요",
+    "about_authors_subtitle": "우리 콘텐츠 뒤에 있는 뛰어난 인재들을 알아보세요.",
+    "about_collab_title": "우리와 함께 협업하고 싶으신가요?",
+    "about_collab_subtitle": "창의적인 팀에 합류하여 여러분의 작업으로 영향을 미쳐보세요.",
+    "about_contactus": "문의하기",
+    
+    "footer_home": "홈",
+    "footer_blog": "블로그",
+    "footer_about": "소개",
+    "footer_naver": "네이버",
+    "footer_web": "웹사이트",
+    "footer_insta": "인스타그램",
+    
+    "post_bloglink": "← 모든 포스트 보기",
+    "post_writtenby": "작성자",
+    "post_author_other": "의 다른 기사",
+    "post_recommendation": "이것도 좋아하실 겁니다",
+    "post_authorlink": "저자들에 대해 더 알아보기",
+
+
+    "nav_home": "홈",
+    "nav_about": "소개",
+    "nav_blog": "블로그",
+    "nav_button": "Everysim으로 이동"
+    
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { Link } from 'gatsby';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import { FormattedMessage } from 'gatsby-plugin-intl';
+import { Link as ILink } from 'gatsby-plugin-intl';
 
 type PostData = {
   title?: string;
@@ -53,16 +55,18 @@ const PostListItem: React.FC<Props> = ({ posts }) => {
                       </div>
                     </div>
                   )}
-                  <Link
+                  <ILink
                     to={`/blog/${post.slug}`}
                     className="flex items-center text-brandHighlight text-xs sm:text-base font-semibold hover:underline transition duration-150 ease-in-out"
                   >
-                    <span className="mr-2">Read More</span>
+                    <span className="mr-2">
+                      <FormattedMessage id="index_readmore"/>
+                    </span>
                     <ArrowRightIcon
                       className="sm:h-5 sm:w-5 h-3 w-3 text-brandHighlight"
                       aria-hidden="true"
                     />
-                  </Link>
+                  </ILink>
                 </div>
               </div>
               <hr className="border-t border-gray-200 w-full my-3" />

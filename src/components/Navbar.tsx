@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby'
-
+import { Link } from 'gatsby-plugin-intl';
 import {
     RectangleStackIcon,
     UserCircleIcon,
@@ -9,35 +8,25 @@ import {
     Bars3Icon,
 
 } from "@heroicons/react/24/solid";
+import LanguageSwitcher from './LanguageSwitcher';
+import { FormattedMessage, injectIntl, IntlShape, WrappedComponentProps } from 'gatsby-plugin-intl';
 interface NavbarProps {
     className: string;
+    intl: IntlShape;
 }
 
-const NAV_MENU = [
-    {
-        name: "Home",
-        icon: RectangleStackIcon,
-        href: "/"
-    },
-    {
-        name: "About",
-        icon: UserCircleIcon,
-        href: "/about"
-    },
-    {
-        name: "Docs",
-        icon: CommandLineIcon,
-        href: "/blog"
-    },
-];
+
 interface NavItemProps {
     children: React.ReactNode;
     href?: string;
 }
+type NavProps = NavbarProps & WrappedComponentProps;
 function NavItem({ children, href }: NavItemProps) {
+    
     return (
         <li>
             <Link
+            
                 to={href || "/"}
                 className="flex items-center gap-2 font-medium text-white"
             >
@@ -46,9 +35,25 @@ function NavItem({ children, href }: NavItemProps) {
         </li>
     );
 }
-const Navbar: React.FC<NavbarProps> = ({ className }) => {
+const Navbar: React.FC<NavProps> = ({ className, intl }) => {
+    const NAV_MENU = [
+        {
+            name: "nav_home",
+            icon: RectangleStackIcon,
+            href: "/"
+        },
+        {
+            name: "nav_blog",
+            icon: UserCircleIcon,
+            href: "/blog/1"
+        },
+        {
+            name: "nav_about",
+            icon: CommandLineIcon,
+            href: "/authors"
+        },
+    ];
     const [open, setOpen] = React.useState(false);
-
     const handleOpen = () => setOpen((cur) => !cur);
 
     React.useEffect(() => {
@@ -75,33 +80,39 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                         </button>
                     </div>
                     <Link to="/" className=" text-lg font-bold text-white">Everysim</Link>
+                    <ul className="languages">
+            
+          </ul>
                 </div>
 
 
 
                 <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
                     <ul className="flex items-center gap-8">
-                        {NAV_MENU.map(({ name, icon: Icon, href }) => (
+                        {NAV_MENU.map(({ name, icon: Icon, href }) => {
+                            console.log(intl.formatMessage({id:name}))
+                            return(
                             <NavItem key={name} href={href}>
                                 <Icon className="h-5 w-5" />
-                                {name}
+                                <FormattedMessage id={name}/>
                             </NavItem>
-                        ))}
+                       ) })}
+                       <LanguageSwitcher/>
                     </ul>
                 </div>
 
 
                 <div className="hidden lg:flex flex-1 items-center justify-end gap-4 mx-auto">
-                    <Link to="/signin" className="font-medium text-white hover:text-blue-500">
-                        Sign In
-                    </Link>
+                
+                    
                     <Link
                         to="https://www.material-tailwind.com/blocks"
                         target="_blank"
                         className="font-medium text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
                     >
-                        Blocks
+                        <FormattedMessage id="nav_button"/>
                     </Link>
+                    
                 </div>
             </div>
 
@@ -114,9 +125,9 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
                         {NAV_MENU.map(({ name, icon: Icon, href }) => (
                             <NavItem key={name} href={href}>
                                 <Icon className="h-5 w-5" />
-                                {name}
+                                <FormattedMessage id={name}/>
                             </NavItem>
-                        ))}
+                        ))}<LanguageSwitcher/>
                     </ul>
                 </div>
             )}
@@ -124,4 +135,4 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
     );
 };
 
-export default Navbar;
+export default injectIntl(Navbar);

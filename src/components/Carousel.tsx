@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import CarouselCard from './CarouselCard';
-import { Link } from 'gatsby';
+import { Link } from 'gatsby-plugin-intl';
 interface CardData {
     title: string;
     subtitle: string;

@@ -9,7 +9,8 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				"banner-image-lg": "url('/images/banner-bg.svg')",
-				"authors": "url('/images/authors.png')"
+				"authors": "url('/images/authors.png')",
+				"globe": "url('/images/globe.svg')"
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

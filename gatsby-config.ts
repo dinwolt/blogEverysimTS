@@ -12,6 +12,7 @@ const dotenv = require('dotenv')
 if (process.env.NODEENV !== 'production'){
   dotenv.config()
 }
+
 module.exports = {
   
   siteMetadata: {
@@ -42,6 +43,16 @@ module.exports = {
         display: 'minimal-ui',
         icon: 'src/images/icon.png',
       },
+    },
+    
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en-US`, `ko-KR`],
+        defaultLanguage: `en-US`, // Corrected here
+        redirect: true
+      }
     },
     
     

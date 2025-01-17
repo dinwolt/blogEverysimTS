@@ -1,19 +1,23 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import Seo from "../components/seo";
 import { BlogBody } from "../components/BlogBody";
-import { Link } from "gatsby";
+import { Link } from "gatsby-plugin-intl";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import PostListItem from "@/components/PostListItem";
 import Carousel from "@/components/Carousel";
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl";
 
 
-const BlogPostContentfulTemplate = ({ data, location }) => {
+
+const BlogPostContentfulTemplate = ({ data, intl }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const post = data.contentfulPost;
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
+  const locale = intl.locale
+  console.log(authorPosts)
 
   const randomPosts = otherPosts
     .sort(() => 0.5 - Math.random())
@@ -63,25 +67,31 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
 
           <div className="mb-7 mt-7 flex justify-center">
             <Link
-              to="../1"
+              to={`/blog/1`}
               className="bg-brand-secondary/20 text-blue-600 dark:text-blue-500 rounded-full px-5 py-2 text-sm"
             >
-              ← View all posts
+              <FormattedMessage id="post_bloglink"/>
             </Link>
           </div>
         </div>
       </article>
       <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
         <div className="flex flex-col mt-5 items-center mx-auto p-10 lg:w-[50rem]">
-          <h1 className="font-semibold">Written by</h1>
+          <h1 className="font-semibold">
+            <FormattedMessage id="post_writtenby"/>
+          </h1>
           <GatsbyImage image={getImage(post.postAuthor.image)} className="rounded-full" />
           <h1 className="font-anton text-2xl mt-5">{post.postAuthor.name}</h1>
           <h1 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h1>
           <h1 className="m-10 text-center">{post.postAuthor.description}</h1>
-          <Link to="../../authors" className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">Learn more about our authors</Link>
+          <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
+            <FormattedMessage id="post_authorlink"/>          
+          </Link>
         </div>
         <div className="flex flex-col gap-4 mt-5">
-          <h1 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}'s other articles</h1>
+          <h1 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}
+            <FormattedMessage id="post_author_other"/>
+          </h1>
           <PostListItem posts={authorPosts} />
         </div>
       </div>
@@ -89,7 +99,9 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
     </div>
     
     <div className="flex flex-col w-auto">
-      <h1 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">You might also like</h1>
+      <h1 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
+        <FormattedMessage id="post_recommendation"/>
+      </h1>
       <Carousel posts={randomPosts} />
     </div>
   </div>
@@ -111,10 +123,10 @@ export const Head = ({ data }) => {
   );
 };
 
-export default BlogPostContentfulTemplate;
+export default injectIntl(BlogPostContentfulTemplate);
 
 export const pageQuery = graphql`
-  query ContentfulBlogPostBySlug($slug: String!, $authorName: String!) {
+  query ContentfulBlogPostBySlug($slug: String!, $authorName: String!, $locale: String!) {
     site {
       siteMetadata {
         title
@@ -125,7 +137,7 @@ export const pageQuery = graphql`
         copyright
       }
     }
-    contentfulPost(slug: { eq: $slug }) {
+    contentfulPost(slug: { eq: $slug }, node_locale:{eq:$locale}) {
       content {
         raw
       }
@@ -155,9 +167,10 @@ export const pageQuery = graphql`
         role
       }
     }
-    allContentfulPost(filter: { slug: { ne: $slug } }) {
+    allContentfulPost(filter: { slug: { ne: $slug }, node_locale:{eq: $locale}}, ) {
       nodes {
         title
+        subtitle
         slug
         image {
           gatsbyImageData(
@@ -173,7 +186,8 @@ export const pageQuery = graphql`
       authorPosts: allContentfulPost(
       filter: {
         slug: { ne: $slug }
-        postAuthor: { name: { eq: $authorName } }
+        postAuthor: { name: { eq: $authorName }
+        node_locale:{eq: $locale} }
       }
         limit:5
     ) {

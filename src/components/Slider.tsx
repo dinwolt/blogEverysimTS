@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IGatsbyImageData, getImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import { Link } from "gatsby-plugin-intl";
 import {
   Card,
   CardContent,

@@ -1,16 +1,17 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link } from "gatsby-plugin-intl";
 import Navbar from "./Navbar";
 import { useLocation } from "@reach/router";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
-
+import { injectIntl, FormattedMessage, IntlShape } from "gatsby-plugin-intl";
 interface LayoutProps {
   title: string;
   children: React.ReactNode;
+  intl:IntlShape;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+const Layout: React.FC<LayoutProps> = ({ title, children, intl }) => {
   const location = useLocation();
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
@@ -56,4 +57,4 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   );
 };
 
-export default Layout;
+export default injectIntl(Layout);
