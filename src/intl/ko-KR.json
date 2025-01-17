@@ -18,6 +18,12 @@
     "blog_banner_recommendation": "이것도 좋아하실 겁니다",
     "blog_section_title": "블로그 포스트",
     "blog_section_subtitle": "우리 저자들이 작성한 모든 포스트를 확인하세요",
+    "blog_menu_category": "카테고리 선택",
+    "blog_menu_sort":"정렬 기준",
+    "blog_menu_sortASC":"A-Z",
+    "blog_menu_sortDESC":"Z-A",
+    "blog_menu_dateDESC": "최근 첫 번째",
+    "blog_menu_dateASC": "오래된 첫 번째",
 
     "about_authors_title": "우리의 저자들을 만나보세요",
     "about_authors_subtitle": "우리 콘텐츠 뒤에 있는 뛰어난 인재들을 알아보세요.",

@@ -11,7 +11,7 @@ import PostListItem from "@/components/PostListItem";
 import Carousel from "@/components/Carousel";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import {injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps} from "gatsby-plugin-intl"
-
+import Tabs from "@/components/Tabs";
 interface BlogIndexQueryData {
   site: {
     siteMetadata?: {
@@ -62,6 +62,9 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const postChoice = getImage(posts[0].image)
   const locale = intl.locale
+  const uniqueTags = Array.from(
+    new Set(posts.flatMap(post => post.tag.split(", ").map(tag => tag.trim())))
+);
 
 
   const filteredPosts = activeTab
@@ -70,14 +73,16 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
     )
     : posts;
 
-  const toggleView = () => {
+  {//for expanding view
+    
+    /*const toggleView = () => {
     if (isExpanded) {
       setVisibleCount(6);
     } else {
       setVisibleCount(filteredPosts.length);
     }
     setIsExpanded(!isExpanded);
-  };
+  };*/}
 
   return (
     <Layout title={siteTitle}>
@@ -94,7 +99,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
                 <FormattedMessage id="index_banner_subtitle"/>
               </p>
 
-            </div>
+            </div>  
 
           </div>
         </div>
@@ -113,15 +118,15 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
           </div>
 
           {/*Blog Posts Grid*/}
+          <div>
+            <Tabs tabs={uniqueTags} activeTab={activeTab} setActiveTab={(tab)=>setActiveTab(tab===activeTab ? "": tab)}/>
           <BlogGrid
             posts={posts}
             visibleCount={visibleCount}
             isExpanded={isExpanded}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            toggleView={toggleView}
             filteredPosts={filteredPosts}
           />
+          </div>
           {/*Go to Blog*/}
           <div className="text-center w-full  items-center flex mt-6 mb-6">
             <hr className="flex-1 border-t border-brandHighlight w-auto my-10" />

@@ -19,6 +19,13 @@
     "blog_banner_recommendation":"You might like this",
     "blog_section_title":"Blog posts",
     "blog_section_subtitle":"Check out all posts written by our authors",
+    "blog_menu_category":"Choose Category",
+    "blog_menu_sort":"Sort by",
+    "blog_menu_sortASC":"A-Z",
+    "blog_menu_sortDESC":"Z-A",
+    "blog_menu_dateDESC":"Recent First",
+    "blog_menu_dateASC":"Older First",
+
 
     "post_bloglink":"← View all posts",
     "post_writtenby":"Written by",

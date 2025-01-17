@@ -24,7 +24,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("p-6", className)}
+    className={cn("p-6 ", className)}
     {...props}
   />
 ))
@@ -36,7 +36,7 @@ const CardImage = React.forwardRef<
 >(({ className, img, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("relative h-64 w-full", className)}
+    className={cn("relative lg:h-64 md:h-32 w-full", className)}
     {...props}
   >
     <GatsbyImage image={img} alt="Card" className="object-cover w-full h-full scale-110"/>
@@ -52,7 +52,7 @@ const CardTitle = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "text-2xl font-semibold text-gray-800 mb-2 hover:text-gray-900 transition-colors",
+      "lg:text-2xl font-semibold text-gray-800 mb-2 hover:text-gray-900 transition-colors",
       className
     )}
     {...props}
@@ -67,7 +67,7 @@ const CardTag = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "text-sm text-blue-500 mb-2 font-medium",
+      "lg:text-sm text-xs text-blue-500 mb-2 font-medium",
       className
     )}
     {...props}
@@ -81,7 +81,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm text-gray-500 mt-auto", className)}
+    className={cn("hidden sm:block md:text-sm lg:text-md text-base text-gray-500 mt-auto", className)}
     {...props}
   />
 ))
@@ -91,7 +91,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("relative h-64 w-full", className)} {...props} />
+  <div ref={ref} className={cn("relative lg:h-64 md:h-32 w-full", className)} {...props} />
 ))
 CardContent.displayName = "CardContent"
 

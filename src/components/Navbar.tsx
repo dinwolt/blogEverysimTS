@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby-plugin-intl';
+import { Link as GatsbyLink } from 'gatsby';
 import {
     RectangleStackIcon,
     UserCircleIcon,
@@ -22,11 +23,11 @@ interface NavItemProps {
 }
 type NavProps = NavbarProps & WrappedComponentProps;
 function NavItem({ children, href }: NavItemProps) {
-    
+
     return (
         <li>
             <Link
-            
+
                 to={href || "/"}
                 className="flex items-center gap-2 font-medium text-white"
             >
@@ -65,7 +66,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
     return (
         <nav className={className}>
             <div className="container max-w-screen-lg mx-auto p-5 flex items-center justify-between w-auto">
-                <div className='flex flex-1 items-center '>
+                <div className='flex flex-1 items-center justify-between '>
 
                     <div className="lg:hidden flex items-center">
                         <button
@@ -80,9 +81,10 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                         </button>
                     </div>
                     <Link to="/" className=" text-lg font-bold text-white">Everysim</Link>
-                    <ul className="languages">
-            
-          </ul>
+                    <div className='lg:hidden'>
+                        <LanguageSwitcher />
+                    </div>
+
                 </div>
 
 
@@ -90,29 +92,37 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                 <div className="hidden lg:flex flex-1 items-center justify-center gap-8">
                     <ul className="flex items-center gap-8">
                         {NAV_MENU.map(({ name, icon: Icon, href }) => {
-                            console.log(intl.formatMessage({id:name}))
-                            return(
-                            <NavItem key={name} href={href}>
-                                <Icon className="h-5 w-5" />
-                                <FormattedMessage id={name}/>
-                            </NavItem>
-                       ) })}
-                       <LanguageSwitcher/>
+                            console.log(intl.formatMessage({ id: name }))
+                            return (
+                                <NavItem key={name} href={href}>
+                                    <Icon className="h-5 w-5" />
+                                    <FormattedMessage id={name} />
+                                </NavItem>
+                            )
+                        })}
+                        <LanguageSwitcher />
                     </ul>
                 </div>
 
 
                 <div className="hidden lg:flex flex-1 items-center justify-end gap-4 mx-auto">
-                
-                    
-                    <Link
-                        to="https://www.material-tailwind.com/blocks"
+
+
+                    <GatsbyLink
+                        to="https://everysim.io/"
                         target="_blank"
                         className="font-medium text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
                     >
-                        <FormattedMessage id="nav_button"/>
-                    </Link>
-                    
+                        <FormattedMessage id="nav_button" />
+                    </GatsbyLink>
+                    <GatsbyLink
+                        to="https://kr.linkedin.com/company/everysim"
+                        target="_blank"
+                        className="font-medium text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
+                    >
+                        LinkedIn
+                    </GatsbyLink>
+
                 </div>
             </div>
 
@@ -125,9 +135,26 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                         {NAV_MENU.map(({ name, icon: Icon, href }) => (
                             <NavItem key={name} href={href}>
                                 <Icon className="h-5 w-5" />
-                                <FormattedMessage id={name}/>
+                                <FormattedMessage id={name} />
                             </NavItem>
-                        ))}<LanguageSwitcher/>
+                        ))}
+                        <div className='flex gap-5'>
+                        <GatsbyLink
+                        to="https://everysim.io/"
+                        target="_blank"
+                        className="font-medium text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
+                    >
+                        <FormattedMessage id="nav_button" />
+                    </GatsbyLink>
+                    <GatsbyLink
+                        to="https://kr.linkedin.com/company/everysim"
+                        target="_blank"
+                        className="font-medium text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
+                    >
+                        LinkedIn
+                    </GatsbyLink>
+
+                        </div>
                     </ul>
                 </div>
             )}

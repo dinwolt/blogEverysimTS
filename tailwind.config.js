@@ -21,7 +21,7 @@ module.exports = {
 				brandPrimary: "#161E23",
 				brandSecondary: "#065774",
 				brandHighlight: "#008BAA",
-				brandLight: "#D6F8F0",
+				brandLight: "#D6F8FF",
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

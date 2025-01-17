@@ -1,28 +1,24 @@
 import React from "react";
 import { changeLocale, IntlContextConsumer } from "gatsby-plugin-intl";
 
-const languageName = {
-  ko: "Korean",
-  en: "English",
-};
 
 const LanguageSwitcher = () => {
   return (
     <div>
       <IntlContextConsumer>
-        {({ languages: intlLanguages, language: currentLocale }) => {
-          // Assuming there are only two languages (ko and en)
+        {({  language: currentLocale }) => {
+
           const toggleLanguage = () => {
-            const nextLocale = currentLocale === "ko-KR" ? "en-US" : "ko-KR"; // Toggle between Korean and English
+            const nextLocale = currentLocale === "ko-KR" ? "en-US" : "ko-KR"; 
             changeLocale(nextLocale);
           };
 
           return (
             <button
-              className="relative flex justify-center items-center w-12 h-12  rounded-full transition duration-300 ease-in-out"
+              className="relative flex justify-center items-center w-10 h-10  rounded-full transition duration-300 ease-in-out"
               onClick={toggleLanguage}
             >
-              {/* Background Image (Earth Globe Icon) */}
+              
               <div
                 className="absolute inset-0 bg-cover bg-center rounded-full bg-globe"
                 
