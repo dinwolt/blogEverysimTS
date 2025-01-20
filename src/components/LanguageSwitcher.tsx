@@ -20,7 +20,7 @@ const LanguageSwitcher = () => {
             >
               
               <div
-                className="absolute inset-0 bg-cover bg-center rounded-full bg-globe"
+                className="absolute inset-0 bg-cover bg-center rounded-full bg-globe-light"
                 
               ></div>
               

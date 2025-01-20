@@ -6,11 +6,16 @@ module.exports = {
 		`./src/components/**/*.{js,jsx,ts,tsx}`,
 	],
 	theme: {
+		
 		extend: {
+			screens:{
+				'3xl':'1920px'
+			},
 			backgroundImage: {
 				"banner-image-lg": "url('/images/banner-bg.svg')",
 				"authors": "url('/images/authors.png')",
-				"globe": "url('/images/globe.svg')"
+				"globe": "url('/images/globe.svg')",
+				"globe-light": "url('/images/globe-light.svg')"
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -79,5 +84,5 @@ module.exports = {
 			  },
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
 }

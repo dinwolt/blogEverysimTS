@@ -4,9 +4,10 @@ import { Link } from "gatsby-plugin-intl";
 import BlogGrid from "../components/BlogGrid";
 import Layout from "../components/Layout";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { FormattedMessage } from "gatsby-plugin-intl";
 import BlogMenu from "../components/BlogMenu";
+import BlogListItem from "../components/BlogListItem";
 
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || "Title";
@@ -31,8 +32,8 @@ const BlogIndex = ({ data, pageContext }) => {
   ];
   const filteredAndSortedPosts = [...(activeTab
     ? posts.filter(post =>
-        post.tag.split(", ").map(tag => tag.trim()).includes(activeTab)
-      )
+      post.tag.split(", ").map(tag => tag.trim()).includes(activeTab)
+    )
     : posts)];
 
   switch (activeSort) {
@@ -57,9 +58,16 @@ const BlogIndex = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout title={siteTitle}>
+    <Layout title={siteTitle} style="bg-white mx-5">
       <section>
-        <div className="bg-banner-image-lg bg-cover bg-no-repeat w-full">
+        <div className="container mx-auto m-10 w-full sm:w-1/2">
+          <StaticImage
+            src="../../static/images/EverySim_Landscape_1.svg"
+            className="w-full h-full"
+            alt="logo"
+          />
+        </div>
+        {/*<div className="bg-banner-image-lg bg-cover bg-no-repeat w-full">
           <div className="container mx-auto">
             <div className="flex gap-8 p-8">
               <div className="flex-1 flex flex-col sm:p-8 justify-center">
@@ -108,11 +116,21 @@ const BlogIndex = ({ data, pageContext }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
 
- 
+
         <div className="container mx-auto p-6 min-h-screen  ">
-          <div className="flex flex-col md:flex-row gap-10 items-center justify-center w-full">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-10 items-center justify-center w-full p-6">
+            <div className="flex-shrink-0">
+              <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10" />
+            </div>
+            <div>
+              <p className="section-post-subtitle text-brandHighlight font-semibold">{randomPost.tag}</p>
+              <p className="section-title font-robotoCondensed text-black">{randomPost.title}</p>
+              <p className="font-roboto text-gray-800 text-3xl">{randomPost.subtitle}</p>
+            </div>
+          </div>
+          <div className="flex-col   gap-10 items-center justify-center w-full">
             <div className="flex-shrink-0">
               <BlogMenu
                 tags={uniqueTags}
@@ -124,22 +142,24 @@ const BlogIndex = ({ data, pageContext }) => {
               />
             </div>
             <div className="flex flex-col flex-grow w-full">
+              {/*}
               <h1 className="section-title text-center text-black mb-2">
                 <FormattedMessage id="blog_section_title" />
               </h1>
               <h3 className="section-subtitle text-center text-black mb-5">
                 <FormattedMessage id="blog_section_subtitle" />
-              </h3>
+              </h3>*/}
 
-              <BlogGrid
+              {/*<BlogGrid
                 posts={posts}
                 visibleCount={posts.length}
                 isExpanded={true}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
-                toggleView={() => {}}
+                toggleView={() => { }}
                 filteredPosts={filteredAndSortedPosts}
-              />
+              />*/}
+              <BlogListItem posts={posts}/>
 
               <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-8">
                 {currentPage > 1 && (
@@ -189,6 +209,9 @@ export const query = graphql`
           subtitle
           postAuthor {
             name
+            image {
+            gatsbyImageData(layout: CONSTRAINED, width: 300, placeholder: DOMINANT_COLOR, quality: 90)
+          }
           }
           slug
           image {

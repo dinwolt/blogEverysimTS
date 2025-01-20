@@ -1,6 +1,7 @@
 import { FormattedMessage } from "gatsby-plugin-intl";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { StaticImage } from "gatsby-plugin-image";
+
 type MenuProps = {
     tags: string[];
     activeTag: string;
@@ -10,63 +11,81 @@ type MenuProps = {
     setSort: (sort: string) => void;
 };
 
-const BlogMenu: React.FC<MenuProps> = ({ tags, activeTag, setActiveTag, sorts,activeSort, setSort }) => {
-    const [categoryOpen, setCategoryOpen] = useState(false);
+const BlogMenu: React.FC<MenuProps> = ({
+    tags,
+    activeTag,
+    setActiveTag,
+    sorts,
+    activeSort,
+    setSort,
+}) => {
     const [sortOpen, setSortOpen] = useState(false);
 
     return (
-        <div className="grid md:grid-cols-1 grid-cols-2 gap-10 md:mr-10 ">
-            <div >
-                <h1 className="section-post-title text-black font-bold mb-5 cursor-pointer md:cursor-default text-center"
-                onClick={() => setCategoryOpen(!categoryOpen)}>
-                    <FormattedMessage id="blog_menu_category" />
-                    <span className="md:hidden ml-2">{categoryOpen ? '▲' : '▼'}</span>
-                </h1>
-                <div className={`flex flex-col gap-4 ${categoryOpen ? 'block' : 'hidden'} md:block`}>
-                    {tags.map((tag, index) => (
-                        <label
-                            key={index}
-                            className="flex items-center gap-2 cursor-pointer"
-                        >
-                            <input
-                                type="checkbox"
-                                checked={activeTag === tag}
-                                onChange={() => setActiveTag(tag)}
-                                className="hidden peer"
-                            />
-                            <span className="w-4 h-4 border-2 border-gray-400 rounded-sm peer-checked:bg-brandHighlight peer-checked:border-blue-500 transition-colors duration-200"></span>
-                            <span className="section-post-subtitle">{tag}</span>
-                        </label>
-                    ))}
+        <div className="md:mr-10">
+            <div className="flex flex-row md:items-center justify-center">
+                <div className="overflow-x-auto scrollbar-none hover:scrollbar-thin hover:scrollbar-thumb-gray-400 hover:scrollbar-track-gray-200 mb-4 md:mb-0 md:mr-4 pr-12 md:pr-0">
+                    <div className="inline-flex">
+                        {tags.map((tab) => (
+                            <button
+                                key={tab}
+                                className={`m-2 px-4 py-2 text-sm font-medium text-center rounded-2xl transition-colors whitespace-nowrap ${
+                                    activeTag === tab
+                                        ? "bg-brandSecondary text-white"
+                                        : "bg-brandLight text-black border-gray-300 hover:bg-brandSecondary hover:text-white"
+                                }`}
+                                onClick={() => setActiveTag(tab === activeTag ? "" : tab)}
+                            >
+                                <span>{tab}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <h1 className="section-post-title text-black font-bold mb-5 text-center"
-                onClick={() => setSortOpen(!sortOpen)}>
-                    
-                    <FormattedMessage id="blog_menu_sort" />
-                    <span className="md:hidden ml-2">{sortOpen ? '▲' : '▼'}</span>
-                
-                </h1>
-                <div className={`flex flex-col gap-4 ${sortOpen ? 'block' : 'hidden'} md:block`}>
-                    {sorts.map((sort, index) => (
-                        <label
-                            key={index}
-                            className="flex items-center gap-2 cursor-pointer"
+                <div className="relative md:static">
+                    <div className="absolute right-0 top-0 md:relative md:right-auto md:top-auto">
+                        <div
+                            className="inline-flex items-center cursor-pointer"
+                            onMouseEnter={() => setSortOpen(true)}
+                            onMouseLeave={() => setSortOpen(false)}
                         >
-                            <input
-                                type="checkbox"
-                                checked={sort === activeSort}
-                                onChange={() => setSort(sort)}
-                                className="hidden peer"
+                            <StaticImage
+                                src="../../static/images/sort-icon.png"
+                                alt="sort-icon"
+                                className="w-10 h-10"
                             />
-                            <span className="w-4 h-4 border-2 border-gray-400 rounded-sm peer-checked:bg-brandHighlight peer-checked:border-blue-500 transition-colors duration-200"></span>
-                            <span>
-                                <FormattedMessage id={sort} />
-                            </span>
-                        </label>
-                    ))}
+                        </div>
+
+                        <div
+                            className={`absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 z-50 ${
+                                sortOpen
+                                    ? "opacity-100 scale-100"
+                                    : "opacity-0 scale-95 pointer-events-none"
+                            }`}
+                            onMouseEnter={() => setSortOpen(true)}
+                            onMouseLeave={() => setSortOpen(false)}
+                        >
+                            <div className="flex flex-col gap-4 p-4">
+                                {sorts.map((sort, index) => (
+                                    <label
+                                        key={index}
+                                        className="flex items-center gap-2 cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={sort === activeSort}
+                                            onChange={() => setSort(sort)}
+                                            className="hidden peer"
+                                        />
+                                        <span className="w-4 h-4 border-2 border-gray-400 rounded-sm peer-checked:bg-brandHighlight peer-checked:border-blue-500 transition-colors duration-200"></span>
+                                        <span>
+                                            <FormattedMessage id={sort} />
+                                        </span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

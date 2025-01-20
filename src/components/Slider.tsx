@@ -100,8 +100,7 @@ const Slider: React.FC<SliderProps> = ({ posts }) => {
   return (
     <div className="flex justify-center  w-full items-center p-8">
     <div 
-      className="relative w-full lg:w-[100vh] overflow-hidden"
-      style={{ height: "auto", minHeight: "500px", maxHeight: "80vh" }}
+      className="relative w-full h-auto min-h-[400px] md:min-h-[500px] max-h-[80vh] overflow-hidden flex"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -132,13 +131,13 @@ const Slider: React.FC<SliderProps> = ({ posts }) => {
 
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
+        className="hidden sm:block  absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
       >
         {"<"}
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
+        className="hidden sm:block absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
       >
         {">"}
       </button>
@@ -147,7 +146,7 @@ const Slider: React.FC<SliderProps> = ({ posts }) => {
         {items.map((_, index) => (
           <div
             key={index}
-            className={`w-2 h-2 rounded-full ${
+            className={`w-2 h-2 mt-5 rounded-full ${
               index === active ? "bg-white" : "bg-gray-400"
             }`}
           />

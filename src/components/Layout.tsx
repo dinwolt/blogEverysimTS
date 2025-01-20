@@ -7,11 +7,12 @@ import Footer from "./Footer";
 import { injectIntl, FormattedMessage, IntlShape } from "gatsby-plugin-intl";
 interface LayoutProps {
   title: string;
+  style:string;
   children: React.ReactNode;
   intl:IntlShape;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, children, intl }) => {
+const Layout: React.FC<LayoutProps> = ({ title,style, children, intl }) => {
   const location = useLocation();
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
@@ -49,9 +50,9 @@ const Layout: React.FC<LayoutProps> = ({ title, children, intl }) => {
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <Navbar
-        className={` sticky bg-brandPrimary transition-all duration-300 z-50 `}
+        className={` sticky bg-white top-0 transition-all duration-300 z-50 `}
       />
-      <main className="">{children}</main>
+      <main className={style}>{children}</main>
       <Footer/>
     </div>
   );
