@@ -40,19 +40,20 @@ const Footer: React.FC = () => {
             <button className="w-full sm:w-auto px-6 py-2 bg-brandSecondary text-white text-base font-robotoCondensed rounded-md">
               Submit
             </button>
+          </div><div className="mt-8 flex justify-end">
+            <div className="h-[10%]">
+              <StaticImage
+                style={{ height: '10%' }}
+                src="../../static/images/everysim-hero-sm.svg"
+                alt="Logo"
+              />
+            </div>
           </div>
         </div>
+
       </div>
 
-      <div className="mt-8 flex justify-end">
-        <div className="h-[10%]">
-          <StaticImage
-            style={{ height: '10%' }}
-            src="../../static/images/EverySim_Landscape.png"
-            alt="Logo"
-          />
-        </div>
-      </div>
+
     </footer>
   );
 };

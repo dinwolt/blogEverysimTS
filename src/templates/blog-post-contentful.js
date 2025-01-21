@@ -17,6 +17,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
   const locale = intl.locale
+  console.log('Locale:', locale);
   console.log(authorPosts)
 
   const randomPosts = otherPosts
@@ -28,7 +29,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
     <div className="container">
 
-      <div className="grid gap-8 lg:grid-cols-2 sm:grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
+      <div className="grid gap-8 grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
       <article
         className="flex flex-col min-h-screen place-items-center p-20 space-y-8"
         itemScope
@@ -124,7 +125,6 @@ export const Head = ({ data }) => {
 };
 
 export default injectIntl(BlogPostContentfulTemplate);
-
 export const pageQuery = graphql`
   query ContentfulBlogPostBySlug($slug: String!, $authorName: String!, $locale: String!) {
     site {
@@ -167,7 +167,7 @@ export const pageQuery = graphql`
         role
       }
     }
-    allContentfulPost(filter: { slug: { ne: $slug }, node_locale:{eq: $locale}}, ) {
+    allContentfulPost(filter: { slug: { ne: $slug }, node_locale:{eq: $locale}}) {
       nodes {
         title
         subtitle
@@ -183,13 +183,13 @@ export const pageQuery = graphql`
         tag
       }
     }
-      authorPosts: allContentfulPost(
+    authorPosts: allContentfulPost(
       filter: {
         slug: { ne: $slug }
-        postAuthor: { name: { eq: $authorName }
-        node_locale:{eq: $locale} }
+        postAuthor: { name: { eq: $authorName } }
+        node_locale:{eq: $locale}
       }
-        limit:5
+      limit:5
     ) {
       nodes {
         title

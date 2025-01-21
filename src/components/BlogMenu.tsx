@@ -1,6 +1,10 @@
 import { FormattedMessage } from "gatsby-plugin-intl";
 import React, { useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import {
+    ArrowsUpDownIcon
+
+} from "@heroicons/react/24/solid";
 
 type MenuProps = {
     tags: string[];
@@ -22,10 +26,10 @@ const BlogMenu: React.FC<MenuProps> = ({
     const [sortOpen, setSortOpen] = useState(false);
 
     return (
-        <div className="md:mr-10">
-            <div className="flex flex-row md:items-center justify-center">
-                <div className="overflow-x-auto scrollbar-none hover:scrollbar-thin hover:scrollbar-thumb-gray-400 hover:scrollbar-track-gray-200 mb-4 md:mb-0 md:mr-4 pr-12 md:pr-0">
-                    <div className="inline-flex">
+        <div className="container mx-auto px-4 max-w-6xl">
+            <div className="flex flex-row items-center justify-center">
+                <div className="w-full md:w-auto overflow-x-auto scrollbar-none hover:scrollbar-thin hover:scrollbar-thumb-gray-400 hover:scrollbar-track-gray-200 ">
+                    <div className="inline-flex justify-center">
                         {tags.map((tab) => (
                             <button
                                 key={tab}
@@ -42,28 +46,19 @@ const BlogMenu: React.FC<MenuProps> = ({
                     </div>
                 </div>
 
-                <div className="relative md:static">
-                    <div className="absolute right-0 top-0 md:relative md:right-auto md:top-auto">
-                        <div
-                            className="inline-flex items-center cursor-pointer"
-                            onMouseEnter={() => setSortOpen(true)}
-                            onMouseLeave={() => setSortOpen(false)}
-                        >
-                            <StaticImage
-                                src="../../static/images/sort-icon.png"
-                                alt="sort-icon"
-                                className="w-10 h-10"
-                            />
-                        </div>
+                <div className="relative">
+                    {/* Sort Icon */}
+                    <div
+                        className="inline-flex items-center justify-center cursor-pointer"
+                        onClick={() => setSortOpen(!sortOpen)}
+                    >
+                        <ArrowsUpDownIcon className="w-8 h-8 sm:w-10 sm:h-10 text-brandHighlight" />
+                    </div>
 
+                    {/* Dropdown */}
+                    {sortOpen && (
                         <div
-                            className={`absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg border border-gray-200 transition-transform duration-300 z-50 ${
-                                sortOpen
-                                    ? "opacity-100 scale-100"
-                                    : "opacity-0 scale-95 pointer-events-none"
-                            }`}
-                            onMouseEnter={() => setSortOpen(true)}
-                            onMouseLeave={() => setSortOpen(false)}
+                            className="absolute top-full right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 z-50"
                         >
                             <div className="flex flex-col gap-4 p-4">
                                 {sorts.map((sort, index) => (
@@ -73,19 +68,19 @@ const BlogMenu: React.FC<MenuProps> = ({
                                     >
                                         <input
                                             type="checkbox"
+                                            name="sort"
                                             checked={sort === activeSort}
-                                            onChange={() => setSort(sort)}
+                                            onChange={() => setSort(sort === activeSort ? "" : sort)}
                                             className="hidden peer"
                                         />
                                         <span className="w-4 h-4 border-2 border-gray-400 rounded-sm peer-checked:bg-brandHighlight peer-checked:border-blue-500 transition-colors duration-200"></span>
                                         <span>
-                                            <FormattedMessage id={sort} />
-                                        </span>
+                                        <FormattedMessage id={sort}/></span>
                                     </label>
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                 const postImg = post.image ? getImage(post.image) : null;
                 return (
 
-                    <div className="flex flex-col sm:flex-row sm:gap-16 gap-4 items-center sm:p-6 p-2 " key={index}>
+                    <div className="flex flex-col sm:flex-row sm:gap-8 gap-4 items-center sm:p-6 p-2 " key={index}>
                         <div className=''>
                             {postImg && <GatsbyImage image={postImg} alt="post" className='w-full  h-18 sm:w-56 sm:h-36 rounded-xl' />}
                         </div>

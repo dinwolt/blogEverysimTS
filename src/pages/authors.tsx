@@ -4,7 +4,8 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import { FormattedMessage, injectIntl, WrappedComponentProps } from "gatsby-plugin-intl"; // Import injectIntl
+import { FormattedMessage, injectIntl, WrappedComponentProps } from "gatsby-plugin-intl"; 
+import SliderView from "@/components/SliderView";
 
 interface AuthorsIndexQueryData {
     site: {
@@ -25,7 +26,7 @@ interface AuthorsIndexQueryData {
                 role: string;
                 description: string;
             };
-        }[]; 
+        }[];
     };
 }
 
@@ -35,57 +36,59 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
     const authors = data.allContentfulAuthor.edges.map((edge) => edge.node);
 
     return (
-        <Layout title="Authors">
+        <Layout title="Authors" style="">
             <Seo title="Authors" url="https://google.com" description="Meet the talented authors of our platform." />
 
             <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">
-                    <FormattedMessage id="about_authors_title"/>
+                    <FormattedMessage id="about_authors_title" />
                 </h1>
                 <p className="mt-4 text-lg">
-                    <FormattedMessage id="about_authors_subtitle"/>
+                    <FormattedMessage id="about_authors_subtitle" />
                 </p>
             </section>
 
             <section className="py-12 px-4 md:px-16 lg:px-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    {authors.map((author, index) => {
-                        const image = getImage(author.image);
+                <SliderView data={authors}>
+                    {(item, index) => {
+                        const image = getImage(item.image);
                         return (
                             <div
                                 key={index}
-                                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-transform duration-300"
+                                className="bg-white rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-transform duration-300"
                             >
                                 {image && (
                                     <GatsbyImage
                                         image={image}
-                                        alt={author.name}
-                                        className="h-96 w-full object-contain"
+                                        alt={item.name}
+                                        className="h-96 w-96 object-contain rounded-full"
                                     />
                                 )}
                                 <div className="p-6">
-                                    <h2 className="text-xl font-anton text-gray-800">{author.name}</h2>
-                                    <h3 className="text-sm font-semibold text-brandHighlight  mt-1">{author.role}</h3>
-                                    <p className="mt-4 text-gray-700 text-sm">{author.description}</p>
+                                    <h2 className="text-xl font-anton text-gray-800 text-center">{item.name}</h2>
+                                    <h3 className="text-sm font-semibold text-brandHighlight  mt-1 text-center">{item.role}</h3>
+                                    <p className="mt-4 text-gray-700 text-sm text-center">{item.description}</p>
                                 </div>
                             </div>
                         );
-                    })}
-                </div>
+                    }}
+                </SliderView>
+
+                
             </section>
 
             <section className="bg-gray-100 py-16 text-center">
                 <h2 className="text-3xl  font-anton text-gray-800">
-                    <FormattedMessage id="about_collab_title"/>
+                    <FormattedMessage id="about_collab_title" />
                 </h2>
                 <p className="mt-4 text-gray-600">
-                    <FormattedMessage id="about_collab_subtitle"/>
+                    <FormattedMessage id="about_collab_subtitle" />
                 </p>
                 <a
                     href="#"
                     className="mt-6 inline-block bg-brandHighlight text-white px-6 py-3 rounded-lg shadow hover:bg-brandSecondary transition-colors duration-300"
                 >
-                    <FormattedMessage id="about_contactus"/>
+                    <FormattedMessage id="about_contactus" />
                 </a>
             </section>
         </Layout>

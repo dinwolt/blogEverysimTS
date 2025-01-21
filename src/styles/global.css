@@ -77,6 +77,9 @@
   .section-post-subtitle{
     @apply font-roboto text-gray-600 text-base;
   }
+  .icon {
+    @apply text-brandHighlight h-[24px] w-[24px] hover:bg-brandLight
+  }
   
 }
 

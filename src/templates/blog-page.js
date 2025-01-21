@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-plugin-intl";
 import BlogGrid from "../components/BlogGrid";
@@ -8,15 +8,24 @@ import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { FormattedMessage } from "gatsby-plugin-intl";
 import BlogMenu from "../components/BlogMenu";
 import BlogListItem from "../components/BlogListItem";
+import SliderView from "@/components/SliderView";
 
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || "Title";
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
   const authors = data.allContentfulAuthor.edges.map(edge => edge.node);
-  const randomAuthor = authors[Math.floor(Math.random() * authors.length)];
-  const randomPost = posts[Math.floor(Math.random() * posts.length)];
+  const randomAuthor = useMemo(
+    () => authors[Math.floor(Math.random() * authors.length)],
+    [siteTitle]
+  );
+
+  const randomPosts = useMemo(() => {
+    // Shuffle the posts array and select the first 3 posts
+    const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
+    return shuffledPosts.slice(0, 3); // Get the first 3 posts
+  }, [siteTitle]);
   const image = getImage(randomAuthor.image);
-  const imagePost = getImage(randomPost.image);
+  //const imagePost = getImage(randomPost.image);
   const { currentPage, totalPages } = pageContext;
   const [activeTab, setActiveTab] = useState("");
   const [activeSort, setActiveSort] = useState("");
@@ -30,43 +39,38 @@ const BlogIndex = ({ data, pageContext }) => {
     "blog_menu_dateDESC",
     "blog_menu_dateASC",
   ];
-  const filteredAndSortedPosts = [...(activeTab
+  const filteredPosts = activeTab
     ? posts.filter(post =>
       post.tag.split(", ").map(tag => tag.trim()).includes(activeTab)
     )
-    : posts)];
+    : posts;
 
-  switch (activeSort) {
-    case "blog_menu_sortASC":
-      filteredAndSortedPosts.sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    case "blog_menu_sortDESC":
-      filteredAndSortedPosts.sort((a, b) => b.title.localeCompare(a.title));
-      break;
-    case "blog_menu_dateDESC":
-      filteredAndSortedPosts.sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-      break;
-    case "blog_menu_dateASC":
-      filteredAndSortedPosts.sort(
-        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
-      break;
-    default:
-      break;
-  }
+  const filteredAndSortedPosts = filteredPosts.sort((a, b) => {
+    switch (activeSort) {
+      case "blog_menu_sortASC":
+        return a.title.localeCompare(b.title);
+      case "blog_menu_sortDESC":
+        return b.title.localeCompare(a.title);
+      case "blog_menu_dateDESC":
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      case "blog_menu_dateASC":
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+      default:
+        return 0; // No sorting
+    }
+  });
+
 
   return (
     <Layout title={siteTitle} style="bg-white mx-5">
       <section>
-        <div className="container mx-auto m-10 w-full sm:w-1/2">
+        <section className="h-[calc(100vh-4rem)] mx-auto container flex justify-center items-center">
           <StaticImage
-            src="../../static/images/EverySim_Landscape_1.svg"
-            className="w-full h-full"
+            src="../../static/images/everysim-hero-lg.svg"
+            className="object-contain"
             alt="logo"
           />
-        </div>
+        </section>
         {/*<div className="bg-banner-image-lg bg-cover bg-no-repeat w-full">
           <div className="container mx-auto">
             <div className="flex gap-8 p-8">
@@ -120,25 +124,78 @@ const BlogIndex = ({ data, pageContext }) => {
 
 
         <div className="container mx-auto p-6 min-h-screen  ">
-          <div className="flex flex-col md:flex-row lg:flex-row gap-10 items-center justify-center w-full p-6">
-            <div className="flex-shrink-0">
-              <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10" />
+          {/**<div className="flex flex-col md:flex-row lg:flex-row gap-6 justify-center items-center w-full p-6">
+            <div className="">
+              <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10 rounded-md" />
             </div>
-            <div>
-              <p className="section-post-subtitle text-brandHighlight font-semibold">{randomPost.tag}</p>
-              <p className="section-title font-robotoCondensed text-black">{randomPost.title}</p>
-              <p className="font-roboto text-gray-800 text-3xl">{randomPost.subtitle}</p>
+            <div className="p-2 flex flex-col items-between">
+              <div></div>
+              <p className="section-post-subtitle  text-brandHighlight font-semibold">{randomPost.tag}</p>
+              <p className="section-title font-robotoCondensed text-3xl text-black">{randomPost.title}</p>
+              <p className="font-roboto text-gray-800 text-xl">{randomPost.subtitle}</p>
             </div>
-          </div>
-          <div className="flex-col   gap-10 items-center justify-center w-full">
+          </div> */}
+
+          <SliderView data={randomPosts}>
+            {(item) => {
+              const image = getImage(item.image)
+              return (
+                <div className="flex flex-col sm:flex-row border shadow-md rounded-lg p-5  items-center mb-5">
+                  {image && (
+                    <div className="md:w-1/4 ">
+                      <GatsbyImage
+                        image={image}
+                        alt={item.title}
+                        className="object-cover rounded-md w-full h-full"
+                      />
+                    </div>
+                  )}
+                  <div className="md:w-2/3 pl-4 flex  flex-col justify-between">
+                    <div>
+                      <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
+                        {item.tag}
+                      </h1>
+                      <h1 className="section-title text-black md:text-2xl text-xl">
+                        {item.title}
+                      </h1>
+                    </div>
+                    <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600">
+                      {item.subtitle}
+                    </h2>
+                    <div className="flex justify-between gap-8 items-center mt-4">
+                      <Link
+                        to={`/blog/${item.slug}`}
+                        className="flex items-center text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out"
+                      >
+                        <span className="mr-2">
+                          <FormattedMessage id="index_readmore" />
+                        </span>
+                        <ArrowRightIcon
+                          className="h-5 w-5 text-brandHighlight"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </div>
+
+                  </div>
+
+
+                </div>
+              )
+            }}
+          </SliderView>
+
+
+
+          <div className="flex-col gap-10 items-center justify-center w-full">
             <div className="flex-shrink-0">
               <BlogMenu
                 tags={uniqueTags}
                 activeTag={activeTab}
-                setActiveTag={tab => setActiveTab(tab === activeTab ? "" : tab)}
+                setActiveTag={setActiveTab}
                 sorts={sorts}
                 activeSort={activeSort}
-                setSort={sort => setActiveSort(sort === activeSort ? "" : sort)}
+                setSort={setActiveSort}
               />
             </div>
             <div className="flex flex-col flex-grow w-full">
@@ -159,26 +216,51 @@ const BlogIndex = ({ data, pageContext }) => {
                 toggleView={() => { }}
                 filteredPosts={filteredAndSortedPosts}
               />*/}
-              <BlogListItem posts={posts}/>
+              <BlogListItem posts={filteredAndSortedPosts} />
 
-              <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-8">
+              <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-2 overflow-x-auto">
                 {currentPage > 1 && (
                   <Link
                     to={`/blog/${currentPage - 1}`}
-                    className="inline-flex items-center bg-transparent hover:bg-gray-300 hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
+                    className="inline-flex items-center  hover:bg-brandLight hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
                   >
-                    <ArrowLeftIcon strokeWidth={2} className="h-5 w-5 text-gray-900 mr-3" />
+                    <ArrowLeftIcon className="icon mr-3" />
                   </Link>
                 )}
-                <span className="flex-1 text-xl text-center">
-                  {currentPage}/{totalPages}
-                </span>
+
+
+                {totalPages > 5 && currentPage > 3 && (
+                  <span className="inline-flex items-center px-4 py-2 rounded text-center text-brandPrimary">...</span>
+                )}
+
+                {Array.from({ length: totalPages }).map((_, index) => {
+                  const pageNumber = index + 1;
+                  const showPageButton = Math.abs(currentPage - pageNumber) <= 2 || pageNumber === 1 || pageNumber === totalPages;
+
+                  if (!showPageButton) return null;
+
+                  return (
+                    <Link
+                      key={pageNumber}
+                      to={`/blog/${pageNumber}`}
+                      className={`inline-flex items-center px-4 py-2 rounded text-center hover:bg-brandSecondary hover:text-white transition-colors duration-200 ${currentPage === pageNumber ? "bg-brandLight" : "bg-transparent"}`}
+                    >
+                      {pageNumber}
+                    </Link>
+                  );
+                })}
+
+                {totalPages > 5 && currentPage < totalPages - 2 && (
+                  <span className="inline-flex items-center px-4 py-2 rounded text-center text-brandPrimary">...</span>
+                )}
+
+
                 {currentPage < totalPages && (
                   <Link
                     to={`/blog/${currentPage + 1}`}
-                    className="inline-flex items-center bg-transparent hover:bg-gray-300 hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
+                    className="inline-flex items-center  hover:bg-brandLight hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
                   >
-                    <ArrowRightIcon strokeWidth={2} className="h-5 w-5 text-gray-900 mr-3" />
+                    <ArrowRightIcon className="icon mr-3" />
                   </Link>
                 )}
               </div>

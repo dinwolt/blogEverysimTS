@@ -15,7 +15,8 @@ module.exports = {
 				"banner-image-lg": "url('/images/banner-bg.svg')",
 				"authors": "url('/images/authors.png')",
 				"globe": "url('/images/globe.svg')",
-				"globe-light": "url('/images/globe-light.svg')"
+				"globe-light": "url('/images/globe-light.svg')",
+				"banner-light": "url('/images/EverySim_Landscape_1.svg')"
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
