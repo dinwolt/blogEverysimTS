@@ -17,8 +17,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
   const locale = intl.locale
-  console.log('Locale:', locale);
-  console.log(authorPosts)
+  console.log(post.content.references)
 
   const randomPosts = otherPosts
     .sort(() => 0.5 - Math.random())
@@ -79,7 +78,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
           )}
 
           <div className="max-w-screen-md mt-10 mx-auto">
-            <BlogBody content={post.content} />
+            <BlogBody content={post.content} references={post.content.references} />
           </div>
 
           <div className="mb-7 mt-7 flex justify-center">
@@ -155,6 +154,13 @@ export const pageQuery = graphql`
     contentfulPost(slug: { eq: $slug }, node_locale:{eq:$locale}) {
       content {
         raw
+        references {
+        contentful_id
+        language
+        childrenContentfulCodeSnippetCodeTextNode {
+          code
+        }
+      }
       }
       title
       subtitle

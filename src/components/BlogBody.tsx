@@ -4,12 +4,21 @@ import { ContentfulRichTextGatsbyReference, RenderRichTextData } from "gatsby-so
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { Options } from "@contentful/rich-text-react-renderer";
 import { Bold, Heading1, Text } from "./Markdown";
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-coy.css'; 
 
 type BlogBodyProps = {
   content: RenderRichTextData<ContentfulRichTextGatsbyReference>;
+  references:{
+    contentful_id:string;
+    language:string;
+    childrenContentfulCodeSnippetCodeTextNode:{
+      code:string;
+    }[]
+  }[]
 };
 
-export const BlogBody = ({ content }: BlogBodyProps) => {
+export const BlogBody = ({ content, references }: BlogBodyProps) => {
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
@@ -39,6 +48,29 @@ export const BlogBody = ({ content }: BlogBodyProps) => {
         <blockquote className="border-l-4 pl-4 italic text-gray-600 bg-gray-50 my-6 text-lg">{children}</blockquote>
       ),
       [BLOCKS.HR]: (node) => <hr className="my-8 border-t-2 border-gray-300" />,
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const entryId = node.data.target.sys.id;
+        const reference = references?.find(ref => ref.contentful_id === entryId);
+        const language = reference?.language || "javascript";
+        const code = reference?.childrenContentfulCodeSnippetCodeTextNode[0].code || "";
+
+        if (!reference) {
+          console.log("BRUH")
+          return null;}
+        return (
+          <div className="bg-gray-100 p-6">
+            <pre className={language}>
+            <code
+              dangerouslySetInnerHTML={{
+                __html: Prism.highlight(code, Prism.languages[language] || Prism.languages.plaintext, language),
+              }}
+            ></code>
+          </pre>
+          </div>
+          
+        );
+      },
+
     },
   };
 
