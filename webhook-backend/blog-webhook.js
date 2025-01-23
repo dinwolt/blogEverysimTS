@@ -7,7 +7,7 @@ app.use(express.json());
 app.post('/api/webhook', (req, res) => {
     console.log('Webhook received:', req.body);
 
-    exec('gatsby build', { cwd: '..' }, (err, stdout, stderr) => {
+    exec('npm run build', { cwd: '..' }, (err, stdout, stderr) => {
         if (err) {
             console.error('Build error:', stderr);
             return res.status(500).send('Build failed');
