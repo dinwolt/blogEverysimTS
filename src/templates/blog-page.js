@@ -9,6 +9,7 @@ import { FormattedMessage } from "gatsby-plugin-intl";
 import BlogMenu from "../components/BlogMenu";
 import BlogListItem from "../components/BlogListItem";
 import SliderView from "@/components/SliderView";
+import Seo from "../components/Seo";
 
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || "Title";
@@ -20,12 +21,10 @@ const BlogIndex = ({ data, pageContext }) => {
   );
 
   const randomPosts = useMemo(() => {
-    // Shuffle the posts array and select the first 3 posts
     const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
-    return shuffledPosts.slice(0, 3); // Get the first 3 posts
+    return shuffledPosts.slice(0, 3);
   }, [siteTitle]);
   const image = getImage(randomAuthor.image);
-  //const imagePost = getImage(randomPost.image);
   const { currentPage, totalPages } = pageContext;
   const [activeTab, setActiveTab] = useState("");
   const [activeSort, setActiveSort] = useState("");
@@ -56,13 +55,29 @@ const BlogIndex = ({ data, pageContext }) => {
       case "blog_menu_dateASC":
         return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       default:
-        return 0; // No sorting
+        return 0; 
     }
   });
-
+  const seoprops = {
+    enUS:{
+      title: data.site.siteMetadata?.enUS.title || "title",
+  description: data.site.siteMetadata?.enUS.description || "desc",
+  url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+  author: data.site.siteMetadata?.enUS.author || "Everysim",
+  keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+    },
+    koKR:{
+      title: data.site.siteMetadata?.koKR.title || "title",
+  description: data.site.siteMetadata?.koKR.description || "desc",
+  url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+  author: data.site.siteMetadata?.koKR.author || "everysim",
+  keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+    }
+  };
 
   return (
     <Layout title={siteTitle} style="bg-white mx-5">
+      <Seo seoprops={seoprops}/>
       <section>
         <section className="h-[calc(100vh-4rem)] mx-auto container flex justify-center items-center">
           <StaticImage
@@ -276,12 +291,23 @@ export const query = graphql`
   query($skip: Int!, $limit: Int!, $locale: String!) {
     site {
       siteMetadata {
-        title
-        description
-        author
-        siteUrl
-        lang
-        copyright
+      siteUrl
+        enUS {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+        koKR {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
       }
     }
     allContentfulPost(skip: $skip, limit: $limit, filter: { node_locale: { eq: $locale } }) {

@@ -10,12 +10,23 @@ import SliderView from "@/components/SliderView";
 interface AuthorsIndexQueryData {
     site: {
         siteMetadata?: {
-            title: string;
-            description: string;
-            author: string;
-            siteUrl: string;
-            lang: string;
-            copyright: string;
+            siteUrl:string,
+            enUS: {
+                title: string;
+                description: string;
+                author: string;
+                siteUrl: string;
+                lang: string;
+                copyright: string;
+              };
+              koKR: {
+                title: string;
+                description: string;
+                author: string;
+                siteUrl: string;
+                lang: string;
+                copyright: string;
+              };
         };
     };
     allContentfulAuthor: {
@@ -31,14 +42,30 @@ interface AuthorsIndexQueryData {
 }
 
 const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponentProps> = ({ data, intl }) => {
-    const { locale } = intl;  // Get the current locale from the injected intl object
+    const { locale } = intl;  
+    const siteMetadata = data.site.siteMetadata;
 
+    const seoprops = {
+        enUS:{
+          title: data.site.siteMetadata?.enUS.title || "title",
+      description: data.site.siteMetadata?.enUS.description || "desc",
+      url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+      author: data.site.siteMetadata?.enUS.author || "Everysim",
+      keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+        },
+        koKR:{
+          title: data.site.siteMetadata?.koKR.title || "title",
+      description: data.site.siteMetadata?.koKR.description || "desc",
+      url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+      author: data.site.siteMetadata?.koKR.author || "everysim",
+      keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+        }
+      };
     const authors = data.allContentfulAuthor.edges.map((edge) => edge.node);
 
     return (
         <Layout title="Authors" style="">
-            <Seo title="Authors" url="https://google.com" description="Meet the talented authors of our platform." />
-
+            <Seo seoprops={seoprops}/>
             <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight text-white py-16 text-center">
                 <h1 className="text-4xl font-bold">
                     <FormattedMessage id="about_authors_title" />
@@ -102,13 +129,24 @@ export const pageQuery = graphql`
     query($locale: String!) {
         site {
             siteMetadata {
-                title
-                description
-                author
-                siteUrl
-                lang
-                copyright
-            }
+            siteUrl
+      enUS {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+        koKR {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+    }
         }
         allContentfulAuthor(filter: { node_locale: { eq: $locale } }) {
             edges {

@@ -16,12 +16,23 @@ if (process.env.NODEENV !== 'production'){
 module.exports = {
   
   siteMetadata: {
-    title: `Everysim Blog`,
-    description: 'A blog sharing insights and stories about EverySim, tech, development, and more.',
-    author: 'Everysim',
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    lang: 'en', 
-    copyright: '© 2025 EverySim Blog. All rights reserved.',
+    siteUrl: `https://blog.everysim.io/`,
+    enUS: {
+      title: `EverySim Tech Blog - Insights, News, and Innovation in Technology and Development`,
+      description: `Explore the latest insights, stories, and updates from EverySim. Our blog covers cutting-edge technology, software development, industry trends, and more.`,
+      author: `EverySim Team`,
+      siteUrl: `https://blog.everysim.io/en-US`,
+      lang: `en-US`,
+      copyright: `© 2025 EverySim Blog. All rights reserved.`,
+    },
+    koKR: {
+      title: `EverySim 개발 블로그 - 개발 및 혁신에 대한 통찰력, 뉴스 및 혁신`,
+      description: `EverySim에서 제공하는 최신 통찰력, 이야기 및 업데이트를 확인하세요.`,
+      author: `EverySim 팀`,
+      siteUrl: `https://blog.everysim.io/ko-KR`,
+      lang: `ko-KR`,
+      copyright: `© 2025 EverySim 블로그. 모든 권리 보유.`,
+    },
   },
   plugins: [
     {

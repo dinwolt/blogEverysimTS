@@ -23,9 +23,25 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const randomPosts = otherPosts
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
-
+    const seoprops = {
+      enUS:{
+        title: data.site.siteMetadata?.enUS.title || "title",
+    description: data.site.siteMetadata?.enUS.description || "desc",
+    url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+    author: data.site.siteMetadata?.enUS.author || "Everysim",
+    keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+      },
+      koKR:{
+        title: data.site.siteMetadata?.koKR.title || "title",
+    description: data.site.siteMetadata?.koKR.description || "desc",
+    url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+    author: data.site.siteMetadata?.koKR.author || "everysim",
+    keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+      }
+    };
   return (
 <Layout title={siteTitle}>
+  <Seo seoprops={seoprops}/>
   <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
     <div className="container">
 
@@ -111,31 +127,30 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  return (
-    <Seo
-      title={data.contentfulPost.title}
-      description={data.contentfulPost.content.raw || ""}
-      image={data.contentfulPost.image?.file?.url}
-      url="https://google.com"
-      author={data.contentfulPost.postAuthor.name}
-      keywords={["blog", "gatsby", "contentful"]}
-    />
-  );
-};
 
 export default injectIntl(BlogPostContentfulTemplate);
 export const pageQuery = graphql`
   query ContentfulBlogPostBySlug($slug: String!, $authorName: String!, $locale: String!) {
     site {
       siteMetadata {
-        title
-        description
-        author
-        siteUrl
-        lang
-        copyright
-      }
+      siteUrl
+      enUS {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+        koKR {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+    }
     }
     contentfulPost(slug: { eq: $slug }, node_locale:{eq:$locale}) {
       content {

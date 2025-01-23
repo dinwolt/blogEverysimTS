@@ -36,12 +36,23 @@ type Posts = {
 interface BlogIndexQueryData {
   site: {
     siteMetadata?: {
-      title: string;
-      description: string;
-      author: string;
-      siteUrl: string;
-      lang: string;
-      copyright: string;
+      siteUrl:string,
+      enUS: {
+        title: string;
+        description: string;
+        author: string;
+        siteUrl: string;
+        lang: string;
+        copyright: string;
+      };
+      koKR: {
+        title: string;
+        description: string;
+        author: string;
+        siteUrl: string;
+        lang: string;
+        copyright: string;
+      };
     };
   };
   allContentfulPost: {
@@ -75,15 +86,28 @@ interface BlogIndexQueryData {
 type BlogIndexProps = PageProps<BlogIndexQueryData> & WrappedComponentProps;
 
 const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
-
-  const siteTitle = data.site.siteMetadata?.title || 'Title';
+  const siteMetadata = data.site.siteMetadata;
+  const siteTitle = (intl.locale === "ko-KR" ? data.site.siteMetadata?.koKR.title : data.site.siteMetadata?.enUS.title) || "Title";
+  const seoprops = {
+    enUS:{
+      title: data.site.siteMetadata?.enUS.title || "title",
+  description: data.site.siteMetadata?.enUS.description || "desc",
+  url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+  author: data.site.siteMetadata?.enUS.author || "Everysim",
+  keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+    },
+    koKR:{
+      title: data.site.siteMetadata?.koKR.title || "title",
+  description: data.site.siteMetadata?.koKR.description || "desc",
+  url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+  author: data.site.siteMetadata?.koKR.author || "everysim",
+  keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+    }
+  };
+  
+  console.log(siteTitle);
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
-  const authors = data.allContentfulAuthor.edges.map(edge => edge.node);
   const [activeTab, setActiveTab] = useState<string>('');
-  const [visibleCount, setVisibleCount] = useState<number>(6);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const postChoice = getImage(posts[0].image)
-  const locale = intl.locale
   const uniqueTags = Array.from(
     new Set(posts.flatMap(post => post.tag.split(", ").map(tag => tag.trim())))
   );
@@ -110,6 +134,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
 
   return (
     <Layout title={siteTitle} style="">
+      <Seo seoprops={seoprops}/>
       <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden">
         {/*Banner + slider*/}
 
@@ -158,8 +183,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
             <Tabs tabs={uniqueTags} activeTab={activeTab} setActiveTab={(tab) => setActiveTab(tab === activeTab ? "" : tab)} />
             <BlogGrid
               posts={posts}
-              visibleCount={visibleCount}
-              isExpanded={isExpanded}
+
               filteredPosts={filteredPosts}
             />
           </div>
@@ -180,23 +204,30 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
 
 export default injectIntl(BlogIndex);
 
-export const Head: React.FC = () => <Seo
-  title={"Home Page"}
-  description={"Home with "}
-  url="https://google.com"
-  keywords={["blog", "gatsby", "contentful"]}
-/>;
+
 
 export const pageQuery = graphql`
   query ContentfulPosts($locale:String){
     site {
+    
       siteMetadata {
-        title
-        description
-        author
-        siteUrl
-        lang
-        copyright
+      siteUrl
+        enUS {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
+        koKR {
+          title
+          description
+          author
+          siteUrl
+          lang
+          copyright
+        }
       }
     }
     allContentfulPost(sort: {createdAt: DESC}, limit: 6, filter:{node_locale:{eq:$locale}}) {
