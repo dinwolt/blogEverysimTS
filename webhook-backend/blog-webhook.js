@@ -15,7 +15,7 @@ app.post('/api/webhook', (req, res) => {
         console.log('Build successful:', stdout);
 
 
-        exec('pm2 restart everysblog', (pm2Err, pm2Stdout, pm2Stderr) => {
+        exec('pm2 restart everyblog', (pm2Err, pm2Stdout, pm2Stderr) => {
             if (pm2Err) {
                 console.error('PM2 restart error:', pm2Stderr);
                 return res.status(500).send('PM2 restart failed');
