@@ -105,7 +105,6 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
     }
   };
   
-  console.log(siteTitle);
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
   const [activeTab, setActiveTab] = useState<string>('');
   const uniqueTags = Array.from(

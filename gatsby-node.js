@@ -19,7 +19,7 @@ exports.onCreatePage = ({ page, actions }) => {
     ...page,
     context: {
       ...page.context,
-      locale: page.context.intl.language || 'en-US',  // Fallback to 'en' if locale is not found
+      locale: page.context.intl.language || 'en-US', 
     },
   });
 };
@@ -30,8 +30,7 @@ const blogIndex = path.resolve("./src/templates/blog-page.js");
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Remove the use of `useIntl` as it cannot be used here
-  const locales = ['en-US', 'ko-KR']; // Assuming you have a list of locales to handle
+  const locales = ['en-US', 'ko-KR']; 
 
   for (const locale of locales) {
     const result = await graphql(`
@@ -54,6 +53,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
               tag
               postAuthor {
+              contentful_id
                 name
                 image {
                   gatsbyImageData(
@@ -83,18 +83,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const postsPerPage = 6;
     const totalPosts = result.data.allContentfulPost.totalCount;
     const totalPages = Math.ceil(totalPosts / postsPerPage);
+    
+    
 
     if (posts.length > 0) {
       posts.forEach((post, index) => {
         const previous = index === 0 ? null : posts[index - 1].node;
         const next = index === posts.length - 1 ? null : posts[index + 1].node;
-        console.log(`CURREN LOCALE IS    ${locale}`)
         createPage({
           path: `/blog/${post.node.slug}`,
           component: blogPost,
           context: {
             slug: post.node.slug,
-            authorName: post.node.postAuthor.name,
+            authorName: post.node.postAuthor.contentful_id,
             previous,
             next,
             locale,

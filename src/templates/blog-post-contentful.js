@@ -16,12 +16,10 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const post = data.contentfulPost;
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
-  const locale = intl.locale
-  const references = post?.content?.references || [];
-  console.log(post.content.references)
+  console.log(authorPosts)
 
   const randomPosts = otherPosts
-    .sort(() => 0.5 - Math.random())
+    .sort(() => 0.5 - Math.random()) 
     .slice(0, 3);
     const seoprops = {
       enUS:{
@@ -208,8 +206,8 @@ export const pageQuery = graphql`
     authorPosts: allContentfulPost(
       filter: {
         slug: { ne: $slug }
-        postAuthor: { name: { eq: $authorName } }
-        node_locale:{eq: $locale}
+        postAuthor: { contentful_id: { eq: $authorName } }
+        node_locale: {eq:$locale}
       }
       limit:5
     ) {

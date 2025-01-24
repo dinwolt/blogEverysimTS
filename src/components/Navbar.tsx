@@ -89,7 +89,6 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                     <div className="hidden 3xl:hidden lg:flex flex-1 items-center justify-start 3xl:justify-center ml-10 3xl:ml-0  gap-8">
                         <ul className="flex items-center gap-8">
                             {NAV_MENU.map(({ name, icon: Icon, href }) => {
-                                console.log(intl.formatMessage({ id: name }))
                                 return (
                                     <NavItem key={name} href={href}>
                                         <FormattedMessage id={name} />
@@ -106,7 +105,6 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                 <div className="hidden 3xl:flex flex-1 items-center justify-start 3xl:justify-center ml-10 3xl:ml-0  gap-8">
                         <ul className="flex items-center gap-8">
                             {NAV_MENU.map(({ name, icon: Icon, href }) => {
-                                console.log(intl.formatMessage({ id: name }))
                                 return (
                                     <NavItem key={name} href={href}>
                                         <FormattedMessage id={name} />
