@@ -76,7 +76,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
   };
 
   return (
-    <article className="py-6 mx-auto max-w-screen-lg">
+    <article className=" mx-auto max-w-screen-lg">
       {renderRichText(content, options)}
     </article>
   );

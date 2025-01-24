@@ -9,7 +9,7 @@ interface CarouselCardProps {
 
 const CarouselCard: React.FC<CarouselCardProps> = ({ title, description, image }) => {
   return (
-    <div className="flex-shrink-0 w-80 h-96 m-4 overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+    <div className="flex-shrink-0 w-80 h-72 sm:h-96 m-4 overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
       <div className="relative h-full">
         {image && (
           <GatsbyImage

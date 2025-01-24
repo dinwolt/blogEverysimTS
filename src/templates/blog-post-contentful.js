@@ -23,18 +23,54 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
     .slice(0, 3);
     const seoprops = {
       enUS:{
-        title: data.site.siteMetadata?.enUS.title || "title",
-    description: data.site.siteMetadata?.enUS.description || "desc",
+        title: post.title || "title",
+    description: post.subtitle || "desc",
     url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
-    author: data.site.siteMetadata?.enUS.author || "Everysim",
-    keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+    author: post.author || "Everysim",
+    keywords: [
+      post.title,
+      post.subtitle,
+      post.author,
+      post.tag,
+      "Everysim Tech Blog", 
+      "technology insights", 
+      "software development", 
+      "engineering innovations", 
+      "future of technology", 
+      "tech blog", 
+      "development news", 
+      "tech industry trends", 
+      "engineering expertise", 
+      "Everysim updates", 
+      "technology leaders", 
+      "software development blog", 
+      "cutting-edge technology"
+    ]
       },
       koKR:{
         title: data.site.siteMetadata?.koKR.title || "title",
     description: data.site.siteMetadata?.koKR.description || "desc",
     url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
     author: data.site.siteMetadata?.koKR.author || "everysim",
-    keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+    keywords: [
+      post.title,
+      post.subtitle,
+      post.author,
+      post.tag,
+      "Everysim 기술 블로그", 
+        "기술 통찰력", 
+        "소프트웨어 개발", 
+        "엔지니어링 혁신", 
+        "기술의 미래", 
+        "기술 블로그", 
+        "개발 뉴스", 
+        "기술 산업 트렌드", 
+        "엔지니어링 전문 지식", 
+        "Everysim 업데이트", 
+        "기술 리더", 
+        "소프트웨어 개발 블로그", 
+        "최첨단 기술"
+    ],
       }
     };
   return (
@@ -49,12 +85,12 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <div className="flex flex-col items-left">
+        <div className="flex flex-col items-center">
           <h3 className="font-semibold text-left sm:text-base text-xs text-blue-500 mb-3">{post.tag}</h3>
-          <header className="text-left mb-8">
+          <header className="text-left mb-8 ">
             <h1
               itemProp="headline"
-              className="lg:text-5xl md:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
+              className="sm:text-3xl text-xl font-semibold text-gray-900 dark:text-white"
             >
               {post.title}
             </h1>
@@ -67,7 +103,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
           </header>
 
           {post.image && (
-            <div className="relative z-0 mb-12 w-full max-w-screen-md mx-auto">
+            <div className="relative z-0 p-2  max-w-screen-md mx-auto">
               <GatsbyImage
                 image={getImage(post.image)}
                 alt={post.title}
@@ -76,7 +112,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
             </div>
           )}
 
-          <div className="max-w-screen-md mt-10 mx-auto">
+          <div className="max-w-screen-md mt-6 mx-auto">
             <BlogBody content={post.content} references={post.content.references} />
           </div>
 

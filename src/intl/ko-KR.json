@@ -1,6 +1,6 @@
 {
-    "index_banner_title": "최신 혁신을 놓치지 마세요",
-    "index_banner_subtitle": "시뮬레이션 분야의 최신 혁신을 확인하고, 기술이 우리의 일상을 변화시키는 놀라운 방법을 알아보세요.",
+    "index_banner_title": "Everysim 기술 블로그",
+    "index_banner_subtitle": "인사이트와 혁신: Everysim과 함께하는 기술, 개발, 그리고 엔지니어링의 미래 탐구",
     "index_trends_title": "트렌드 포스트",
     "index_trends_subtitle": "시뮬레이션 공학 및 기술 세계의 새로운 소식을 확인하세요! 최신 뉴스를 위해 블로그를 구독하는 것도 잊지 마세요.",
     "index_gotoblog": "블로그로 이동",
@@ -32,19 +32,24 @@
     "about_collab_subtitle": "창의적인 팀에 합류하여 여러분의 작업으로 영향을 미쳐보세요.",
     "about_contactus": "문의하기",
     
-    "footer_home": "홈",
-    "footer_blog": "블로그",
-    "footer_about": "소개",
-    "footer_naver": "네이버",
-    "footer_web": "웹사이트",
-    "footer_insta": "인스타그램",
-    
     "post_bloglink": "← 모든 포스트 보기",
     "post_writtenby": "작성자",
     "post_author_other": "의 다른 기사",
     "post_recommendation": "이것도 좋아하실 겁니다",
     "post_authorlink": "저자들에 대해 더 알아보기",
 
+    "footer_nav_title": "Everysim",
+    "footer_home": "홈",
+    "footer_blog": "블로그",
+    "footer_about": "소개",
+
+    "footer_socials_title": "문의하기",
+    "footer_socials_linkedin": "링크드인",
+    "footer_socials_email": "support@everysim.io",
+
+    "footer_newsletter_title": "뉴스레터",
+    "footer_newsletter_desc": "우리의 블로그 업데이트를 놓치지 않으려면 뉴스레터를 구독하세요.",
+    "footer_newsletter_submit": "제출",
 
     "nav_home": "홈",
     "nav_about": "소개",

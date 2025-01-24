@@ -1,10 +1,9 @@
 import React, { useState, useMemo } from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-plugin-intl";
-import BlogGrid from "../components/BlogGrid";
 import Layout from "../components/Layout";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FormattedMessage } from "gatsby-plugin-intl";
 import BlogMenu from "../components/BlogMenu";
 import BlogListItem from "../components/BlogListItem";
@@ -14,17 +13,12 @@ import Seo from "../components/Seo";
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || "Title";
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
-  const authors = data.allContentfulAuthor.edges.map(edge => edge.node);
-  const randomAuthor = useMemo(
-    () => authors[Math.floor(Math.random() * authors.length)],
-    [siteTitle]
-  );
+
 
   const randomPosts = useMemo(() => {
     const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
     return shuffledPosts.slice(0, 3);
   }, [siteTitle]);
-  const image = getImage(randomAuthor.image);
   const { currentPage, totalPages } = pageContext;
   const [activeTab, setActiveTab] = useState("");
   const [activeSort, setActiveSort] = useState("");
@@ -55,150 +49,111 @@ const BlogIndex = ({ data, pageContext }) => {
       case "blog_menu_dateASC":
         return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       default:
-        return 0; 
+        return 0;
     }
   });
   const seoprops = {
-    enUS:{
-      title: data.site.siteMetadata?.enUS.title || "title",
-  description: data.site.siteMetadata?.enUS.description || "desc",
-  url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
-  author: data.site.siteMetadata?.enUS.author || "Everysim",
-  keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+    enUS: {
+      title: "Everysim Tech Blog – Insights, Innovations, and the Future of Engineering",
+      description: "Explore cutting-edge insights, the latest innovations, and expert opinions on technology, software development, and the future of engineering. Stay updated with the Everysim Tech Blog, where industry leaders share their expertise and vision for tomorrow's tech landscape.",
+      url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+      author: data.site.siteMetadata?.enUS.author || "Everysim",
+      keywords: [
+        "Everysim Tech Blog", 
+        "technology insights", 
+        "software development", 
+        "engineering innovations", 
+        "future of technology", 
+        "tech blog", 
+        "development news", 
+        "tech industry trends", 
+        "engineering expertise", 
+        "Everysim updates", 
+        "technology leaders", 
+        "software development blog", 
+        "cutting-edge technology"
+      ]
     },
-    koKR:{
-      title: data.site.siteMetadata?.koKR.title || "title",
-  description: data.site.siteMetadata?.koKR.description || "desc",
-  url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
-  author: data.site.siteMetadata?.koKR.author || "everysim",
-  keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+    koKR: {
+      title: "Everysim 기술 블로그 – 통찰력, 혁신, 엔지니어링의 미래",
+      description: "최신 혁신, 기술, 소프트웨어 개발 및 엔지니어링의 미래에 대한 전문가의 의견과 통찰력을 제공합니다. Everysim 기술 블로그에서 산업 리더들이 내일의 기술 환경에 대한 비전과 전문 지식을 공유합니다.",
+      url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+      author: data.site.siteMetadata?.koKR.author || "everysim",
+      keywords: [
+        "Everysim 기술 블로그", 
+        "기술 통찰력", 
+        "소프트웨어 개발", 
+        "엔지니어링 혁신", 
+        "기술의 미래", 
+        "기술 블로그", 
+        "개발 뉴스", 
+        "기술 산업 트렌드", 
+        "엔지니어링 전문 지식", 
+        "Everysim 업데이트", 
+        "기술 리더", 
+        "소프트웨어 개발 블로그", 
+        "최첨단 기술"
+      ],
     }
   };
 
   return (
     <Layout title={siteTitle} style="bg-white mx-5">
-      <Seo seoprops={seoprops}/>
+      <Seo seoprops={seoprops} />
       <section>
-        <section className="h-[calc(100vh-4rem)] mx-auto container flex justify-center items-center">
-          <StaticImage
-            src="../../static/images/everysim-hero-lg.svg"
-            className="object-contain"
-            alt="logo"
-          />
-        </section>
-        {/*<div className="bg-banner-image-lg bg-cover bg-no-repeat w-full">
-          <div className="container mx-auto">
-            <div className="flex gap-8 p-8">
-              <div className="flex-1 flex flex-col sm:p-8 justify-center">
-                <div className="mb-5">
-                  <h1 className="section-title mb-3">
-                    <FormattedMessage id="blog_banner_title" />
-                  </h1>
-                  <h2 className="section-subtitle">
-                    <FormattedMessage id="blog_banner_subtitle" />
-                  </h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <GatsbyImage image={image} alt={randomAuthor.name} objectFit="contain" />
-                  <div className="flex flex-col gap-4 justify-items-end justify-end">
-                    <blockquote className="border-l-4 pl-4 italic section-post-subtitle text-white">
-                      {randomAuthor.description}
-                    </blockquote>
-                    <div>
-                      <p className="section-post-title text-white font-semibold">
-                        {randomAuthor.name}
-                      </p>
-                      <p className="section-post-subtitle text-white">{randomAuthor.role}</p>
-                      <Link
-                        to="../../authors"
-                        className="section-post-subtitle text-white hover:underline transition-transform duration-200"
-                      >
-                        <FormattedMessage id="blog_banner_authorslink" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex-1 mt-10 hidden sm:block p-8">
-                <Link
-                  to={`/blog/${randomPost.slug}`}
-                  className="rounded-lg shadow-lg sm:p-8 hover:scale-105 transition-transform duration-3000"
-                >
-                  <p className="section-title text-right mb-5 text-center">
-                    <FormattedMessage id="blog_banner_recommendation" />
-                  </p>
-                  <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10" />
-                  <p className="section-post-subtitle text-white font-semibold">{randomPost.tag}</p>
-                  <p className="section-title">{randomPost.title}</p>
-                  <p className="section-post-subtitle text-white">{randomPost.subtitle}</p>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>*/}
+
 
 
         <div className="container mx-auto p-6 min-h-screen  ">
-          {/**<div className="flex flex-col md:flex-row lg:flex-row gap-6 justify-center items-center w-full p-6">
-            <div className="">
-              <GatsbyImage image={imagePost} alt={randomPost.postAuthor.name} className="p-10 rounded-md" />
-            </div>
-            <div className="p-2 flex flex-col items-between">
-              <div></div>
-              <p className="section-post-subtitle  text-brandHighlight font-semibold">{randomPost.tag}</p>
-              <p className="section-title font-robotoCondensed text-3xl text-black">{randomPost.title}</p>
-              <p className="font-roboto text-gray-800 text-xl">{randomPost.subtitle}</p>
-            </div>
-          </div> */}
 
-          <SliderView data={randomPosts}>
-            {(item) => {
-              const image = getImage(item.image)
-              return (
-                <div className="flex flex-col sm:flex-row border shadow-md rounded-lg p-5  items-center mb-5">
-                  {image && (
-                    <div className="md:w-1/4 ">
-                      <GatsbyImage
-                        image={image}
-                        alt={item.title}
-                        className="object-cover rounded-md w-full h-full"
-                      />
-                    </div>
-                  )}
-                  <div className="md:w-2/3 pl-4 flex  flex-col justify-between">
-                    <div>
-                      <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
-                        {item.tag}
-                      </h1>
-                      <h1 className="section-title text-black md:text-2xl text-xl">
-                        {item.title}
-                      </h1>
-                    </div>
-                    <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600">
-                      {item.subtitle}
-                    </h2>
-                    <div className="flex justify-between gap-8 items-center mt-4">
-                      <Link
-                        to={`/blog/${item.slug}`}
-                        className="flex items-center text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out"
-                      >
-                        <span className="mr-2">
-                          <FormattedMessage id="index_readmore" />
-                        </span>
-                        <ArrowRightIcon
-                          className="h-5 w-5 text-brandHighlight"
-                          aria-hidden="true"
+          <div className="flex max-w-lg">
+            <SliderView data={randomPosts} wrapContent={true}>
+              {(item) => {
+                const image = getImage(item.image);
+                return (
+                  <div className="flex flex-col sm:flex-row border shadow-md rounded-lg p-5 items-center mb-5">
+                    {image && (
+                      <div className="flex-1">
+                        <GatsbyImage
+                          image={image}
+                          alt={item.title}
+                          className="object-cover rounded-md"
                         />
-                      </Link>
+                      </div>
+                    )}
+                    <div className="flex-1 pl-4 flex flex-col justify-between">
+                      <div>
+                        <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
+                          {item.tag}
+                        </h1>
+                        <h1 className="section-title text-black md:text-2xl text-xl">
+                          {item.title}
+                        </h1>
+                      </div>
+                      <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600">
+                        {item.subtitle}
+                      </h2>
+                      <div className="flex justify-between gap-8 items-center mt-4">
+                        <Link
+                          to={`/blog/${item.slug}`}
+                          className="flex items-center text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out"
+                        >
+                          <span className="mr-2">
+                            <FormattedMessage id="index_readmore" />
+                          </span>
+                          <ArrowRightIcon
+                            className="h-5 w-5 text-brandHighlight"
+                            aria-hidden="true"
+                          />
+                        </Link>
+                      </div>
                     </div>
-
                   </div>
+                );
+              }}
+            </SliderView>
+          </div>
 
-
-                </div>
-              )
-            }}
-          </SliderView>
 
 
 

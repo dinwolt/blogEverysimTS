@@ -27,14 +27,12 @@ interface SliderViewProps {
   children: (item: Authors | Posts, index: number) => ReactNode; 
   data: (Authors | Posts)[]; 
 }
-
-const SliderView: React.FC<SliderViewProps> = ({ children, data }) => {
+const SliderView: React.FC<SliderViewProps & { wrapContent?: boolean }> = ({ children, data, wrapContent = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
-
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
@@ -43,32 +41,30 @@ const SliderView: React.FC<SliderViewProps> = ({ children, data }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000); 
+    }, 3000); // Auto-slide every 3 seconds
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval); // Clean up on unmount
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative overflow-hidden">
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className="flex items-center transition-transform duration-500 ease-in-out"
         style={{
           transform: `translateX(-${currentIndex * 100}%)`,
+          width: wrapContent ? "auto" : "100%",
         }}
       >
         {data.map((item, index) => (
           <div
             key={index}
-            className="w-full flex-shrink-0"
+            className={`flex-shrink-0 ${wrapContent ? "max-w-fit px-4" : "w-full"}`}
           >
             {children(item, index)}
           </div>
         ))}
       </div>
-
-    
     </div>
   );
 };
-
 export default SliderView;

@@ -94,14 +94,14 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
   description: data.site.siteMetadata?.enUS.description || "desc",
   url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
   author: data.site.siteMetadata?.enUS.author || "Everysim",
-  keywords: ["homepage", "tech blog", "everysim", "korea", "simulation engineering", "blog"]
+  keywords: ["Everysim", "Tech Blog", "Technology", "Engineering", "Development", "Innovation", "Future of Engineering", "Tech Insights", "Software Development", "Engineering Trends", "Tech Innovations"],
     },
     koKR:{
       title: data.site.siteMetadata?.koKR.title || "title",
   description: data.site.siteMetadata?.koKR.description || "desc",
   url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
   author: data.site.siteMetadata?.koKR.author || "everysim",
-  keywords: ["홈페이지", "테크 블로그", "에브리심", "코리아", "시뮬레이션 엔지니어링", "블로그"],
+  keywords: ["에브리심", "기술 블로그", "기술", "엔지니어링", "개발", "혁신", "미래 엔지니어링", "기술 인사이트", "소프트웨어 개발", "엔지니어링 트렌드", "기술 혁신"],
     }
   };
   
@@ -120,16 +120,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
     )
     : posts;
 
-  {//for expanding view
 
-    /*const toggleView = () => {
-    if (isExpanded) {
-      setVisibleCount(6);
-    } else {
-      setVisibleCount(filteredPosts.length);
-    }
-    setIsExpanded(!isExpanded);
-  };*/}
 
   return (
     <Layout title={siteTitle} style="">

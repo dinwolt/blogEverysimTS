@@ -73,6 +73,7 @@ module.exports = {
 				roboto: ['Roboto', 'sans-serif'],
 				anton: ['Anton', 'sans-serif'],
 				robotoCondensed: ['"Roboto Condensed"', 'sans-serif'], 
+				spoqa: ['Spoqa Han Sans', 'sans-serif'],
 			},
 			animation: {
 				scroll: 'scroll 20s linear infinite',

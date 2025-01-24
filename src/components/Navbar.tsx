@@ -127,13 +127,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                     >
                         <FormattedMessage id="nav_button" />
                     </GatsbyLink>
-                    <GatsbyLink
-                        to="https://kr.linkedin.com/company/everysim"
-                        target="_blank"
-                        className="font-medium font-robotoCondensed text-xl text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
-                    >
-                        LinkedIn
-                    </GatsbyLink>
+                    
 
                 </div>
             </div>
@@ -157,13 +151,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             >
                                 <FormattedMessage id="nav_button" />
                             </GatsbyLink>
-                            <GatsbyLink
-                                to="https://kr.linkedin.com/company/everysim"
-                                target="_blank"
-                                className="font-robotoCondensed text-lg text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
-                            >
-                                LinkedIn
-                            </GatsbyLink>
+                            
 
                         </div>
                     </ul>
