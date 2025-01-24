@@ -17,6 +17,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
   const locale = intl.locale
+  const references = post?.content?.references || [];
   console.log(post.content.references)
 
   const randomPosts = otherPosts

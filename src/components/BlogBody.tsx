@@ -54,9 +54,10 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
         const language = reference?.language || "javascript";
         const code = reference?.childrenContentfulCodeSnippetCodeTextNode[0].code || "";
 
-        if (!reference) {
-          console.log("BRUH")
-          return null;}
+        if(language === "dummy"){
+          return(<></>)
+
+        }
         return (
           <div className="bg-gray-100 p-6">
             <pre className={language}>

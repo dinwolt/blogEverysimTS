@@ -1,5 +1,6 @@
 const path = require("path");
 
+
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
@@ -39,9 +40,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           totalCount
           edges {
             node {
-              content {
-                raw
-              }
+              
               title
               subtitle
               slug
