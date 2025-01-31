@@ -49,11 +49,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="mt-8 flex sm:justify-start justify-center ">
             <div className="h-[10%]">
-              <StaticImage
-                style={{ height: '10%' }}
-                src="../../static/images/everysim-hero-sm.svg"
-                alt="Logo"
-              />
+              
             </div>
           </div>
 

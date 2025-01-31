@@ -3,6 +3,7 @@ import React from 'react';
 import {  getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { useState } from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 import {
     Card,
     CardContent,
@@ -28,6 +29,7 @@ type PostData = {
           description?: string;
           role?: string;
         };
+        updatedAt:string;
 };
 
 interface BlogGridProps {
@@ -36,11 +38,16 @@ interface BlogGridProps {
     toggleView?: () => void;
     filteredPosts: Array<any>;
 }
+const formatDate = (dateString: string, locale: string = "en-US") => {
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateString));
+  };
+  
 
 const BlogGrid: React.FC<BlogGridProps> = ({
-    posts,
-
-    toggleView,
     filteredPosts
 }) => {
     
@@ -63,9 +70,19 @@ const BlogGrid: React.FC<BlogGridProps> = ({
                                         {image && <CardImage img={image} />}
                                     </CardContent>
                                     <CardHeader>
-                                        <CardTag>{post.tag}</CardTag>
+                                        <CardTag>
+                                            <div className='flex justify-between'>
+                                                <div>{post.tag}</div>
+                                                </div>
+                                            </CardTag>
                                         <CardTitle>{post.title}</CardTitle>
-                                        <CardDescription>{post.subtitle}</CardDescription>
+                                        <CardDescription>
+                                            <div className='flex-col'>
+                                                {post.subtitle}
+                                                <div className='mt-2 text-gray-400 text-xs text-right'>{formatDate(post.updatedAt, useIntl().locale)}</div>
+
+                                            </div>
+                                            </CardDescription>
                                     </CardHeader>
                                 </Link>
                             </Card>

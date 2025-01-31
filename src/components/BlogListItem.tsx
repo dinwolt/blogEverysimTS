@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { FormattedMessage } from 'gatsby-plugin-intl';
 import { Link as ILink } from 'gatsby-plugin-intl';
+import { useIntl } from 'gatsby-plugin-intl';
 
 type PostData = {
     title?: string;
@@ -17,11 +18,19 @@ type PostData = {
         description?: string;
         role?: string;
     };
+    updatedAt:string;
 };
 
 interface Props {
     posts: Array<PostData>;
 }
+const formatDate = (dateString: string, locale: string = "en-US") => {
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateString));
+  };
 
 const BlogListItem: React.FC<Props> = ({ posts }) => {
     return (
@@ -38,7 +47,11 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                         <div className="flex-col w-full">
                             <div className="flex-col">
                                 <h2 className="section-post-title font-bold text-brandPrimary ">{post.title}</h2>
-                                <h3 className="section-post-title sm:text-base text-sm text-brandHighlight ">{post.tag}</h3>
+                                <div className='flex justify-between sm:text-base text-sm items-center '>
+                                <h3 className="section-post-title text-brandHighlight ">{post.tag}</h3>
+                                <h3 className='text-gray-400'>{formatDate(post.updatedAt, useIntl().locale)}</h3>
+
+                                </div>
 
                                 <p className="section-post-subtitle sm:text-base ">{post.subtitle}</p>
                             </div>

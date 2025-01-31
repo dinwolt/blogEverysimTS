@@ -284,7 +284,7 @@ export const query = graphql`
             raw
           }
           tag
-          createdAt
+          updatedAt
         }
       }
     }

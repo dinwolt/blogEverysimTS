@@ -32,6 +32,7 @@ type Posts = {
     description?: string;
     role?: string;
   };
+  updatedAt: string;
 };
 interface BlogIndexQueryData {
   site: {
@@ -69,6 +70,7 @@ interface BlogIndexQueryData {
           description?: string;
           role?: string;
         };
+        updatedAt:string;
       };
     }[];
   };
@@ -248,6 +250,7 @@ export const pageQuery = graphql`
             description
             role
           }
+            updatedAt(formatString: "YYYY-MM-DD")
         }
       }
     }
