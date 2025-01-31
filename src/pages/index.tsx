@@ -32,6 +32,7 @@ type Posts = {
     description?: string;
     role?: string;
   };
+  updatedAt:string;
 };
 interface BlogIndexQueryData {
   site: {
@@ -69,6 +70,7 @@ interface BlogIndexQueryData {
           description?: string;
           role?: string;
         };
+        updatedAt:string;
       };
     }[];
   };
@@ -86,7 +88,6 @@ interface BlogIndexQueryData {
 type BlogIndexProps = PageProps<BlogIndexQueryData> & WrappedComponentProps;
 
 const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
-  const siteMetadata = data.site.siteMetadata;
   const siteTitle = (intl.locale === "ko-KR" ? data.site.siteMetadata?.koKR.title : data.site.siteMetadata?.enUS.title) || "Title";
   const seoprops = {
     enUS:{
@@ -100,7 +101,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
       title: data.site.siteMetadata?.koKR.title || "title",
   description: data.site.siteMetadata?.koKR.description || "desc",
   url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
-  author: data.site.siteMetadata?.koKR.author || "everysim",
+  author: data.site.siteMetadata?.koKR.author || "Everysim",
   keywords: ["에브리심", "기술 블로그", "기술", "엔지니어링", "개발", "혁신", "미래 엔지니어링", "기술 인사이트", "소프트웨어 개발", "엔지니어링 트렌드", "기술 혁신"],
     }
   };
@@ -223,6 +224,7 @@ export const pageQuery = graphql`
     allContentfulPost(sort: {createdAt: DESC}, limit: 6, filter:{node_locale:{eq:$locale}}) {
       edges {
         node {
+        updatedAt(formatString: "YYYY-MM-DD")
           title
           subtitle
           slug

@@ -8,7 +8,15 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import PostListItem from "@/components/PostListItem";
 import Carousel from "@/components/Carousel";
 import { FormattedMessage, injectIntl } from "gatsby-plugin-intl";
+import { useIntl } from "gatsby-plugin-intl";
 
+const formatDate = (dateString, locale = "en-US") => {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(dateString));
+};
 
 
 const BlogPostContentfulTemplate = ({ data, intl }) => {
@@ -99,6 +107,10 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
               className="font-semibold text-gray-500 sm:text-base text-xs dark:text-white mt-3"
             >
               {post.subtitle}
+            </h3>
+            <h3 className="mt-2 text-xs text-gray-500">{formatDate(post.updatedAt, useIntl().locale)}</h3>
+            <h3>
+              
             </h3>
           </header>
 
@@ -200,6 +212,7 @@ export const pageQuery = graphql`
       }
       }
       title
+      updatedAt(formatString: "YYYY-MM-DD")
       subtitle
       slug
       image {

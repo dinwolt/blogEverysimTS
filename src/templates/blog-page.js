@@ -268,6 +268,8 @@ export const query = graphql`
     allContentfulPost(skip: $skip, limit: $limit, filter: { node_locale: { eq: $locale } }) {
       edges {
         node {
+                updatedAt(formatString: "YYYY-MM-DD")
+
           title
           subtitle
           postAuthor {

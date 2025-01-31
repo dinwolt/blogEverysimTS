@@ -3,6 +3,7 @@ import React from 'react';
 import {  getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { useState } from 'react';
+
 import {
     Card,
     CardContent,
@@ -13,7 +14,7 @@ import {
     CardTag
 } from "@/components/ui/card";
 import Tabs from "@/components/Tabs";
-import { Link } from 'gatsby-plugin-intl';
+import { Link, useIntl } from 'gatsby-plugin-intl';
 
 
 type PostData = {
@@ -28,6 +29,7 @@ type PostData = {
           description?: string;
           role?: string;
         };
+        updatedAt:string;
 };
 
 interface BlogGridProps {
@@ -36,7 +38,13 @@ interface BlogGridProps {
     toggleView?: () => void;
     filteredPosts: Array<any>;
 }
-
+const formatDate = (dateString: string, locale: string = "en-US") => {
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateString));
+  };
 const BlogGrid: React.FC<BlogGridProps> = ({
     posts,
 
@@ -65,7 +73,12 @@ const BlogGrid: React.FC<BlogGridProps> = ({
                                     <CardHeader>
                                         <CardTag>{post.tag}</CardTag>
                                         <CardTitle>{post.title}</CardTitle>
-                                        <CardDescription>{post.subtitle}</CardDescription>
+                                        <CardDescription>
+                                            <div className='flex-col'>
+                                                {post.subtitle}
+                                                <div className='mt-2 text-right text-gray-500'>{formatDate(post.updatedAt, useIntl().locale)}</div>
+                                            </div>
+                                            </CardDescription>
                                     </CardHeader>
                                 </Link>
                             </Card>

@@ -52,7 +52,7 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
       keywords: ["Everysim Tech Blog authors", "tech blog team", "engineering experts", "software developers", "innovation leaders", "technology insights", "development expertise", "future of engineering", "innovative engineers", "tech thought leaders", "engineering and innovation", "software development team", "Everysim blog contributors"]
         },
         koKR:{
-          title: data.site.siteMetadata?.koKR.title || "title",
+          title: "회사 소개",
       description: "Everysim Tech Blog의 저자들을 만나보세요. 우리의 팀은 기술과 개발에 대한 통찰, 경험, 그리고 최첨단 지식을 공유하는 데 열정적인 엔지니어, 개발자, 혁신가들로 이루어져 있습니다. 엔지니어링, 소프트웨어 개발, 그리고 혁신의 미래에 대해 의미 있는 대화를 이끄는 전문가들을 알아가세요.",
       url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
       author: data.site.siteMetadata?.koKR.author || "Everysim",
