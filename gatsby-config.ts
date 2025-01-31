@@ -66,9 +66,70 @@ module.exports = {
       }
     },
     
-    
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            nodes {
+              path
+            }
+          }
+        }`,
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          const pages = allPages.map(page => {
+            const alternateLangs = allPages
+              .filter(
+                alterPage =>
+                  alterPage.path.replace(/\/.*?\//, "/") ===
+                  page.path.replace(/\/.*?\//, "/")
+              )
+              .map(alterPage => alterPage.path.match(/^\/([a-z]{2})\//))
+              .filter(match => match)
+              .map(match => match[1])
+
+            return {
+              ...page,
+              ...{ alternateLangs },
+            }
+          })
+
+          return pages
+        },
+        serialize: ({ path, alternateLangs }) => {
+          const pagepath = path.replace(/\/.*?\//, "/")
+
+          const xhtmlLinks =
+            alternateLangs.length > 1 &&
+            alternateLangs.map(lang => ({
+              rel: "alternate",
+              hreflang: lang,
+              url: `/${lang}${pagepath}`,
+            }))
+
+          let entry = {
+            url: path,
+            changefreq: "daily",
+            priority: 0.7,
+            links:"",
+          }
+
+          if (xhtmlLinks) {
+            entry.links = xhtmlLinks
+          }
+
+          return entry
+        },
+      },
+    },
     `gatsby-plugin-image`,
-    `gatsby-plugin-sitemap`,
+    
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
