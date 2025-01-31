@@ -147,14 +147,16 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         </div>
       </div>
     </div>
-    </div>
-    
-    <div className="flex flex-col w-auto">
+
+    <div className="flex flex-col">
       <h1 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
         <FormattedMessage id="post_recommendation"/>
       </h1>
       <Carousel posts={randomPosts} />
     </div>
+    </div>
+    
+    
   </div>
 </Layout>
 

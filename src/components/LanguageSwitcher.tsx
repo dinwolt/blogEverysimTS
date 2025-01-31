@@ -1,7 +1,7 @@
 import React from "react";
 import { changeLocale, IntlContextConsumer } from "gatsby-plugin-intl";
 
-
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
 const LanguageSwitcher = () => {
   return (
     <div>
@@ -19,10 +19,7 @@ const LanguageSwitcher = () => {
               onClick={toggleLanguage}
             >
               
-              <div
-                className="absolute inset-0 bg-cover bg-center rounded-full bg-globe-light"
-                
-              ></div>
+              <GlobeAltIcon className="w-10 h-10 text-brandHighlight"/>
               
             </button>
           );
