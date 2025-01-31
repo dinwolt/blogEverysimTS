@@ -46,13 +46,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Your Blog App',
+        name: 'Everysim Tech Blog',
         short_name: 'Blog',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#000',
         display: 'minimal-ui',
-        icon: 'src/images/icon.png',
+        icon: 'src/images/icon.svg',
       },
     },
     
