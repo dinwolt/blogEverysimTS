@@ -87,7 +87,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
       >
         <div className="flex flex-col items-center">
           <div className="font-semibold text-left sm:text-base text-sm text-blue-500 mb-3">{post.tag}</div>
-          <header className="text-left mb-8 ">
+          <header className="text-center mb-8 ">
             <h1
               itemProp="headline"
               className="sm:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
