@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { graphql, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { Link } from "gatsby";
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
+
 import BlogGrid from "@/components/BlogGrid";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import Slider from "@/components/Slider";
-import PostListItem from "@/components/PostListItem";
-import Carousel from "@/components/Carousel";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+
 import { injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps } from "gatsby-plugin-intl"
 import Tabs from "@/components/Tabs";
-import SliderView from "@/components/SliderView";
 type Authors = {
   name: string;
   image: IGatsbyImageData;

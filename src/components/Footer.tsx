@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormattedMessage, Link } from 'gatsby-plugin-intl';
 import { StaticImage } from 'gatsby-plugin-image';
+import { Link as GLink } from 'gatsby';
+
 
 
 const Footer: React.FC = () => {
@@ -11,7 +13,7 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-anton mb-4"><FormattedMessage id="footer_socials_title" /></h3>
           <ul className="space-y-2">
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_socials_linkedin" /></li>
+            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><GLink to="https://kr.linkedin.com/company/everysim" target="_blank"><FormattedMessage id="footer_socials_linkedin" /></GLink></li>
             <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_socials_email" /></li>
 
           </ul>
@@ -19,10 +21,10 @@ const Footer: React.FC = () => {
 
         <div>
           <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-robotoCondensed font-bold mb-4"><FormattedMessage id="footer_nav_title" /></h3>
-          <ul className="space-y-2">
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_home" /></li>
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_blog" /></li>
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_about" /></li>
+          <ul className="space-y-2 flex-col">
+            <li><Link to="/" className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_home" /></Link></li>
+            <li><Link to="/blog/1" className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_blog" /></Link></li>
+            <li><Link to="/authors" className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_about" /></Link></li>
           </ul>
         </div>
 
@@ -47,11 +49,7 @@ const Footer: React.FC = () => {
         </div>
 
       </div>
-      <div className="mt-8 flex sm:justify-start justify-center ">
-            <div className="h-[10%]">
-              
-            </div>
-          </div>
+      
 
     </footer>
   );
