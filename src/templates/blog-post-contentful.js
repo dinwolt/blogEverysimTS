@@ -86,7 +86,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         itemType="http://schema.org/Article"
       >
         <div className="flex flex-col items-center">
-          <h3 className="font-semibold text-left sm:text-base text-xs text-blue-500 mb-3">{post.tag}</h3>
+          <div className="font-semibold text-left sm:text-base text-xs text-blue-500 mb-3">{post.tag}</div>
           <header className="text-left mb-8 ">
             <h1
               itemProp="headline"
@@ -94,12 +94,12 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
             >
               {post.title}
             </h1>
-            <h3
+            <h2
               itemProp="headline"
               className="font-semibold text-gray-500 sm:text-base text-xs dark:text-white mt-3"
             >
               {post.subtitle}
-            </h3>
+            </h2>
           </header>
 
           {post.image && (
@@ -128,21 +128,21 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
       </article>
       <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
         <div className="flex flex-col mt-5 items-center mx-auto p-10 lg:w-[50rem]">
-          <h1 className="font-semibold">
+          <h2 className="font-semibold">
             <FormattedMessage id="post_writtenby"/>
-          </h1>
+          </h2>
           <GatsbyImage image={getImage(post.postAuthor.image)} className="rounded-full" />
-          <h1 className="font-anton text-2xl mt-5">{post.postAuthor.name}</h1>
-          <h1 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h1>
-          <h1 className="m-10 text-center">{post.postAuthor.description}</h1>
+          <h2 className="font-anton text-2xl mt-5">{post.postAuthor.name}</h2>
+          <h2 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h2>
+          <h2 className="m-10 text-center">{post.postAuthor.description}</h2>
           <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
             <FormattedMessage id="post_authorlink"/>          
           </Link>
         </div>
         <div className="flex flex-col gap-4 mt-5">
-          <h1 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}
+          <h2 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}
             <FormattedMessage id="post_author_other"/>
-          </h1>
+          </h2>
           <PostListItem posts={authorPosts} />
         </div>
       </div>
@@ -150,9 +150,9 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
     </div>
     
     <div className="flex flex-col w-auto">
-      <h1 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
+      <h3 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
         <FormattedMessage id="post_recommendation"/>
-      </h1>
+      </h3>
       <Carousel posts={randomPosts} />
     </div>
   </div>

@@ -27,7 +27,7 @@ type NavProps = NavbarProps & WrappedComponentProps;
 function NavItem({ children, href }: NavItemProps) {
 
     return (
-        <li>
+        <p>
             <Link
 
                 to={href || "/"}
@@ -35,7 +35,7 @@ function NavItem({ children, href }: NavItemProps) {
             >
                 {children}
             </Link>
-        </li>
+        </p>
     );
 }
 const Navbar: React.FC<NavProps> = ({ className, intl }) => {
@@ -87,7 +87,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                         <LanguageSwitcher />
                     </div>
                     <div className="hidden 3xl:hidden lg:flex flex-1 items-center justify-start 3xl:justify-center ml-10 3xl:ml-0  gap-8">
-                        <ul className="flex items-center gap-8">
+                        <div className="flex items-center gap-8">
                             {NAV_MENU.map(({ name, icon: Icon, href }) => {
                                 return (
                                     <NavItem key={name} href={href}>
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                                 )
                             })}
                             <LanguageSwitcher />
-                        </ul>
+                        </div>
                     </div>
 
                 </div>
