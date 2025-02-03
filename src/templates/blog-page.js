@@ -59,18 +59,18 @@ const BlogIndex = ({ data, pageContext }) => {
       url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
       author: data.site.siteMetadata?.enUS.author || "Everysim",
       keywords: [
-        "Everysim Tech Blog", 
-        "technology insights", 
-        "software development", 
-        "engineering innovations", 
-        "future of technology", 
-        "tech blog", 
-        "development news", 
-        "tech industry trends", 
-        "engineering expertise", 
-        "Everysim updates", 
-        "technology leaders", 
-        "software development blog", 
+        "Everysim Tech Blog",
+        "technology insights",
+        "software development",
+        "engineering innovations",
+        "future of technology",
+        "tech blog",
+        "development news",
+        "tech industry trends",
+        "engineering expertise",
+        "Everysim updates",
+        "technology leaders",
+        "software development blog",
         "cutting-edge technology"
       ]
     },
@@ -80,18 +80,18 @@ const BlogIndex = ({ data, pageContext }) => {
       url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
       author: data.site.siteMetadata?.koKR.author || "everysim",
       keywords: [
-        "Everysim 기술 블로그", 
-        "기술 통찰력", 
-        "소프트웨어 개발", 
-        "엔지니어링 혁신", 
-        "기술의 미래", 
-        "기술 블로그", 
-        "개발 뉴스", 
-        "기술 산업 트렌드", 
-        "엔지니어링 전문 지식", 
-        "Everysim 업데이트", 
-        "기술 리더", 
-        "소프트웨어 개발 블로그", 
+        "Everysim 기술 블로그",
+        "기술 통찰력",
+        "소프트웨어 개발",
+        "엔지니어링 혁신",
+        "기술의 미래",
+        "기술 블로그",
+        "개발 뉴스",
+        "기술 산업 트렌드",
+        "엔지니어링 전문 지식",
+        "Everysim 업데이트",
+        "기술 리더",
+        "소프트웨어 개발 블로그",
         "최첨단 기술"
       ],
     }
@@ -121,7 +121,7 @@ const BlogIndex = ({ data, pageContext }) => {
                         />
                       </div>
                     )}
-                    <div className="flex-1 pl-4 flex flex-col justify-between">
+                    <div className="flex-1 pl-4 flex flex-col  justify-between">
                       <div>
                         <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
                           {item.tag}
@@ -130,23 +130,27 @@ const BlogIndex = ({ data, pageContext }) => {
                           {item.title}
                         </h1>
                       </div>
-                      <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600">
+                      <h2 className="section-post-subtitle sm:text-base">
                         {item.subtitle}
                       </h2>
-                      <div className="flex justify-between gap-8 items-center mt-4">
-                        <Link
-                          to={`/blog/${item.slug}`}
-                          className="flex items-center text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out"
-                        >
-                          <span className="mr-2">
-                            <FormattedMessage id="index_readmore" />
-                          </span>
+                      <div>
+
+                        <Link to={`/blog/${item.slug}`} className="flex items-center   text-brandHighlight font-semibold hover:underline transition duration-150 ease-in-out  justify-between gap-8 items-center mt-4">
+
+                        <span className="mr-2 ">
+                          <FormattedMessage id="index_readmore" />
+                        </span>
+                        <div className="w-5 h-5">
                           <ArrowRightIcon
-                            className="h-5 w-5 text-brandHighlight"
+                            className="w-5 h-5 text-brandHighlight"
                             aria-hidden="true"
                           />
-                        </Link>
+                        </div>
+
+                      </Link>
                       </div>
+                      
+
                     </div>
                   </div>
                 );

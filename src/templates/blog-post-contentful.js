@@ -139,22 +139,24 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
             <FormattedMessage id="post_authorlink"/>          
           </Link>
         </div>
-        <div className="flex flex-col gap-4 mt-5">
+        {authorPosts.length != 0 && <div className="flex flex-col gap-4 mt-5">
           <h2 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}
             <FormattedMessage id="post_author_other"/>
           </h2>
           <PostListItem posts={authorPosts} />
-        </div>
+        </div>}
+        
       </div>
     </div>
     </div>
     
-    <div className="flex flex-col w-auto">
+    {randomPosts.length !=0 && <div className="flex flex-col w-auto">
       <h3 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
         <FormattedMessage id="post_recommendation"/>
       </h3>
       <Carousel posts={randomPosts} />
-    </div>
+    </div>}
+    
   </div>
 </Layout>
 

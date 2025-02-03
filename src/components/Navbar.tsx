@@ -31,7 +31,7 @@ function NavItem({ children, href }: NavItemProps) {
             <Link
 
                 to={href || "/"}
-                className="flex items-center gap-2 font-medium text-brandHighlight font-robotoCondensed text-2xl font-semibold"
+                className="flex items-center gap-2 font-medium text-brandHighlight font-robotoCondensed text-2xl font-semibold hover:text-brandSecondary"
             >
                 {children}
             </Link>
@@ -73,7 +73,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                     <div className="lg:hidden flex items-center">
                         <button
                             onClick={handleOpen}
-                            className="inline-block p-2"
+                            className="inline-block "
                         >
                             {open ? (
                                 <XMarkIcon strokeWidth={2} className="h-6 w-6 text-brandHighlight" />
@@ -103,16 +103,19 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
 
 
                 <div className="hidden 3xl:flex flex-1 items-center justify-start 3xl:justify-center ml-10 3xl:ml-0  gap-8">
-                        <ul className="flex items-center gap-8">
-                            {NAV_MENU.map(({ name, icon: Icon, href }) => {
+                        <ul className="flex items-center  gap-8">
+                            
+                                {NAV_MENU.map(({ name, icon: Icon, href }) => {
                                 return (
                                     <NavItem key={name} href={href}>
                                         <FormattedMessage id={name} />
                                     </NavItem>
                                 )
                             })}
-                            <LanguageSwitcher />
-                        </ul>
+                            
+                            
+                            
+                        </ul><LanguageSwitcher />
                     </div>
 
 
@@ -136,7 +139,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
 
 
             {open && (
-                <div className="container mx-auto mt-3 px-4 pt-4 border-t border-gray-200">
+                <div className="container mx-auto mt-3 px-5 pt-4 border-t border-gray-200">
                     <ul className="flex flex-col justify-center items-center gap-4">
                         {NAV_MENU.map(({ name, icon: Icon, href }) => (
                             <NavItem key={name} href={href}>
