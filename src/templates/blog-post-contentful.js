@@ -86,17 +86,17 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         itemType="http://schema.org/Article"
       >
         <div className="flex flex-col items-center">
-          <div className="font-semibold text-left sm:text-base text-xs text-blue-500 mb-3">{post.tag}</div>
+          <div className="font-semibold text-left sm:text-base text-sm text-blue-500 mb-3">{post.tag}</div>
           <header className="text-left mb-8 ">
             <h1
               itemProp="headline"
-              className="sm:text-3xl text-xl font-semibold text-gray-900 dark:text-white"
+              className="sm:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
             >
               {post.title}
             </h1>
             <h2
               itemProp="headline"
-              className="font-semibold text-gray-500 sm:text-base text-xs dark:text-white mt-3"
+              className="font-semibold text-gray-500 sm:text-base text-base dark:text-white mt-3"
             >
               {post.subtitle}
             </h2>
