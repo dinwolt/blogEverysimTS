@@ -28,18 +28,18 @@ const Footer: React.FC = () => {
 
 
 
-        <div>
+        <div className='flex-col'>
           <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-anton mb-4"><FormattedMessage id="footer_newsletter_title" /></h3>
           <p className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto mb-4">
             <FormattedMessage id="footer_newsletter_desc" />
           </p>
-          <div className="flex flex-col lg:flex-row items-start md:items-center gap-2">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full sm:w-auto px-4 py-2 border border-brandPrimary rounded-md text-gray-500 text-sm sm:text-base font-normal font-roboto focus:outline-none"
+              className="w-auto md:px-4 md:py-2 px-2 py-1 border border-gray-300 rounded-md text-gray-500 text-xs sm:text-sm font-normal font-roboto focus:outline-none"
             />
-            <button className="w-full sm:w-auto px-6 py-2 bg-brandSecondary text-white text-sm sm:text-base font-robotoCondensed rounded-md">
+            <button className="w-auto md:px-6 md:py-2 px-4 py-1 bg-brandSecondary text-white text-xs sm:text-sm font-robotoCondensed rounded-md">
               <FormattedMessage id="footer_newsletter_submit" />
             </button>
           </div>
