@@ -16,6 +16,7 @@ const LanguageSwitcher = () => {
           return (
             <button
               className="relative flex justify-center items-center w-10 h-10  rounded-full transition duration-300 ease-in-out"
+              name="switch language"
               onClick={toggleLanguage}
             >
               
