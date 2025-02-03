@@ -2,7 +2,10 @@ const express = require('express');
 const { exec } = require('child_process');
 const app = express();
 
-app.use(express.json());
+
+app.use(express.json({ type: 'application/json' })); // Ensure JSON parsing
+app.use(express.json({ type: 'application/vnd.contentful.management.v1+json' })); // Explicitly support Contentful’s type
+
 
 app.post('/api/webhook', (req, res) => {
     console.log('Webhook received:', req.body.fields);
