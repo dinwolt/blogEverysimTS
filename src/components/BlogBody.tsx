@@ -28,7 +28,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
       [BLOCKS.HEADING_2]: (node, children) => {
         if (Array.isArray(children)) {
           return (
-            <h2 className="sm:text-4xl text-3xl font-semibold text-gray-800 mt-6 mb-5">
+            <h2 className="sm:text-4xl text-3xl text-brandSecondary font-semibold  mt-6 mb-5">
               {children.map((child, index) =>
                 typeof child === 'string' ? child : child.props?.children
               )}
@@ -61,7 +61,25 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h4>
       ),
-      [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+      //[BLOCKS.PARAGRAPH]: (node, children) => ,
+      [BLOCKS.PARAGRAPH]: (node,children)=>{
+       
+            if (Array.isArray(children)) {
+              return (
+                <Text>
+                  {children.map((child, index) =>
+                    typeof child === 'string' ? child : child.props?.children
+                  )}
+                </Text>
+              );
+            }
+            
+            return(
+              <Text>{children}</Text>
+            )
+          
+        
+      },
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul className="list-disc  pl-6 my-4 text-lg">{children}</ul>
       ),
@@ -74,7 +92,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote className="border-l-4 pl-4 italic text-gray-600 bg-gray-50 my-6 text-lg">{children}</blockquote>
       ),
-      [BLOCKS.HR]: (node) => <hr className="my-8 border-t-2 border-gray-300" />,
+      [BLOCKS.HR]: (node) => <div className="my-8 h-4 " />,
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
         const entryId = node.data.target.sys.id;
         const reference = references?.find(ref => ref.contentful_id === entryId);

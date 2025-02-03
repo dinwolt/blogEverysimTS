@@ -134,7 +134,17 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
 
-     'gatsby-plugin-postcss'
+     'gatsby-plugin-postcss',
+     
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Archivo Black\:400`, // You can specify weights if needed
+        ],
+        display: 'swap',
+      },
+    },
   
   ],
 }

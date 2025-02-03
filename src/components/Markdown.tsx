@@ -9,7 +9,7 @@ export const Bold = ({ children }: NodeProps) => (
 );
 
 export const Text = ({ children }: NodeProps) => (
-  <p className="sm:text-xl sm:leading-8 leading-7 text-gray-700 mb-4">{children}</p>
+  <p className="sm:text-md sm:leading-8 leading-7 font-roboto text-gray-600 mb-4">{children}</p>
 );
 
 export const Heading1 = ({ children }: NodeProps) => (

@@ -72,9 +72,11 @@ module.exports = {
 			},
 			fontFamily: {
 				roboto: ['Roboto', 'sans-serif'],
-				anton: ['Anton', 'sans-serif'],
+				anton: ["'Archivo Black'", 'sans-serif'],
 				robotoCondensed: ['"Roboto Condensed"', 'sans-serif'], 
 				spoqa: ['Spoqa Han Sans', 'sans-serif'],
+				sans: ['Noto Sans', 'sans-serif'],
+				archivo: ['Archivo Black', 'sans-serif'],
 			},
 			animation: {
 				scroll: 'scroll 20s linear infinite',
