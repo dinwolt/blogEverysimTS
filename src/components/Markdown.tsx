@@ -5,7 +5,7 @@ type NodeProps = {
 };
 
 export const Bold = ({ children }: NodeProps) => (
-  <strong className="font-semibold text-gray-800 text-xl">{children}</strong>
+  <strong className="font-semibold text-gray-800 sm:text-xl">{children}</strong>
 );
 
 export const Text = ({ children }: NodeProps) => (
@@ -13,7 +13,7 @@ export const Text = ({ children }: NodeProps) => (
 );
 
 export const Heading1 = ({ children }: NodeProps) => (
-  <h1 className="text-5xl font-extrabold text-gray-900 mt-8 mb-6">{children}</h1>
+  <h1 className="text-6xl font-extrabold text-gray-900 mt-8 mb-6">{children}</h1>
 );
 
 export const Heading2 = ({ children }: NodeProps) => (

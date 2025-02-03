@@ -3,7 +3,7 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { ContentfulRichTextGatsbyReference, RenderRichTextData } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { Options } from "@contentful/rich-text-react-renderer";
-import { Bold, Heading1, Text } from "./Markdown";
+import { Bold, Heading1,Heading2, Heading3, Text } from "./Markdown";
 import Prism from 'prismjs'
 import 'prismjs/themes/prism-coy.css'; 
 
@@ -25,12 +25,39 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
     },
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => <Heading1>{children}</Heading1>,
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="sm:text-4xl text-2xl font-semibold text-gray-800 mt-6 mb-5">{children}</h2>
-      ),
-      [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h3>
-      ),
+      [BLOCKS.HEADING_2]: (node, children) => {
+        if (Array.isArray(children)) {
+          return (
+            <h2 className="sm:text-4xl text-3xl font-semibold text-gray-800 mt-6 mb-5">
+              {children.map((child, index) =>
+                typeof child === 'string' ? child : child.props?.children
+              )}
+            </h2>
+          );
+        }
+        return (
+          <h2 className="sm:text-4xl text-3xl font-semibold text-gray-800 mt-6 mb-5">
+            {children}
+          </h2>
+        );
+      },
+      
+      [BLOCKS.HEADING_3]: (node, children) => {
+        console.log(children)
+        if (Array.isArray(children)) {
+          return (
+            <h3 className="sm:text-2xl text-xl font-semibold text-black  mt-7 mb-3">
+              {children.map((child, index) =>
+                typeof child === 'string' ? child : child.props?.children
+              )}
+            </h3>
+          );
+        }
+        return (
+          <h3 className="sm:text-xl text-xl font-medium text-red-500 mt-5 mb-4">{children}</h3>
+        );
+        
+      },
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h4>
       ),
