@@ -82,7 +82,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             )}
                         </button>
                     </div>
-                    <Link to="/" className=" "><StaticImage src="../../static/images/icon.svg" className="w-10 "alt="logo" /></Link>
+                    <Link to="/" className=" "><StaticImage src="../../static/images/nav.png" className="w-10 "alt="logo" /></Link>
                     <div className='lg:hidden'>
                         <LanguageSwitcher />
                     </div>
