@@ -5,8 +5,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white text-brandHighlight font-robotoCondensed px-10 text-2xl py-6 container mx-auto items-end">
-      <div className="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+    <footer className="bg-footer-bg text-brandHighlight font-robotoCondensed px-10 text-2xl py-6 container mx-auto items-end">
+      <div className="mx-auto p-2 grid grid-cols-1 sm:grid-cols-3 gap-8">
 
         <div>
           <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-anton mb-4"><FormattedMessage id="footer_socials_title" /></h3>

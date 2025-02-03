@@ -104,7 +104,7 @@ const BlogIndex = ({ data, pageContext }) => {
 
 
 
-        <div className="container mx-auto p-6 min-h-screen  ">
+        <div className="container mx-auto sm:p-6 min-h-screen  ">
 
           <div className="flex max-w-lg">
             <SliderView data={randomPosts} wrapContent={true}>
