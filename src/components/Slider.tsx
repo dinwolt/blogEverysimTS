@@ -131,13 +131,13 @@ const Slider: React.FC<SliderProps> = ({ posts }) => {
 
       <button
         onClick={prevSlide}
-        className="hidden sm:block  absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
+        className="hidden sm:block  absolute top-1/2 left-2 transform -translate-y-1/2 bg-brandSecondary/30 hover:bg-brandSecondary/50 text-white p-2 rounded-full shadow-lg  z-20"
       >
         {"<"}
       </button>
       <button
         onClick={nextSlide}
-        className="hidden sm:block absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 z-20"
+        className="hidden sm:block absolute top-1/2 right-2 transform -translate-y-1/2 bg-brandSecondary/30 hover:bg-brandSecondary/50 text-white p-2 rounded-full shadow-lg  z-20"
       >
         {">"}
       </button>
