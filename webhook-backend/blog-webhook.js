@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/webhook', (req, res) => {
-    console.log('Webhook received:', req.body);
+    console.log('Webhook received:', req.body.fields);
 
     exec('npm run build', { cwd: '..' }, (err, stdout, stderr) => {
         if (err) {
