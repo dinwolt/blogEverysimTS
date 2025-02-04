@@ -2,8 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
-
+@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -69,13 +68,13 @@
   }
   
   .section-title{
-    @apply font-anton text-white text-4xl xl:text-5xl 2xl:text-7xl; 
+    @apply font-spoqa font-extrabold text-white text-4xl xl:text-5xl 2xl:text-7xl; 
   } 
   .section-subtitle{
     @apply font-roboto text-lg  md:text-2xl sm:text-2xl text-white; 
   } 
   .section-post-title{
-    @apply font-robotoCondensed  sm:text-2xl text-xl;
+    @apply font-spoqa  sm:text-2xl text-xl;
   }
   .section-post-subtitle{
     @apply font-roboto text-gray-600 text-base;

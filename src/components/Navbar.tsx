@@ -31,7 +31,7 @@ function NavItem({ children, href }: NavItemProps) {
             <Link
 
                 to={href || "/"}
-                className="flex items-center gap-2 font-medium text-brandHighlight font-robotoCondensed text-2xl font-semibold hover:text-brandSecondary"
+                className="flex items-center gap-2 font-medium text-brandHighlight font-sans sm:text-2xl font-semibold hover:text-brandSecondary"
             >
                 {children}
             </Link>
@@ -126,7 +126,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                     <GatsbyLink
                         to="https://everysim.io/"
                         target="_blank"
-                        className="font-medium font-robotoCondensed text-xl  text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
+                        className="font-medium font-sans text-xl  text-white bg-brandSecondary hover:bg-gray-700 px-4 py-2 rounded-md"
                     >
                         <FormattedMessage id="nav_button" />
                     </GatsbyLink>

@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="mx-auto p-2 grid grid-cols-1 sm:grid-cols-3 gap-8">
 
         <div>
-          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-anton mb-4"><FormattedMessage id="footer_socials_title" /></h3>
+          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-spoqa font-bold mb-4"><FormattedMessage id="footer_socials_title" /></h3>
           <ul className="space-y-2">
             <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_socials_linkedin" /></li>
             <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_socials_email" /></li>
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div>
-          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-robotoCondensed font-bold mb-4"><FormattedMessage id="footer_nav_title" /></h3>
+          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-spoqa font-bold font-bold mb-4"><FormattedMessage id="footer_nav_title" /></h3>
           <ul className="space-y-2">
             <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_home" /></li>
             <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-robotoCondensed"><FormattedMessage id="footer_blog" /></li>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
 
 
         <div className='flex-col'>
-          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-anton mb-4"><FormattedMessage id="footer_newsletter_title" /></h3>
+          <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-spoqa font-bold mb-4"><FormattedMessage id="footer_newsletter_title" /></h3>
           <p className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto mb-4">
             <FormattedMessage id="footer_newsletter_desc" />
           </p>

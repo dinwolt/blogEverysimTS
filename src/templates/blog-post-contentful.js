@@ -132,7 +132,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
             <FormattedMessage id="post_writtenby"/>
           </h2>
           <GatsbyImage image={getImage(post.postAuthor.image)} className="rounded-full" />
-          <h2 className="font-anton text-2xl mt-5">{post.postAuthor.name}</h2>
+          <h2 className="font-spoqa font-bold text-2xl mt-5">{post.postAuthor.name}</h2>
           <h2 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h2>
           <h2 className="m-10 text-center">{post.postAuthor.description}</h2>
           <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
@@ -140,7 +140,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
           </Link>
         </div>
         {authorPosts.length != 0 && <div className="flex flex-col gap-4 mt-5">
-          <h2 className="font-anton text-left text-black text-4xl mt-5">{post.postAuthor.name}
+          <h2 className="font-spoqa font-bold text-left text-black text-4xl mt-5">{post.postAuthor.name}
             <FormattedMessage id="post_author_other"/>
           </h2>
           <PostListItem posts={authorPosts} />

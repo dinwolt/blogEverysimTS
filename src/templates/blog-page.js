@@ -126,7 +126,7 @@ const BlogIndex = ({ data, pageContext }) => {
                         <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
                           {item.tag}
                         </h1>
-                        <h1 className="section-title text-black md:text-2xl text-xl">
+                        <h1 className="section-title font-spoqa text-black md:text-2xl text-xl">
                           {item.title}
                         </h1>
                       </div>
