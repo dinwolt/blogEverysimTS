@@ -79,7 +79,7 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                             return (
                                 <div
                                     key={index}
-                                    className="bg-white rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-transform duration-300"
+                                    className="bg-white dark:bg-transparent rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-transform duration-300"
                                 >
                                     {image && (
                                         <GatsbyImage
@@ -89,9 +89,9 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                                         />
                                     )}
                                     <div className="p-6">
-                                        <p className="text-xl font-spoqa font-black text-gray-800 text-center">{item.name}</p>
+                                        <p className="text-xl font-spoqa font-black text-gray-800 text-center dark:text-gray-300">{item.name}</p>
                                         <p className="text-sm font-semibold font-roboto text-brandHighlight  mt-1 text-center">{item.role}</p>
-                                        <p className="mt-4 text-gray-700 text-sm text-center font-roboto">{item.description}</p>
+                                        <p className="mt-4 text-gray-700 text-sm text-center font-roboto dark:text-gray-400">{item.description}</p>
                                     </div>
                                 </div>
                             );
@@ -101,11 +101,11 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
 
                 </section>
 
-                <section className="bg-gray-100 py-16 px-4 text-center">
-                    <p className="text-3xl  font-spoqa font-black text-gray-800">
+                <section className="bg-gray-100 dark:bg-black/20 py-16 px-4 text-center">
+                    <p className="text-3xl dark:text-gray-400 font-spoqa font-black text-gray-800">
                         <FormattedMessage id="about_collab_title" />
                     </p>
-                    <p className="mt-4 text-gray-600">
+                    <p className="mt-4 text-gray-600 dark:text-gray-500">
                         <FormattedMessage id="about_collab_subtitle" />
                     </p>
                     <a

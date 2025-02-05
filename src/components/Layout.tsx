@@ -67,11 +67,11 @@ const Layout: React.FC<LayoutProps> = ({ title, children, intl, seoprops }) => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <div className="global-wrapper" data-is-root-path={isRootPath}>
+      <div className="global-wrapper dark:bg-brandPrimary" data-is-root-path={isRootPath}>
         <Navbar
-          className={`sticky bg-white top-0 transition-all duration-300 z-50`}
+          className={`sticky bg-white dark:bg-brandPrimary top-0 transition-all duration-300 z-50`}
         />
-        <main >{children}</main>
+        <main className="dark:bg-brandPrimary bg-white" >{children}</main>
         <Footer />
       </div>
     </>

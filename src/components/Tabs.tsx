@@ -15,8 +15,8 @@ const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, setActiveTab }) => {
               <button
                 key={tab}
                 className={`m-2 px-4 py-2 text-sm font-medium text-center rounded-2xl transition-colors overflow-hidden  ${activeTab === tab
-                    ? "bg-brandSecondary text-white "
-                    : "bg-brandLight text-black border-gray-300 hover:bg-brandSecondary hover:text-white"
+                    ? "bg-brandSecondary dark:bg-brandHighlight text-white "
+                    : "bg-brandLight text-black border-gray-300 hover:bg-brandSecondary dark:hover:bg-brandHighlight hover:text-white"
                   }`}
                 onClick={() => setActiveTab(tab)}
               >

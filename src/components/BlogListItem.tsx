@@ -40,7 +40,7 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                 const postImg = post.image ? getImage(post.image) : null;
                 return (
 
-                    <div className="flex bg-skyblue rounded-md flex-col sm:flex-row sm:gap-8 gap-4 items-center sm:p-6 p-2 hover:scale-105 transition-transform duration-200" key={index}>
+                    <div className="flex bg-skyblue dark:bg-[#1b272d] rounded-md flex-col sm:flex-row sm:gap-8 gap-4 items-center sm:p-6 p-2 hover:scale-105 transition-transform duration-200" key={index}>
                         <div className=''>
                             {postImg && <GatsbyImage image={postImg} alt="post" className='w-full  h-18 sm:w-56 sm:h-36 rounded-xl' />}
                         </div>
@@ -51,10 +51,10 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                                 <h3 className='text-gray-400 section-post-subtitle text-xs sm:text-base'>{formatDate(post.updatedAt, useIntl().locale)}</h3>
 
                                 </div>
-                                <h2 className="section-post-title font-bold text-brandPrimary mb-2 ">{post.title}</h2>
+                                <h2 className="section-post-title font-bold text-brandPrimary mb-2 dark:text-gray-300">{post.title}</h2>
                                 
 
-                                <p className="section-post-subtitle sm:text-base text-sm text-gray-500 ">{post.subtitle}</p>
+                                <p className="section-post-subtitle sm:text-base text-sm text-gray-500 dark:text-gray-400">{post.subtitle}</p>
                             </div>
                             <div className="flex justify-between mt-5 items-center">
                                
@@ -66,7 +66,7 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                                                 className="w-10 h-10  rounded-full"
                                             />
                                             <div className="ml-4">
-                                                <p className=" section-post-subtitle font-bold text-black">{post.postAuthor.name}</p>
+                                                <p className=" section-post-subtitle font-bold text-black dark:text-white">{post.postAuthor.name}</p>
                                                 {post.postAuthor.role && (
                                                     <p className="section-post-subtitle font-roboto text-xs sm:text-sm text-gray-600">{post.postAuthor.role}</p>
                                                 )}

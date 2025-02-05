@@ -126,11 +126,11 @@ const BlogIndex = ({ data, pageContext }) => {
                         <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
                           {item.tag}
                         </h1>
-                        <h1 className="section-title font-spoqa text-black md:text-2xl text-xl">
+                        <h1 className="dark:text-gray-300 section-title font-spoqa text-black md:text-2xl text-xl">
                           {item.title}
                         </h1>
                       </div>
-                      <h2 className="section-post-subtitle sm:text-base">
+                      <h2 className="dark:text-gray-400 section-post-subtitle sm:text-base">
                         {item.subtitle}
                       </h2>
                       <div>
@@ -173,23 +173,7 @@ const BlogIndex = ({ data, pageContext }) => {
               />
             </div>
             <div className="flex flex-col my-8 flex-grow w-full">
-              {/*}
-              <h1 className="section-title text-center text-black mb-2">
-                <FormattedMessage id="blog_section_title" />
-              </h1>
-              <h3 className="section-subtitle text-center text-black mb-5">
-                <FormattedMessage id="blog_section_subtitle" />
-              </h3>*/}
-
-              {/*<BlogGrid
-                posts={posts}
-                visibleCount={posts.length}
-                isExpanded={true}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                toggleView={() => { }}
-                filteredPosts={filteredAndSortedPosts}
-              />*/}
+             
               <BlogListItem posts={filteredAndSortedPosts} />
 
               <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-2 overflow-x-auto">
@@ -204,7 +188,7 @@ const BlogIndex = ({ data, pageContext }) => {
 
 
                 {totalPages > 5 && currentPage > 3 && (
-                  <span className="inline-flex items-center px-4 py-2 rounded text-center text-brandPrimary">...</span>
+                  <span className="inline-flex items-center px-4 py-2 rounded text-center dark:text-white text-brandPrimary">...</span>
                 )}
 
                 {Array.from({ length: totalPages }).map((_, index) => {
@@ -217,7 +201,7 @@ const BlogIndex = ({ data, pageContext }) => {
                     <Link
                       key={pageNumber}
                       to={`/blog/${pageNumber}`}
-                      className={`inline-flex items-center px-4 py-2 rounded text-center hover:bg-brandSecondary hover:text-white transition-colors duration-200 ${currentPage === pageNumber ? "bg-brandLight" : "bg-transparent"}`}
+                      className={`inline-flex items-center px-4 py-2 rounded text-center hover:bg-brandSecondary hover:text-white  dark:hover:bg-brandLight dark:hover:text-brandHighlight transition-colors duration-200 ${currentPage === pageNumber ? "bg-brandLight dark:bg-brandHighlight" : "bg-transparent "}`}
                     >
                       {pageNumber}
                     </Link>
@@ -225,7 +209,7 @@ const BlogIndex = ({ data, pageContext }) => {
                 })}
 
                 {totalPages > 5 && currentPage < totalPages - 2 && (
-                  <span className="inline-flex items-center px-4 py-2 rounded text-center text-brandPrimary">...</span>
+                  <span className="inline-flex items-center px-4 py-2 rounded text-center text-brandPrimary dark:text-white">...</span>
                 )}
 
 

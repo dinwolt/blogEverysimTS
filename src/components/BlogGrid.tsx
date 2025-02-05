@@ -79,7 +79,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({
                                         <CardDescription>
                                             <div className='flex-col font-roboto'>
                                                 <p className='text-sm sm:text-base'>{post.subtitle}</p>
-                                                <div className='mt-2 text-gray-400  text-xs text-right'>{formatDate(post.updatedAt, useIntl().locale)}</div>
+                                                <div className='mt-2 text-gray-400 dark:text-gray-500 text-xs text-right'>{formatDate(post.updatedAt, useIntl().locale)}</div>
 
                                             </div>
                                             </CardDescription>

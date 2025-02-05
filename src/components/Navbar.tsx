@@ -7,12 +7,13 @@ import {
     CommandLineIcon,
     XMarkIcon,
     Bars3Icon,
-   
+
 
 } from "@heroicons/react/24/solid";
 import LanguageSwitcher from './LanguageSwitcher';
 import { FormattedMessage, injectIntl, IntlShape, WrappedComponentProps } from 'gatsby-plugin-intl';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { useDarkMode } from '../hooks/useDarkMode';
 interface NavbarProps {
     className: string;
     intl: IntlShape;
@@ -31,14 +32,17 @@ function NavItem({ children, href }: NavItemProps) {
             <Link
 
                 to={href || "/"}
-                className="flex items-center gap-2 font-medium text-brandHighlight font-sans sm:text-2xl font-semibold hover:text-brandSecondary"
+                className="flex items-center gap-2 font-medium text-brandHighlight dark:text-white font-sans sm:text-2xl font-semibold hover:text-brandSecondary"
             >
                 {children}
             </Link>
         </p>
     );
 }
+
+
 const Navbar: React.FC<NavProps> = ({ className, intl }) => {
+    const { theme, toggleTheme } = useDarkMode();
     const NAV_MENU = [
         {
             name: "nav_home",
@@ -82,7 +86,23 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             )}
                         </button>
                     </div>
-                    <Link to="/" className=" "><StaticImage src="../../static/images/nav.png" className="w-11 "alt="logo" /></Link>
+                    <Link to="/" className=" ">
+
+                        {theme === "dark" ? (
+                            <StaticImage
+                                src="../../static/images/navDark.png"
+                                className="w-11"
+                                alt="Dark Mode Logo"
+                            />
+                        ) : (
+                            <StaticImage
+                                src="../../static/images/nav.png"
+                                className="w-11"
+                                alt="Light Mode Logo"
+                            />
+                        )}
+                    </Link>
+
                     <div className='lg:hidden'>
                         <LanguageSwitcher />
                     </div>
@@ -103,26 +123,31 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
 
 
                 <div className="hidden 3xl:flex flex-1 items-center justify-start 3xl:justify-center ml-10 3xl:ml-0  gap-8">
-                        <ul className="flex items-center  gap-8">
-                            
-                                {NAV_MENU.map(({ name, icon: Icon, href }) => {
-                                return (
-                                    <NavItem key={name} href={href}>
-                                        <FormattedMessage id={name} />
-                                    </NavItem>
-                                )
-                            })}
-                            
-                            
-                            
-                        </ul><LanguageSwitcher />
-                    </div>
+                    <ul className="flex items-center  gap-8">
+
+                        {NAV_MENU.map(({ name, icon: Icon, href }) => {
+                            return (
+                                <NavItem key={name} href={href}>
+                                    <FormattedMessage id={name} />
+                                </NavItem>
+                            )
+                        })}
+
+
+
+                    </ul><LanguageSwitcher />
+                </div>
 
 
 
                 <div className="hidden lg:flex flex-1 items-center justify-end gap-4 mx-auto">
 
-
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 rounded-md border dark:bg-gray-800 dark:text-white"
+                    >
+                        {theme === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+                    </button>
                     <GatsbyLink
                         to="https://everysim.io/"
                         target="_blank"
@@ -130,7 +155,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                     >
                         <FormattedMessage id="nav_button" />
                     </GatsbyLink>
-                    
+
 
                 </div>
             </div>
@@ -147,6 +172,12 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             </NavItem>
                         ))}
                         <div className='flex gap-5 mb-5'>
+                            <button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-md border dark:bg-gray-800 dark:text-white"
+                            >
+                                {theme === "dark" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+                            </button>
                             <GatsbyLink
                                 to="https://everysim.io/"
                                 target="_blank"
@@ -154,7 +185,7 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             >
                                 <FormattedMessage id="nav_button" />
                             </GatsbyLink>
-                            
+
 
                         </div>
                     </ul>

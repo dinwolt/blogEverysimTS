@@ -35,8 +35,8 @@ const BlogMenu: React.FC<MenuProps> = ({
                                 key={tab}
                                 className={`m-2 px-4 py-2 text-sm font-medium text-center rounded-2xl transition-colors whitespace-nowrap ${
                                     activeTag === tab
-                                        ? "bg-brandSecondary text-white"
-                                        : "bg-brandLight text-black border-gray-300 hover:bg-brandSecondary hover:text-white"
+                                        ? "bg-brandSecondary dark:bg-brandHighlight text-white"
+                                        : "bg-brandLight text-black border-gray-300 hover:bg-brandSecondary dark:hover:bg-brandHighlight hover:text-white"
                                 }`}
                                 onClick={() => setActiveTag(tab === activeTag ? "" : tab)}
                             >
@@ -58,7 +58,7 @@ const BlogMenu: React.FC<MenuProps> = ({
                     {/* Dropdown */}
                     {sortOpen && (
                         <div
-                            className="absolute top-full right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-200 z-50"
+                            className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-brandPrimary dark:border-gray-500 shadow-lg rounded-lg border border-gray-200 z-50"
                         >
                             <div className="flex flex-col gap-4 p-4">
                                 {sorts.map((sort, index) => (

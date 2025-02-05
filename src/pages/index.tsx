@@ -120,23 +120,23 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
   return (
     <Layout title={siteTitle}  seoprops={seoprops}>
       
-      <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden">
+      <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden ">
         {/*Banner + slider*/}
 
-        <div className="container 3xl:mx-aut bg-gradient-to-b from-[#065774] via-[#d6f8ff] to-white rounded-2xl mx-5 ">
+        <div className="container 3xl:mx-aut bg-gradient-to-b from-[#065774] via-[#d6f8ff] to-white rounded-2xl mx-5 dark:bg-gradient-to-b dark:from-[#232e35] dark:via-[#065774] dark:to-brandPrimary ">
           {/*phone*/}
-          <div className="flex-col md:hidden items-center justify-center">
+          <div className="flex-col md:hidden  items-center justify-center">
 
             <Slider posts={posts} />
-            <div className="flex-1 px-8 pb-10 ">
-              <h1 className="section-title text-center text-brandSecondary">
+            <div className="flex-1 px-8 pb-10  ">
+              <h1 className="section-title text-center text-brandSecondary dark:text-brandLight">
                 <FormattedMessage id="index_banner_title" />
               </h1>
-              <p className="section-subtitle text-center font-roboto text-brandSecondary mt-5 mb-5">
+              <p className="section-subtitle text-center font-roboto text-brandSecondary dark:text-brandLight mt-5 mb-5">
                 <FormattedMessage id="index_banner_subtitle" />
               </p>
               <ILink to="/blog/1" className="w-auto">
-                <p className="bg-brandSecondary w-auto hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-roboto rounded-3xl">
+                <p className="bg-brandSecondary w-auto hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-roboto rounded-3xl dark:bg-brandHighlight dark:text-brandLight dark:hover:bg-brandLight dark:hover:text-brandHighlight">
                   <FormattedMessage id="index_gotoblog" />
                 </p>
               </ILink>
@@ -147,13 +147,13 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
           <div className=" hidden md:flex items-center">
 
             <div className="flex-1 p-5 ">
-              <h1 className="section-title text-left text-brandSecondary ">
+              <h1 className="section-title text-left text-brandSecondary dark:text-brandLight">
                 <FormattedMessage id="index_banner_title" />
               </h1>
-              <p className="section-subtitle text-left text-brandSecondary mt-5 mb-5">
+              <p className="section-subtitle text-left text-brandSecondary mt-5 mb-5 dark:text-brandLight">
                 <FormattedMessage id="index_banner_subtitle" />
               </p>
-              <ILink to="/blog/1" className="bg-brandSecondary hover:bg-brandLight hover:text-black transition-transform duration-200 p-3 text-2xl text-white font-robotoCondensed rounded-3xl"><FormattedMessage id="index_gotoblog" /></ILink>
+              <ILink to="/blog/1" className="bg-brandSecondary hover:bg-brandLight hover:text-black transition-transform duration-200 p-3 text-2xl text-white font-robotoCondensed rounded-3xl dark:bg-brandHighlight dark:text-brandLight dark:hover:bg-brandLight dark:hover:text-brandHighlight"><FormattedMessage id="index_gotoblog" /></ILink>
             </div>
             {/* Slider */}
             <div className="flex-1 flex">

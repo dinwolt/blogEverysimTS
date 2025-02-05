@@ -9,7 +9,7 @@ export const Bold = ({ children }: NodeProps) => (
 );
 
 export const Text = ({ children }: NodeProps) => (
-  <p className="sm:text-md sm:leading-7 leading-6 font-sans text-gray-600 mb-4">{children}</p>
+  <p className="sm:text-md sm:leading-7 leading-6 font-sans text-gray-600 mb-4 dark:text-[#bdc4c9]">{children}</p>
 );
 
 export const Heading1 = ({ children }: NodeProps) => (
@@ -17,11 +17,11 @@ export const Heading1 = ({ children }: NodeProps) => (
 );
 
 export const Heading2 = ({ children }: NodeProps) => (
-  <h2 className="text-4xl font-semibold text-gray-800 mt-6 mb-5">{children}</h2>
+  <h2 className="text-4xl font-semibold text-gray-800 mt-6 mb-5 dark:text-white">{children}</h2>
 );
 
 export const Heading3 = ({ children }: NodeProps) => (
-  <h3 className="text-3xl font-medium text-gray-700 mt-5 mb-4">{children}</h3>
+  <h3 className="text-3xl font-medium text-gray-700 mt-5 mb-4 dark:text-white">{children}</h3>
 );
 
 export const Blockquote = ({ children }: NodeProps) => (

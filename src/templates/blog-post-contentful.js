@@ -91,7 +91,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
               itemType="http://schema.org/Article"
             >
               <div className="flex flex-col items-center font-roboto">
-                <div className="font-semibold text-left sm:text-base text-sm text-blue-500 ">{post.tag}</div>
+                <div className="font-semibold text-left sm:text-base text-sm text-blue-500 dark:text-brandHighlight">{post.tag}</div>
                 <header className="text-center mb-8 ">
                   <h1
                     itemProp="headline"
@@ -101,7 +101,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
                   </h1>
                   <h2
                     itemProp="headline"
-                    className="font-semibold text-gray-500 sm:text-base text-base dark:text-white mt-2 mb-2"
+                    className="font-semibold text-gray-500 sm:text-base text-base  mt-2 mb-2 dark:text-gray-300"
                   >
                     {post.subtitle}
                   </h2>
@@ -128,7 +128,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
                 <div className="mb-7 mt-7 flex justify-center">
                   <Link
                     to={`/blog/1`}
-                    className="bg-brand-secondary/20 text-blue-600 dark:text-blue-500 rounded-full px-5 py-2 text-sm"
+                    className="bg-brand-secondary/20 text-blue-600 dark:text-brandHighlight rounded-full px-5 py-2 text-sm"
                   >
                     <FormattedMessage id="post_bloglink" />
                   </Link>
@@ -147,7 +147,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
                 </div>
 
                 <h2 className="m-10 text-center font-roboto">{post.postAuthor.description}</h2>
-                <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
+                <Link to={`/authors`} className="font-semibold text-center hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
                   <FormattedMessage id="post_authorlink" />
                 </Link>
               </div>

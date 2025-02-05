@@ -16,7 +16,8 @@ module.exports = {
 				"authors": "url('/images/authors.png')",
 				"globe": "url('/images/globe.svg')",
 				"globe-light": "url('/images/globe-light.svg')",
-				"banner-light": "url('/images/EverySim_Landscape_1.svg')"
+				"banner-light": "url('/images/EverySim_Landscape_1.svg')",
+				"nav-light": "url('/images/nav.png')",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -28,6 +29,7 @@ module.exports = {
 				brandSecondary: "#065774",
 				brandHighlight: "#008BAA",
 				brandLight: "#D6F8FF",
+				brandDark:"#1b262c",
 				"footer-bg":"#eaf1f7",
 				"skyblue":"#f4f9fc",
 				background: 'hsl(var(--background))',
@@ -90,5 +92,6 @@ module.exports = {
 			  },
 		}
 	},
+	darkMode: 'class',
 	plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
 }
