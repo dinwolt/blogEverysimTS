@@ -17,6 +17,8 @@ module.exports = {
   
   siteMetadata: {
     siteUrl: `https://blog.everysim.io/`,
+    description:"EverySim Tech Blog - Insights, News, and Innovation in Technology and Development",
+    title:"EverySim Tech Blog",
     enUS: {
       title: `EverySim Tech Blog - Insights, News, and Innovation in Technology and Development`,
       description: `Explore the latest insights, stories, and updates from EverySim. Our blog covers cutting-edge technology, software development, industry trends, and more.`,

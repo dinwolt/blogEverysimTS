@@ -90,8 +90,8 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                                         />
                                     )}
                                     <div className="p-6">
-                                        <h2 className="text-xl font-spoqa font-black text-gray-800 text-center">{item.name}</h2>
-                                        <h3 className="text-sm font-semibold font-roboto text-brandHighlight  mt-1 text-center">{item.role}</h3>
+                                        <p className="text-xl font-spoqa font-black text-gray-800 text-center">{item.name}</p>
+                                        <p className="text-sm font-semibold font-roboto text-brandHighlight  mt-1 text-center">{item.role}</p>
                                         <p className="mt-4 text-gray-700 text-sm text-center font-roboto">{item.description}</p>
                                     </div>
                                 </div>
@@ -103,9 +103,9 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                 </section>
 
                 <section className="bg-gray-100 py-16 px-4 text-center">
-                    <h2 className="text-3xl  font-spoqa font-black text-gray-800">
+                    <p className="text-3xl  font-spoqa font-black text-gray-800">
                         <FormattedMessage id="about_collab_title" />
-                    </h2>
+                    </p>
                     <p className="mt-4 text-gray-600">
                         <FormattedMessage id="about_collab_subtitle" />
                     </p>
