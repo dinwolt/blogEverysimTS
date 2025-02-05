@@ -84,7 +84,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
         <ul className="list-disc  pl-6 my-4 ">{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="list-decimal  pl-6 my-4 text-lg">{children}</ol>
+        <ol className="list-decimal  pl-6 my-4 ">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
         <li className="text-gray-700 mb-2 ">{children}</li>
