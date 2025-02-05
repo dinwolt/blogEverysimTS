@@ -192,7 +192,7 @@ const BlogIndex = ({ data, pageContext }) => {
               />*/}
               <BlogListItem posts={filteredAndSortedPosts} />
 
-              <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-2 overflow-x-auto">
+              <div className="max-w-screen flex justify-center mx-auto items-center mt-8 mb-10 gap-x-2 overflow-x-auto">
                 {currentPage > 1 && (
                   <Link
                     to={`/blog/${currentPage - 1}`}
