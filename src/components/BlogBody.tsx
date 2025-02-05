@@ -63,7 +63,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
           console.log(children)
           if (Array.isArray(children)) {
             return (
-              <h4 className="sm:text-xl text-lg font-medium  text-bold font-spoqa mt-5 mb-4">
+              <h4 className="sm:text-xl text-lg font-medium dark:text-gray-200 text-bold font-spoqa mt-5 mb-4">
                 {children.map((child, index) =>
                   typeof child === 'string' ? child : child.props?.children
                 )}
@@ -110,7 +110,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
         <ol className="list-decimal pl-6 my-4  ">{children}</ol>
       )},
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className="text-gray-700 mb-2  ">{children}</li>
+        <li className="text-gray-700 dark:text-gray-200  mb-2   ">{children}</li>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote className="border-l-4 pl-4 italic text-gray-600 bg-gray-50 my-6 text-lg">{children}</blockquote>
