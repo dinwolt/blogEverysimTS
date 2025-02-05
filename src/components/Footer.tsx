@@ -20,9 +20,9 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-brandSecondary 2xl:text-3xl text-lg font-spoqa font-bold font-bold mb-4"><FormattedMessage id="footer_nav_title" /></h3>
           <ul className="space-y-2">
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><FormattedMessage id="footer_home" /></li>
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><FormattedMessage id="footer_blog" /></li>
-            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><FormattedMessage id="footer_about" /></li>
+            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><Link to="/"><FormattedMessage id="footer_home" /></Link></li>
+            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><Link to="/blog/1"><FormattedMessage id="footer_blog" /></Link></li>
+            <li className="text-brandSecondary 2xl:text-2xl text-sm font-medium font-roboto"><Link to="/authors"><FormattedMessage id="footer_about" /></Link></li>
           </ul>
         </div>
 

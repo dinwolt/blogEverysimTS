@@ -102,7 +102,7 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
 
                 </section>
 
-                <section className="bg-gray-100 py-16 text-center">
+                <section className="bg-gray-100 py-16 px-4 text-center">
                     <h2 className="text-3xl  font-spoqa font-black text-gray-800">
                         <FormattedMessage id="about_collab_title" />
                     </h2>
