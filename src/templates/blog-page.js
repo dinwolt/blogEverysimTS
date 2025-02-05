@@ -161,7 +161,7 @@ const BlogIndex = ({ data, pageContext }) => {
 
 
 
-          <div className="flex-col gap-10 items-center justify-center w-full">
+          <div className="flex-col gap-10 items-center justify-center w-full px-4">
             <div className="flex-shrink-0">
               <BlogMenu
                 tags={uniqueTags}

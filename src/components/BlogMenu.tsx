@@ -26,7 +26,7 @@ const BlogMenu: React.FC<MenuProps> = ({
     const [sortOpen, setSortOpen] = useState(false);
 
     return (
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto  max-w-6xl">
             <div className="flex flex-row items-center justify-center">
                 <div className="w-full md:w-auto overflow-x-auto scrollbar-none hover:scrollbar-thin hover:scrollbar-thumb-gray-400 hover:scrollbar-track-gray-200 ">
                     <div className="inline-flex justify-center">

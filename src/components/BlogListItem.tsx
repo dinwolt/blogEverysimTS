@@ -34,7 +34,7 @@ const formatDate = (dateString: string, locale: string = "en-US") => {
 
 const BlogListItem: React.FC<Props> = ({ posts }) => {
     return (
-        <div className='flex-col gap-4 '>
+        <div className='flex-col gap-4  '>
             {posts.map((post, index) => {
                 const authorImg = post.postAuthor?.image ? getImage(post.postAuthor.image) : null;
                 const postImg = post.image ? getImage(post.image) : null;
@@ -46,14 +46,15 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                         </div>
                         <div className="flex-col w-full p-1">
                             <div className="flex-col">
-                                <h2 className="section-post-title font-bold text-brandPrimary ">{post.title}</h2>
-                                <div className='flex justify-between sm:text-base text-sm items-center '>
-                                <h3 className="section-post-subtitle text-brandHighlight ">{post.tag}</h3>
-                                <h3 className='text-gray-400 section-post-subtitle'>{formatDate(post.updatedAt, useIntl().locale)}</h3>
+                            <div className='flex justify-between sm:text-base items-center '>
+                                <h3 className="section-post-subtitle text-brandHighlight text-xs sm:text-base">{post.tag}</h3>
+                                <h3 className='text-gray-400 section-post-subtitle text-xs sm:text-base'>{formatDate(post.updatedAt, useIntl().locale)}</h3>
 
                                 </div>
+                                <h2 className="section-post-title font-bold text-brandPrimary mb-2 ">{post.title}</h2>
+                                
 
-                                <p className="section-post-subtitle sm:text-base ">{post.subtitle}</p>
+                                <p className="section-post-subtitle sm:text-base text-sm text-gray-500 ">{post.subtitle}</p>
                             </div>
                             <div className="flex justify-between mt-5 items-center">
                                

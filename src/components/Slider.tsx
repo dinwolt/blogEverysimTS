@@ -120,8 +120,8 @@ const Slider: React.FC<SliderProps> = ({ posts }) => {
                 </CardContent>
                 <CardHeader className="flex-grow overflow-y-auto">
                   <CardTag>{item.tag}</CardTag>
-                  <CardTitle>{item.title}</CardTitle>
-                  <CardDescription>{item.subtitle}</CardDescription>
+                  <CardTitle className="font-spoqa ">{item.title}</CardTitle>
+                  <CardDescription className="text-xs md:text-sm lg:text-md font-roboto">{item.subtitle}</CardDescription>
                 </CardHeader>
               </Link>
             </Card>
