@@ -36,7 +36,7 @@ const PostListItem: React.FC<Props> = ({ posts }) => {
             >
               <div className=""> 
                 <h2 className="section-post-title font-bold text-brandPrimary ">{post.title}</h2>
-                <h3 className="section-post-title sm:text-base text-sm text-brandHighlight ">{post.tag}</h3>
+                <h3 className=" sm:text-base text-xs text-brandHighlight ">{post.tag}</h3>
                 
                 <p className="section-post-subtitle sm:text-base ">{post.subtitle}</p>
                 <div className="flex justify-between items-center mt-2">

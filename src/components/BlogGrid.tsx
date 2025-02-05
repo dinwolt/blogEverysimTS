@@ -71,11 +71,11 @@ const BlogGrid: React.FC<BlogGridProps> = ({
                                     </CardContent>
                                     <CardHeader>
                                         <CardTag>
-                                            <div className='flex justify-between'>
+                                            <div className='flex justify-between font-roboto'>
                                                 <div>{post.tag}</div>
                                                 </div>
                                             </CardTag>
-                                        <CardTitle>{post.title}</CardTitle>
+                                        <CardTitle className='font-roboto'>{post.title}</CardTitle>
                                         <CardDescription>
                                             <div className='flex-col'>
                                                 {post.subtitle}

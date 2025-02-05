@@ -29,6 +29,7 @@ module.exports = {
 				brandHighlight: "#008BAA",
 				brandLight: "#D6F8FF",
 				"footer-bg":"#eaf1f7",
+				"skyblue":"#f4f9fc",
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

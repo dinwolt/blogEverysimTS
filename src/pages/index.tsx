@@ -139,11 +139,11 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
               <h1 className="section-title text-center text-brandSecondary">
                 <FormattedMessage id="index_banner_title" />
               </h1>
-              <p className="section-subtitle text-center text-brandSecondary mt-5 mb-5">
+              <p className="section-subtitle text-center font-roboto text-brandSecondary mt-5 mb-5">
                 <FormattedMessage id="index_banner_subtitle" />
               </p>
               <ILink to="/blog/1" className="w-auto">
-                <p className="bg-brandSecondary w-auto hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-robotoCondensed rounded-3xl">
+                <p className="bg-brandSecondary w-auto hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-roboto rounded-3xl">
                   <FormattedMessage id="index_gotoblog" />
                 </p>
               </ILink>

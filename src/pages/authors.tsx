@@ -64,7 +64,7 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
     return (
         <Layout title="Authors" style="">
             <Seo seoprops={seoprops} />
-            <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight text-white py-16 text-center">
+            <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight font-sans text-white py-16 px-3 text-center">
                 <h1 className="text-4xl font-bold">
                     <FormattedMessage id="about_authors_title" />
                 </h1>
@@ -90,9 +90,9 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                                         />
                                     )}
                                     <div className="p-6">
-                                        <h2 className="text-xl font-anton text-gray-800 text-center">{item.name}</h2>
-                                        <h3 className="text-sm font-semibold text-brandHighlight  mt-1 text-center">{item.role}</h3>
-                                        <p className="mt-4 text-gray-700 text-sm text-center">{item.description}</p>
+                                        <h2 className="text-xl font-spoqa font-black text-gray-800 text-center">{item.name}</h2>
+                                        <h3 className="text-sm font-semibold font-roboto text-brandHighlight  mt-1 text-center">{item.role}</h3>
+                                        <p className="mt-4 text-gray-700 text-sm text-center font-roboto">{item.description}</p>
                                     </div>
                                 </div>
                             );
@@ -103,7 +103,7 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
                 </section>
 
                 <section className="bg-gray-100 py-16 text-center">
-                    <h2 className="text-3xl  font-anton text-gray-800">
+                    <h2 className="text-3xl  font-spoqa font-black text-gray-800">
                         <FormattedMessage id="about_collab_title" />
                     </h2>
                     <p className="mt-4 text-gray-600">
