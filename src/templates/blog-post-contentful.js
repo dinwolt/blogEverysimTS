@@ -85,7 +85,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center font-roboto">
           <div className="font-semibold text-left sm:text-base text-sm text-blue-500 mb-3">{post.tag}</div>
           <header className="text-center mb-8 ">
             <h1
@@ -127,14 +127,17 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
         </div>
       </article>
       <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
-        <div className="flex flex-col mt-5 items-center mx-auto p-10 lg:w-[50rem]">
+        <div className="flex flex-col mt-5 items-center mx-auto p-10 gap-2 lg:w-[50rem]">
           <h2 className="font-semibold">
             <FormattedMessage id="post_writtenby"/>
           </h2>
-          <GatsbyImage image={getImage(post.postAuthor.image)} className="rounded-full" />
-          <h2 className="font-spoqa font-bold text-2xl mt-5">{post.postAuthor.name}</h2>
-          <h2 className="text-brandHighlight font-semibold">{post.postAuthor.role}</h2>
-          <h2 className="m-10 text-center">{post.postAuthor.description}</h2>
+          <GatsbyImage image={getImage(post.postAuthor.image)} className="object-cover rounded-lg" />
+          <div className="flex-col justify-center text-center">
+            <h2 className="font-spoqa font-bold text-2xl mt-5">{post.postAuthor.name}</h2>
+          <h2 className="text-brandHighlight  font-semibold ">{post.postAuthor.role}</h2>
+          </div>
+          
+          <h2 className="m-10 text-center font-roboto">{post.postAuthor.description}</h2>
           <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
             <FormattedMessage id="post_authorlink"/>          
           </Link>

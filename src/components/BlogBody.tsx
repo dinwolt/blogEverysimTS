@@ -28,7 +28,7 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
       [BLOCKS.HEADING_2]: (node, children) => {
         if (Array.isArray(children)) {
           return (
-            <h2 className="sm:text-4xl text-3xl text-brandHighlight font-bold font-spoqa mt-6 mb-5">
+            <h2 className="sm:text-4xl text-3xl text-brandHighlight font-bold font-spoqa my-10 ">
               {children.map((child, index) =>
                 typeof child === 'string' ? child : child.props?.children
               )}
