@@ -16,151 +16,161 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
   const otherPosts = data.allContentfulPost.nodes;
   const authorPosts = data.authorPosts.nodes;
   console.log(authorPosts)
-
+  const formatDate = (dateString, locale = "en-US") => {
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(dateString));
+  };
   const randomPosts = otherPosts
-    .sort(() => 0.5 - Math.random()) 
+    .sort(() => 0.5 - Math.random())
     .slice(0, 3);
-    const seoprops = {
-      enUS:{
-        title: post.title || "title",
-    description: post.subtitle || "desc",
-    url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
-    author: post.author || "Everysim",
-    keywords: [
-      post.title,
-      post.subtitle,
-      post.postAuthor.name,
-      post.tag,
-      "Everysim Tech Blog", 
-      "technology insights", 
-      "software development", 
-      "engineering innovations", 
-      "future of technology", 
-      "tech blog", 
-      "development news", 
-      "tech industry trends", 
-      "engineering expertise", 
-      "Everysim updates", 
-      "technology leaders", 
-      "software development blog", 
-      "cutting-edge technology"
-    ]
-      },
-      koKR:{
-        title: post.title || "title",
-    description: post.subtitle || "desc",
-    url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
-    author: post.author || "everysim",
-    keywords: [
-      post.title,
-      post.subtitle,
-      post.postAuthor.name,
-      post.tag,
-      "Everysim 기술 블로그", 
-        "기술 통찰력", 
-        "소프트웨어 개발", 
-        "엔지니어링 혁신", 
-        "기술의 미래", 
-        "기술 블로그", 
-        "개발 뉴스", 
-        "기술 산업 트렌드", 
-        "엔지니어링 전문 지식", 
-        "Everysim 업데이트", 
-        "기술 리더", 
-        "소프트웨어 개발 블로그", 
+  const seoprops = {
+    enUS: {
+      title: post.title || "title",
+      description: post.subtitle || "desc",
+      url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
+      author: post.author || "Everysim",
+      keywords: [
+        post.title,
+        post.subtitle,
+        post.postAuthor.name,
+        post.tag,
+        "Everysim Tech Blog",
+        "technology insights",
+        "software development",
+        "engineering innovations",
+        "future of technology",
+        "tech blog",
+        "development news",
+        "tech industry trends",
+        "engineering expertise",
+        "Everysim updates",
+        "technology leaders",
+        "software development blog",
+        "cutting-edge technology"
+      ]
+    },
+    koKR: {
+      title: post.title || "title",
+      description: post.subtitle || "desc",
+      url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
+      author: post.author || "everysim",
+      keywords: [
+        post.title,
+        post.subtitle,
+        post.postAuthor.name,
+        post.tag,
+        "Everysim 기술 블로그",
+        "기술 통찰력",
+        "소프트웨어 개발",
+        "엔지니어링 혁신",
+        "기술의 미래",
+        "기술 블로그",
+        "개발 뉴스",
+        "기술 산업 트렌드",
+        "엔지니어링 전문 지식",
+        "Everysim 업데이트",
+        "기술 리더",
+        "소프트웨어 개발 블로그",
         "최첨단 기술"
-    ],
-      }
-    };
+      ],
+    }
+  };
   return (
-<Layout title={siteTitle} seoprops={seoprops}>
-  
-  <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
-    <div className="container">
+    <Layout title={siteTitle} seoprops={seoprops}>
 
-      <div className="grid gap-8 grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
-      <article
-        className="flex flex-col min-h-screen place-items-center p-20 space-y-8"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <div className="flex flex-col items-center font-roboto">
-          <div className="font-semibold text-left sm:text-base text-sm text-blue-500 mb-3">{post.tag}</div>
-          <header className="text-center mb-8 ">
-            <h1
-              itemProp="headline"
-              className="sm:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
-            >
-              {post.title}
-            </h1>
-            <h2
-              itemProp="headline"
-              className="font-semibold text-gray-500 sm:text-base text-base dark:text-white mt-3"
-            >
-              {post.subtitle}
-            </h2>
-          </header>
+      <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
+        <div className="container">
 
-          {post.image && (
-            <div className="relative z-0 p-2  max-w-screen-md mx-auto">
-              <GatsbyImage
-                image={getImage(post.image)}
-                alt={post.title}
-                className="w-full h-auto object-cover rounded-lg mx-auto"
-              />
+          <div className="grid gap-8 grid-cols-1 min-w-screen-sm sm:grid-cols-1 p-8">
+            <article
+              className="flex flex-col min-h-screen place-items-center p-20 space-y-8"
+              itemScope
+              itemType="http://schema.org/Article"
+            >
+              <div className="flex flex-col items-center font-roboto">
+                <div className="font-semibold text-left sm:text-base text-sm text-blue-500 ">{post.tag}</div>
+                <header className="text-center mb-8 ">
+                  <h1
+                    itemProp="headline"
+                    className="sm:text-3xl text-2xl font-semibold text-gray-900 dark:text-white"
+                  >
+                    {post.title}
+                  </h1>
+                  <h2
+                    itemProp="headline"
+                    className="font-semibold text-gray-500 sm:text-base text-base dark:text-white mt-2 mb-2"
+                  >
+                    {post.subtitle}
+                  </h2>
+                  <div className=""><p className="text-center text-gray-500 text-xs my-2  font-spoqa ">{`${formatDate(post.updatedAt, intl.locale)}` }</p>
+                  </div>
+                  
+                </header>
+
+                {post.image && (
+                  <div className="relative z-0 p-2  max-w-screen-md mx-auto">
+                    <GatsbyImage
+                      image={getImage(post.image)}
+                      alt={post.title}
+                      className="w-full h-auto object-cover rounded-lg mx-auto"
+                    />
+                  </div>
+                )}
+
+
+                <div className="flex flex-col max-w-screen-md mt-6 mx-auto gap-4">
+                  <BlogBody content={post.content} references={post.content.references} />
+                </div>
+
+                <div className="mb-7 mt-7 flex justify-center">
+                  <Link
+                    to={`/blog/1`}
+                    className="bg-brand-secondary/20 text-blue-600 dark:text-blue-500 rounded-full px-5 py-2 text-sm"
+                  >
+                    <FormattedMessage id="post_bloglink" />
+                  </Link>
+                </div>
+              </div>
+            </article>
+            <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
+              <div className="flex flex-col mt-5 items-center mx-auto p-10 gap-2 lg:w-[50rem]">
+                <h2 className="font-semibold">
+                  <FormattedMessage id="post_writtenby" />
+                </h2>
+                <GatsbyImage image={getImage(post.postAuthor.image)} className="object-cover rounded-lg" />
+                <div className="flex-col justify-center text-center">
+                  <h2 className="font-spoqa font-bold text-2xl mt-5">{post.postAuthor.name}</h2>
+                  <h2 className="text-brandHighlight  font-semibold ">{post.postAuthor.role}</h2>
+                </div>
+
+                <h2 className="m-10 text-center font-roboto">{post.postAuthor.description}</h2>
+                <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
+                  <FormattedMessage id="post_authorlink" />
+                </Link>
+              </div>
+              {authorPosts.length !== 0 && <div className="flex flex-col gap-4 mt-5">
+                <h2 className="font-spoqa font-bold text-left text-black text-4xl mt-5">{post.postAuthor.name}
+                  <FormattedMessage id="post_author_other" />
+                </h2>
+                <PostListItem posts={authorPosts} />
+              </div>}
+
             </div>
-          )}
-
-          <div className="max-w-screen-md mt-6 mx-auto">
-            <BlogBody content={post.content} references={post.content.references} />
-          </div>
-
-          <div className="mb-7 mt-7 flex justify-center">
-            <Link
-              to={`/blog/1`}
-              className="bg-brand-secondary/20 text-blue-600 dark:text-blue-500 rounded-full px-5 py-2 text-sm"
-            >
-              <FormattedMessage id="post_bloglink"/>
-            </Link>
           </div>
         </div>
-      </article>
-      <div className="flex flex-col items-center justify-center sm:p-6  mx-auto">
-        <div className="flex flex-col mt-5 items-center mx-auto p-10 gap-2 lg:w-[50rem]">
-          <h2 className="font-semibold">
-            <FormattedMessage id="post_writtenby"/>
-          </h2>
-          <GatsbyImage image={getImage(post.postAuthor.image)} className="object-cover rounded-lg" />
-          <div className="flex-col justify-center text-center">
-            <h2 className="font-spoqa font-bold text-2xl mt-5">{post.postAuthor.name}</h2>
-          <h2 className="text-brandHighlight  font-semibold ">{post.postAuthor.role}</h2>
-          </div>
-          
-          <h2 className="m-10 text-center font-roboto">{post.postAuthor.description}</h2>
-          <Link to={`/authors`} className="font-semibold hover:text-brandHighLight hover:scale-105 duration-200 transition-transform">
-            <FormattedMessage id="post_authorlink"/>          
-          </Link>
-        </div>
-        {authorPosts.length !== 0 && <div className="flex flex-col gap-4 mt-5">
-          <h2 className="font-spoqa font-bold text-left text-black text-4xl mt-5">{post.postAuthor.name}
-            <FormattedMessage id="post_author_other"/>
-          </h2>
-          <PostListItem posts={authorPosts} />
+
+        {randomPosts.length !== 0 && <div className="flex flex-col w-auto">
+          <h3 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
+            <FormattedMessage id="post_recommendation" />
+          </h3>
+          <Carousel posts={randomPosts} />
         </div>}
-        
+
       </div>
-    </div>
-    </div>
-    
-    {randomPosts.length !== 0 && <div className="flex flex-col w-auto">
-      <h3 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
-        <FormattedMessage id="post_recommendation"/>
-      </h3>
-      <Carousel posts={randomPosts} />
-    </div>}
-    
-  </div>
-</Layout>
+    </Layout>
 
   );
 };
@@ -201,6 +211,7 @@ export const pageQuery = graphql`
         }
       }
       }
+      updatedAt
       title
       subtitle
       slug
