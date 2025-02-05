@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import { BlogBody } from "../components/BlogBody";
 import { Link } from "gatsby-plugin-intl";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -25,12 +24,12 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
       enUS:{
         title: post.title || "title",
     description: post.subtitle || "desc",
-    url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+    url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
     author: post.author || "Everysim",
     keywords: [
       post.title,
       post.subtitle,
-      post.author,
+      post.postAuthor.name,
       post.tag,
       "Everysim Tech Blog", 
       "technology insights", 
@@ -48,14 +47,14 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
     ]
       },
       koKR:{
-        title: data.site.siteMetadata?.koKR.title || "title",
-    description: data.site.siteMetadata?.koKR.description || "desc",
-    url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
-    author: data.site.siteMetadata?.koKR.author || "everysim",
+        title: post.title || "title",
+    description: post.subtitle || "desc",
+    url: `https://blog.everysim.io/${intl.locale}/blog/${post.slug}`,
+    author: post.author || "everysim",
     keywords: [
       post.title,
       post.subtitle,
-      post.author,
+      post.postAuthor.name,
       post.tag,
       "Everysim 기술 블로그", 
         "기술 통찰력", 
@@ -74,8 +73,8 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
       }
     };
   return (
-<Layout title={siteTitle}>
-  <Seo seoprops={seoprops}/>
+<Layout title={siteTitle} seoprops={seoprops}>
+  
   <div className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 gap-8 overflow-x-hidden">
     <div className="container">
 
@@ -142,7 +141,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
             <FormattedMessage id="post_authorlink"/>          
           </Link>
         </div>
-        {authorPosts.length != 0 && <div className="flex flex-col gap-4 mt-5">
+        {authorPosts.length !== 0 && <div className="flex flex-col gap-4 mt-5">
           <h2 className="font-spoqa font-bold text-left text-black text-4xl mt-5">{post.postAuthor.name}
             <FormattedMessage id="post_author_other"/>
           </h2>
@@ -153,7 +152,7 @@ const BlogPostContentfulTemplate = ({ data, intl }) => {
     </div>
     </div>
     
-    {randomPosts.length !=0 && <div className="flex flex-col w-auto">
+    {randomPosts.length !== 0 && <div className="flex flex-col w-auto">
       <h3 className="lg:text-5xl text-3xl font-semibold text-center text-gray-900 dark:text-white">
         <FormattedMessage id="post_recommendation"/>
       </h3>

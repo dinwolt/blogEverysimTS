@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
 import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { FormattedMessage, injectIntl, WrappedComponentProps } from "gatsby-plugin-intl";
@@ -47,14 +46,14 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
         enUS: {
             title: "About Us",
             description: "Meet the minds behind the Everysim Tech Blog. Our team of passionate authors consists of engineers, developers, and innovators dedicated to sharing insights, experiences, and cutting-edge knowledge in technology and development. Get to know the experts driving meaningful conversations about the future of engineering, software development, and innovation.",
-            url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+            url: `https://blog.everysim.io/${intl.locale}/blog/authors`,
             author: data.site.siteMetadata?.enUS.author || "Everysim",
             keywords: ["Everysim Tech Blog authors", "tech blog team", "engineering experts", "software developers", "innovation leaders", "technology insights", "development expertise", "future of engineering", "innovative engineers", "tech thought leaders", "engineering and innovation", "software development team", "Everysim blog contributors"]
         },
         koKR: {
             title: data.site.siteMetadata?.koKR.title || "title",
             description: "Everysim Tech Blog의 저자들을 만나보세요. 우리의 팀은 기술과 개발에 대한 통찰, 경험, 그리고 최첨단 지식을 공유하는 데 열정적인 엔지니어, 개발자, 혁신가들로 이루어져 있습니다. 엔지니어링, 소프트웨어 개발, 그리고 혁신의 미래에 대해 의미 있는 대화를 이끄는 전문가들을 알아가세요.",
-            url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+            url: `https://blog.everysim.io/${intl.locale}/blog/authors`,
             author: data.site.siteMetadata?.koKR.author || "Everysim",
             keywords: ["Everysim Tech Blog 저자", "기술 블로그 팀", "엔지니어링 전문가", "소프트웨어 개발자", "혁신 리더", "기술 통찰력", "개발 전문 지식", "엔지니어링의 미래", "혁신적인 엔지니어", "기술 사상 리더", "엔지니어링과 혁신", "소프트웨어 개발 팀", "Everysim 블로그 기고자"],
         }
@@ -62,8 +61,8 @@ const AuthorsIndex: React.FC<PageProps<AuthorsIndexQueryData> & WrappedComponent
     const authors = data.allContentfulAuthor.edges.map((edge) => edge.node);
 
     return (
-        <Layout title="Authors" style="">
-            <Seo seoprops={seoprops} />
+        <Layout title="Authors"  seoprops={seoprops}>
+            
             <section className="bg-gradient-to-r from-brandPrimary to-brandHighlight font-sans text-white py-16 px-3 text-center">
                 <h1 className="text-4xl font-bold">
                     <FormattedMessage id="about_authors_title" />

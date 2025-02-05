@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { graphql } from "gatsby";
-import { Link } from "gatsby-plugin-intl";
+import { Link, useIntl } from "gatsby-plugin-intl";
 import Layout from "../components/Layout";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -8,7 +8,7 @@ import { FormattedMessage } from "gatsby-plugin-intl";
 import BlogMenu from "../components/BlogMenu";
 import BlogListItem from "../components/BlogListItem";
 import SliderView from "@/components/SliderView";
-import Seo from "../components/Seo";
+
 
 const BlogIndex = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || "Title";
@@ -56,7 +56,7 @@ const BlogIndex = ({ data, pageContext }) => {
     enUS: {
       title: "Everysim Tech Blog – Insights, Innovations, and the Future of Engineering",
       description: "Explore cutting-edge insights, the latest innovations, and expert opinions on technology, software development, and the future of engineering. Stay updated with the Everysim Tech Blog, where industry leaders share their expertise and vision for tomorrow's tech landscape.",
-      url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+      url:  `https://blog.everysim.io/${useIntl().locale}/blog/${currentPage}`,
       author: data.site.siteMetadata?.enUS.author || "Everysim",
       keywords: [
         "Everysim Tech Blog",
@@ -77,7 +77,7 @@ const BlogIndex = ({ data, pageContext }) => {
     koKR: {
       title: "Everysim 기술 블로그 – 통찰력, 혁신, 엔지니어링의 미래",
       description: "최신 혁신, 기술, 소프트웨어 개발 및 엔지니어링의 미래에 대한 전문가의 의견과 통찰력을 제공합니다. Everysim 기술 블로그에서 산업 리더들이 내일의 기술 환경에 대한 비전과 전문 지식을 공유합니다.",
-      url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+      url: `https://blog.everysim.io/${useIntl().locale}/blog/${currentPage}`,
       author: data.site.siteMetadata?.koKR.author || "everysim",
       keywords: [
         "Everysim 기술 블로그",
@@ -98,8 +98,8 @@ const BlogIndex = ({ data, pageContext }) => {
   };
 
   return (
-    <Layout title={siteTitle} style="bg-white mx-5">
-      <Seo seoprops={seoprops} />
+    <Layout title={siteTitle}  seoprops={seoprops}>
+      
       <section>
 
 

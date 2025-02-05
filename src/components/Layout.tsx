@@ -9,12 +9,28 @@ import { Helmet } from "react-helmet";
 
 interface LayoutProps {
   title: string;
-  style: string;
   children: React.ReactNode;
   intl: IntlShape;
+  seoprops:SeoProps;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, style, children, intl }) => {
+type SeoProps = {
+  enUS: {
+    title: string;
+    description: string;
+    url: string;
+    author: string;
+    keywords: string[];
+},
+koKR: {
+  title: string;
+  description: string;
+  url: string;
+  author: string;
+  keywords: string[];
+}};
+
+const Layout: React.FC<LayoutProps> = ({ title, children, intl, seoprops }) => {
   const location = useLocation();
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
@@ -39,13 +55,23 @@ const Layout: React.FC<LayoutProps> = ({ title, style, children, intl }) => {
       {/* Set the HTML language dynamically */}
       <Helmet>
         <html lang={intl.locale} />
+        <title>{intl.locale ==="ko-KR" ? seoprops.koKR.title : seoprops.enUS.title}</title>
+        <meta name="description" content={intl.locale ==="ko-KR" ? seoprops.koKR.description : seoprops.enUS.description} />
+        <meta name="author" content={intl.locale ==="ko-KR" ? seoprops.koKR.author : seoprops.enUS.author} />
+        <meta name="url" content={intl.locale ==="ko-KR" ? seoprops.koKR.url : seoprops.enUS.url} />
+
+        <meta name="keywords" content={intl.locale ==="ko-KR" ? seoprops.koKR.keywords.join(", ") : seoprops.enUS.keywords.join(", ")} />
+        <meta property="og:title" content={intl.locale ==="ko-KR" ? seoprops.koKR.title : seoprops.enUS.title} />
+        <meta property="og:description" content={intl.locale ==="ko-KR" ? seoprops.koKR.description : seoprops.enUS.description} />
+        <meta property="og:url" content={intl.locale ==="ko-KR" ? seoprops.koKR.url : seoprops.enUS.url} />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="global-wrapper" data-is-root-path={isRootPath}>
         <Navbar
           className={`sticky bg-white top-0 transition-all duration-300 z-50`}
         />
-        <main className={style}>{children}</main>
+        <main >{children}</main>
         <Footer />
       </div>
     </>

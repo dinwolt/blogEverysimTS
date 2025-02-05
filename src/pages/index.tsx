@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { graphql, PageProps } from "gatsby";
 import Layout from "../components/Layout";
-import Seo from "../components/Seo";
-import { Link } from "gatsby";
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import BlogGrid from "@/components/BlogGrid";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import Slider from "@/components/Slider";
-import PostListItem from "@/components/PostListItem";
-import Carousel from "@/components/Carousel";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps } from "gatsby-plugin-intl"
 import Tabs from "@/components/Tabs";
-import SliderView from "@/components/SliderView";
 type Authors = {
   name: string;
   image: IGatsbyImageData;
@@ -94,14 +87,14 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
     enUS:{
       title: data.site.siteMetadata?.enUS.title || "title",
   description: data.site.siteMetadata?.enUS.description || "desc",
-  url: data.site.siteMetadata?.enUS.siteUrl || "https://blog.everysim.io",
+  url: "https://blog.everysim.io/en-US",
   author: data.site.siteMetadata?.enUS.author || "Everysim",
   keywords: ["Everysim", "Tech Blog", "Technology", "Engineering", "Development", "Innovation", "Future of Engineering", "Tech Insights", "Software Development", "Engineering Trends", "Tech Innovations"],
     },
     koKR:{
       title: data.site.siteMetadata?.koKR.title || "title",
   description: data.site.siteMetadata?.koKR.description || "desc",
-  url: data.site.siteMetadata?.koKR.siteUrl || "https://blog.everysim.io",
+  url:   "https://blog.everysim.io/ko-KR",
   author: data.site.siteMetadata?.koKR.author || "everysim",
   keywords: ["에브리심", "기술 블로그", "기술", "엔지니어링", "개발", "혁신", "미래 엔지니어링", "기술 인사이트", "소프트웨어 개발", "엔지니어링 트렌드", "기술 혁신"],
     }
@@ -125,8 +118,8 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
 
 
   return (
-    <Layout title={siteTitle} style="">
-      <Seo seoprops={seoprops}/>
+    <Layout title={siteTitle}  seoprops={seoprops}>
+      
       <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden">
         {/*Banner + slider*/}
 
