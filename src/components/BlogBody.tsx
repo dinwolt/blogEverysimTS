@@ -54,13 +54,29 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
           );
         }
         return (
-          <h3 className="sm:text-xl text-xl font-medium text-red-500 mt-5 mb-4">{children}</h3>
+          <h3 className="sm:text-xl text-xl font-medium text-black  mt-5 mb-4">{children}</h3>
         );
         
       },
-      [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 className="sm:text-3xl text-xl font-medium text-gray-700 mt-5 mb-4">{children}</h4>
-      ),
+      [BLOCKS.HEADING_4]: (node, children) => 
+        {
+          console.log(children)
+          if (Array.isArray(children)) {
+            return (
+              <h4 className="sm:text-xl text-lg font-medium  text-bold font-spoqa mt-5 mb-4">
+                {children.map((child, index) =>
+                  typeof child === 'string' ? child : child.props?.children
+                )}
+              </h4>
+            );
+          }
+          return (
+            <h4 className="sm:text-xl text-lg font-bold text-red-700 font-poqa mt-5 mb-4">{children}</h4>
+          );
+          
+        },
+        
+     
       //[BLOCKS.PARAGRAPH]: (node, children) => ,
       [BLOCKS.PARAGRAPH]: (node,children)=>{
        
@@ -80,14 +96,21 @@ export const BlogBody = ({ content, references }: BlogBodyProps) => {
           
         
       },
-      [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="list-disc  pl-6 my-4 ">{children}</ul>
-      ),
-      [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="list-decimal  pl-6 my-4 ">{children}</ol>
-      ),
+      [BLOCKS.UL_LIST]: (node, children) => {
+        console.log(children)
+        
+        return(
+        
+        <ul className="list-disc  pl-6 my-4  ">{children}</ul>
+      )},
+      [BLOCKS.OL_LIST]: (node, children) =>{ 
+        console.log(children);
+        return(
+        
+        <ol className="list-decimal pl-6 my-4  ">{children}</ol>
+      )},
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className="text-gray-700 mb-2 ">{children}</li>
+        <li className="text-gray-700 mb-2  ">{children}</li>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote className="border-l-4 pl-4 italic text-gray-600 bg-gray-50 my-6 text-lg">{children}</blockquote>
