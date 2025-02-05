@@ -172,7 +172,7 @@ const BlogIndex = ({ data, pageContext }) => {
                 setSort={setActiveSort}
               />
             </div>
-            <div className="flex flex-col my-8 gap-2 items-center flex-grow w-full">
+            <div className="flex flex-col my-8 flex-grow w-full">
               {/*}
               <h1 className="section-title text-center text-black mb-2">
                 <FormattedMessage id="blog_section_title" />
@@ -192,11 +192,11 @@ const BlogIndex = ({ data, pageContext }) => {
               />*/}
               <BlogListItem posts={filteredAndSortedPosts} />
 
-              <div className="max-w-screen flex justify-center sm:mx-auto items-center  mb-10  gap-x-2 overflow-x-auto">
+              <div className="max-w-screen flex justify-center mx-auto items-center mt-8 gap-x-2 overflow-x-auto">
                 {currentPage > 1 && (
                   <Link
                     to={`/blog/${currentPage - 1}`}
-                    className="inline-flex items-center  hover:bg-brandLight  hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
+                    className="inline-flex items-center  hover:bg-brandLight hover:outline-none text-black px-4 py-2 rounded text-center transition-colors duration-200"
                   >
                     <ArrowLeftIcon className="icon mr-3" />
                   </Link>
