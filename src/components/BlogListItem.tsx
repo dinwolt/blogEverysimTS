@@ -34,7 +34,7 @@ const formatDate = (dateString: string, locale: string = "en-US") => {
 
 const BlogListItem: React.FC<Props> = ({ posts }) => {
     return (
-        <div className='flex-col gap-4 mt-5'>
+        <div className='flex-col gap-4 '>
             {posts.map((post, index) => {
                 const authorImg = post.postAuthor?.image ? getImage(post.postAuthor.image) : null;
                 const postImg = post.image ? getImage(post.image) : null;
