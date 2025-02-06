@@ -80,9 +80,9 @@ const Navbar: React.FC<NavProps> = ({ className, intl }) => {
                             className="inline-block "
                         >
                             {open ? (
-                                <XMarkIcon strokeWidth={2} className="h-6 w-6 text-brandHighlight" />
+                                <XMarkIcon strokeWidth={2} className="h-6 w-6 text-brandHighlight dark:text-white" />
                             ) : (
-                                <Bars3Icon strokeWidth={2} className="h-6 w-6 text-brandHighlight" />
+                                <Bars3Icon strokeWidth={2} className="h-6 w-6 text-brandHighlight dark:text-white" />
                             )}
                         </button>
                     </div>
