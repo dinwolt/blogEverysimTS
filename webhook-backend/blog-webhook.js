@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+//require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -6,8 +6,8 @@ const {createClient} = require("contentful-management");
 const nodemailer = require("nodemailer");
 const { exec } = require('child_process');
 const app = express();
-const SPACE_ID = process.env.CONTENTFUL_SPACE_ID
-const CMA_TOKEN = process.env.CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
+const SPACE_ID = "mh2zs9urj0ep"
+const CMA_TOKEN = "CFPAT-sePdw4VS0IP9XWwOZ8KhKkzLwyq4DBASeJvEAu97SXU"
 const corsOptions = {
     origin: ['https://blog.everysim.io'], 
     methods: ['GET', 'POST'],
