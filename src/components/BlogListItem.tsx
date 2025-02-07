@@ -40,7 +40,8 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                 const postImg = post.image ? getImage(post.image) : null;
                 return (
 
-                    <div className="flex bg-skyblue dark:bg-[#1b272d] rounded-md flex-col sm:flex-row sm:gap-8 gap-4 items-center sm:p-6 p-2 hover:scale-105 transition-transform duration-200" key={index}>
+                    <ILink
+                    to={`/blog/${post.slug}`} className="flex bg-skyblue dark:bg-[#1b272d] rounded-md flex-col sm:flex-row sm:gap-8 gap-4 items-center sm:p-6 p-2 hover:scale-105 transition-transform duration-200" key={index}>
                         <div className=''>
                             {postImg && <GatsbyImage image={postImg} alt="post" className='w-full  h-18 sm:w-56 sm:h-36 rounded-xl' />}
                         </div>
@@ -73,8 +74,7 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                                             </div>
                                         </div>
                                     )}
-                                    <ILink
-                                        to={`/blog/${post.slug}`}
+                                    <div
                                         className="flex items-center text-brandHighlight text-xs sm:text-base font-semibold hover:underline transition duration-150 ease-in-out"
                                     >
                                         <span className="mr-2">
@@ -84,13 +84,13 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                                             className="sm:h-5 sm:w-5 h-3 w-3 text-brandHighlight"
                                             aria-hidden="true"
                                         />
-                                    </ILink>
+                                    </div>
                                 
                             </div>
                         </div>
 
 
-                    </div>
+                    </ILink>
 
 
                 );
