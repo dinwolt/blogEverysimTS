@@ -2,10 +2,23 @@ import React, { useState } from "react";
 import { graphql, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import BlogGrid from "@/components/BlogGrid";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import BlogListItem from "@/components/BlogListItem";
 import Slider from "@/components/Slider";
 import { injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps } from "gatsby-plugin-intl"
 import Tabs from "@/components/Tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardImage,
+  CardHeader,
+  CardTitle,
+  CardTag
+} from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import HomeListItem from "@/components/HomeListItem";
+import { Separator } from "@radix-ui/react-separator";
 type Authors = {
   name: string;
   image: IGatsbyImageData;
@@ -30,7 +43,7 @@ type Posts = {
 interface BlogIndexQueryData {
   site: {
     siteMetadata?: {
-      siteUrl:string,
+      siteUrl: string,
       enUS: {
         title: string;
         description: string;
@@ -63,7 +76,7 @@ interface BlogIndexQueryData {
           description?: string;
           role?: string;
         };
-        updatedAt:string;
+        updatedAt: string;
       };
     }[];
   };
@@ -84,22 +97,22 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
   const siteMetadata = data.site.siteMetadata;
   const siteTitle = (intl.locale === "ko-KR" ? data.site.siteMetadata?.koKR.title : data.site.siteMetadata?.enUS.title) || "Title";
   const seoprops = {
-    enUS:{
+    enUS: {
       title: data.site.siteMetadata?.enUS.title || "title",
-  description: data.site.siteMetadata?.enUS.description || "desc",
-  url: "https://blog.everysim.io/en-US",
-  author: data.site.siteMetadata?.enUS.author || "Everysim",
-  keywords: ["Everysim", "Tech Blog", "Technology", "Engineering", "Development", "Innovation", "Future of Engineering", "Tech Insights", "Software Development", "Engineering Trends", "Tech Innovations"],
+      description: data.site.siteMetadata?.enUS.description || "desc",
+      url: "https://blog.everysim.io/en-US",
+      author: data.site.siteMetadata?.enUS.author || "Everysim",
+      keywords: ["Everysim", "Tech Blog", "Technology", "Engineering", "Development", "Innovation", "Future of Engineering", "Tech Insights", "Software Development", "Engineering Trends", "Tech Innovations"],
     },
-    koKR:{
+    koKR: {
       title: data.site.siteMetadata?.koKR.title || "title",
-  description: data.site.siteMetadata?.koKR.description || "desc",
-  url:   "https://blog.everysim.io/ko-KR",
-  author: data.site.siteMetadata?.koKR.author || "everysim",
-  keywords: ["에브리심", "기술 블로그", "기술", "엔지니어링", "개발", "혁신", "미래 엔지니어링", "기술 인사이트", "소프트웨어 개발", "엔지니어링 트렌드", "기술 혁신"],
+      description: data.site.siteMetadata?.koKR.description || "desc",
+      url: "https://blog.everysim.io/ko-KR",
+      author: data.site.siteMetadata?.koKR.author || "everysim",
+      keywords: ["에브리심", "기술 블로그", "기술", "엔지니어링", "개발", "혁신", "미래 엔지니어링", "기술 인사이트", "소프트웨어 개발", "엔지니어링 트렌드", "기술 혁신"],
     }
   };
-  
+
   const posts = data.allContentfulPost.edges.map(edge => edge.node);
   const [activeTab, setActiveTab] = useState<string>('');
   const uniqueTags = Array.from(
@@ -118,8 +131,8 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
 
 
   return (
-    <Layout title={siteTitle}  seoprops={seoprops}>
-      
+    <Layout title={siteTitle} seoprops={seoprops}>
+
       <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden ">
         {/*Banner + slider*/}
 
@@ -143,7 +156,8 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
             </div>
 
           </div>
-          {/*tablet + etc*/}
+          {/**
+          {/*tablet + etc
           <div className=" hidden md:flex items-center">
 
             <div className="flex-1 p-5 ">
@@ -155,16 +169,19 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
               </p>
               <ILink to="/blog/1" className="bg-brandSecondary hover:bg-brandLight hover:text-black transition-transform duration-200 p-3 text-2xl text-white font-robotoCondensed rounded-3xl dark:bg-brandHighlight dark:text-brandLight dark:hover:bg-brandLight dark:hover:text-brandHighlight"><FormattedMessage id="index_gotoblog" /></ILink>
             </div>
-            {/* Slider */}
+            
             <div className="flex-1 flex">
               <Slider posts={posts} />
             </div>
           </div>
+           */}
+
         </div>
 
-        {/*Main container*/}
-        <div className="container mx-auto px-4  lg:px-8">
-        <div className="pb-10">
+        {/*phone+tablet Main container*/}
+
+        <div className="container md:hidden mx-auto px-4  lg:px-8">
+          <div className="pb-10">
             <Tabs tabs={uniqueTags} activeTab={activeTab} setActiveTab={(tab) => setActiveTab(tab === activeTab ? "" : tab)} />
             <BlogGrid
               posts={posts}
@@ -179,6 +196,54 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
             </ILink>
             <hr className="flex-1 border-t border-brandHighlight w-auto my-10" />
           </div>
+        </div>
+
+        {/*desktop Main container*/}
+        <div className="hidden md:block container  mx-auto px-4  lg:px-8">
+          <div className="flex-1 ">
+            <h1 className="section-title text-left text-brandHighlight dark:text-white">
+              <FormattedMessage id="index_banner_title" />
+            </h1>
+            <p className="section-subtitle text-left text-gray-500 mt-5 mb-5 dark:text-gray-300">
+              <FormattedMessage id="index_banner_subtitle" />
+            </p>
+
+          </div>
+          <div className="flex">
+            <div className="w-3/4 ">
+              <div className="justify-between w-full dark:text-brandHighlight font-bold text-xl text-brandSecondary items-center flex mt-4 mb-6 ">
+                <FormattedMessage id="index_recent_posts"/>
+
+                <ILink to={`/blog/1`} className=" section-subtitle text-gray-400 font-light text-lg  hover:text-brandPrimary">
+                  <FormattedMessage id="index_gotoblog" /> {"->"}
+                </ILink>
+
+              </div>
+              <BlogGrid
+                posts={posts}
+
+                filteredPosts={filteredPosts}
+              />
+
+            </div>
+            <Separator orientation="vertical"/>
+            <div className="w-[1px] bg-gray-200  h-screen m-4"></div>
+            <div className="w-1/4  ">
+
+
+
+              <div className="">
+                <Tabs tabs={uniqueTags} activeTab={activeTab} setActiveTab={(tab) => setActiveTab(tab === activeTab ? "" : tab)} />
+
+              </div>
+              <HomeListItem posts={posts} />
+
+            </div>
+
+
+          </div>
+
+
         </div>
 
       </section>

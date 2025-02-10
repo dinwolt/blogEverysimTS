@@ -8,7 +8,7 @@ type TabsProps = {
 
 const Tabs: React.FC<TabsProps> = ({ tabs, activeTab, setActiveTab }) => {
   return (
-    <div className="flex flex-wrap mx-auto w-full mb-14 items-center justify-center">
+    <div className="flex flex-wrap mx-auto w-full mb-6 items-center justify-center">
       
           
             {tabs.map((tab) => (

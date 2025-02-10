@@ -60,7 +60,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({
             </div>
         
             <div className="flex justify-center items-center my-8">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3  max-w-screen-lg-3xl">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-3  max-w-screen-lg-3xl">
                     {filteredPosts.map((post, index) => {
                         const image = getImage(post.image); 
                         return (

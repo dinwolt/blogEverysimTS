@@ -60,7 +60,7 @@ const BlogListItem: React.FC<Props> = ({ posts }) => {
                             <div className="flex justify-between mt-5 items-center">
                                
                                     {authorImg && post.postAuthor?.name && (
-                                        <div className="flex items-center">
+                                        <div className="flex items-center hidden md:flex">
                                             <GatsbyImage
                                                 image={authorImg}
                                                 alt={post.postAuthor.name}

@@ -22,8 +22,8 @@ const LanguageSwitcher = () => {
               onClick={toggleLanguage}
             >
               
-              <GlobeAltIcon className="text-brandHighlight dark:text-white hover:text-brandSecondary sm:w-10 sm:h-10 w-6 h-6"/>
-              <div className="text-brandHighlight dark:text-white sm:text-xl font-semibold" >{lang}</div>
+              <GlobeAltIcon strokeWidth={1} className="text-brandHighlight dark:text-white hover:text-brandSecondary w-6 h-6"/>
+              <div className="text-brandHighlight hidden sm:block dark:text-white sm:text-base font-semibold 3xl:hidden" >{lang}</div>
             </button>
           );
         }}
