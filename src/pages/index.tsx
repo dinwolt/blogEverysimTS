@@ -7,6 +7,7 @@ import BlogListItem from "@/components/BlogListItem";
 import Slider from "@/components/Slider";
 import { injectIntl, Link as ILink, FormattedMessage, WrappedComponentProps } from "gatsby-plugin-intl"
 import Tabs from "@/components/Tabs";
+import { ArrowRight } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -136,12 +137,12 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
       <section className="flex flex-col min-h-screen w-full items-center justify-start space-y-8 overflow-x-hidden ">
         {/*Banner + slider*/}
 
-        <div className="container 3xl:mx-aut bg-gradient-to-b from-[#065774] via-[#d6f8ff] to-white rounded-2xl mx-5 dark:bg-gradient-to-b dark:from-[#232e35] dark:via-[#065774] dark:to-brandPrimary ">
+        <div className="container 3xl:mx-aut bg-gradient-to-b from-white via-[#d6f8ff] to-white rounded-2xl mx-5 dark:bg-gradient-to-b dark:from-brandPrimary dark:via-[#065774] dark:to-brandPrimary ">
           {/*phone*/}
           <div className="flex-col md:hidden  items-center justify-center">
 
             <Slider posts={posts} />
-            <div className="flex-1 px-8 pb-10  ">
+            <div className="flex flex-col flex-1 px-8 pb-10 justify-center items-center">
               <h1 className="section-title text-center text-brandSecondary dark:text-brandLight">
                 <FormattedMessage id="index_banner_title" />
               </h1>
@@ -149,7 +150,7 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
                 <FormattedMessage id="index_banner_subtitle" />
               </p>
               <ILink to="/blog/1" className="w-auto">
-                <p className="bg-brandSecondary w-auto hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-roboto rounded-3xl dark:bg-brandHighlight dark:text-brandLight dark:hover:bg-brandLight dark:hover:text-brandHighlight">
+                <p className="bg-brandHighlight w-52 text-center hover:bg-brandLight hover:text-black transition-transform duration-200 p-2 text-2xl text-white text-center font-roboto rounded-3xl dark:bg-brandHighlight dark:text-brandLight dark:hover:bg-brandLight dark:hover:text-brandHighlight">
                   <FormattedMessage id="index_gotoblog" />
                 </p>
               </ILink>
@@ -211,11 +212,12 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
           </div>
           <div className="flex">
             <div className="w-3/4 ">
-              <div className="justify-between w-full dark:text-brandHighlight font-bold text-xl text-brandSecondary items-center flex mt-4 mb-6 ">
+              <div className="justify-between w-full dark:text-gray-300 font-bold text-xl text-gray-500 items-center flex mt-4 mb-6 ">
                 <FormattedMessage id="index_recent_posts"/>
 
-                <ILink to={`/blog/1`} className=" section-subtitle text-gray-400 font-light text-lg  hover:text-brandPrimary">
-                  <FormattedMessage id="index_gotoblog" /> {"->"}
+                <ILink to={`/blog/1`} className=" section-subtitle text-gray-400 font-light text-lg flex items-center hover:text-brandPrimary">
+                  <FormattedMessage id="index_gotoblog" /> 
+                  <ArrowRight className="text-gray-400 w-4 h-4"/>
                 </ILink>
 
               </div>

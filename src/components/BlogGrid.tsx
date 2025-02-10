@@ -75,7 +75,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({
                                                 <div>{post.tag}</div>
                                                 </div>
                                             </CardTag>
-                                        <CardTitle className='font-spoqa'>{post.title}</CardTitle>
+                                        <CardTitle className='font-spoqa text-slate-600 dark:text-gray-200'>{post.title}</CardTitle>
                                         <CardDescription>
                                             <div className='flex-col font-roboto'>
                                                 <p className='text-sm sm:text-base'>{post.subtitle}</p>

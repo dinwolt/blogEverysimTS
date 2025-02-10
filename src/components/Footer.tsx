@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
           {failure && <p className='text-[#7a0000] bg-[#ff8e8e] text-xs font-sans rounded-sm mt-2 p-1 text-center w-28'>Failed. Try Later</p>}
         </div>
       </div>
-      <div className='text-xs text-gray-600 text-right'>© 2025 EverySim Blog. All rights reserved.</div>
+      <div className='text-xs text-gray-400 sm:text-right p-2'>© 2025 EverySim Blog. All rights reserved.</div>
     </footer>
   );
 };
