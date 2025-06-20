@@ -253,15 +253,17 @@ const BlogIndex: React.FC<BlogIndexProps> = ({ data, intl }) => {
             </h1>
             <div className="flex flex-col gap-4 p-5 border shadow-md rounded-lg hover:scale-105 transition-transform duration-300">
               <div className="flex-col md:flex items-center">
-                
+
                 <div className="md:w-2/3 pl-4 flex flex-1 flex-col justify-between">
-                <div><h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
-                    {posts[0].tag}
-                  </h1>
-                  <h1 className="section-title text-black md:text-2xl text-xl">
-                    {posts[0].title}
-                  </h1></div>
-                  
+                  <div>
+                    <h1 className="section-post-subtitle font-semibold text-sm md:text-base text-brandHighlight">
+                      {posts[0].tag}
+                    </h1>
+                    <h1 className="section-title text-black md:text-2xl text-xl">
+                      {posts[0].title}
+                    </h1>
+                  </div>
+
                   <h2 className="section-post-subtitle font-semibold mb-4 text-gray-600">
                     {posts[0].subtitle}
                   </h2>
